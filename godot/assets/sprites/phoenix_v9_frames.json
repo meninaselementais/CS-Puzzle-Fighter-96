@@ -1,0 +1,251 @@
+{
+  "phoenix_v9_aim.png": {
+    "anchor": [
+      256,
+      496
+    ],
+    "pixel_sha256": "660c141cd4440d1f1a869eaac772adbf48e77a3d21f7d48f071bc19aa0a6d8f2",
+    "review": "accepted_visual_review",
+    "sheet": "res://../arte/v9/phoenix_weapon_sheet.png",
+    "source_pixels": 68305,
+    "source_rect": [
+      1345,
+      51,
+      405,
+      390
+    ]
+  },
+  "phoenix_v9_blink.png": {
+    "anchor": [
+      256,
+      496
+    ],
+    "pixel_sha256": "31fb17cda69d88b3db3b5d64e9051461cbec5955eec57c1351f44abd443138a4",
+    "review": "accepted_visual_review",
+    "sheet": "res://../arte/v9/phoenix_weapon_sheet.png",
+    "source_pixels": 69986,
+    "source_rect": [
+      484,
+      25,
+      335,
+      416
+    ]
+  },
+  "phoenix_v9_defeat.png": {
+    "anchor": [
+      256,
+      496
+    ],
+    "pixel_sha256": "060623f382732192f6a955339f6a88c69f1b1db1c63416374730ceff9359d460",
+    "review": "accepted_visual_review",
+    "sheet": "res://../arte/v9/phoenix_actions_sheet.png",
+    "source_pixels": 71860,
+    "source_rect": [
+      1371,
+      522,
+      365,
+      344
+    ]
+  },
+  "phoenix_v9_follow.png": {
+    "anchor": [
+      256,
+      496
+    ],
+    "pixel_sha256": "1cf6be44d5eed703aebc7cd4c0971bae7028a53811a5ccc5050f468f92af3c02",
+    "review": "accepted_visual_review",
+    "sheet": "res://../arte/v9/phoenix_actions_sheet.png",
+    "source_pixels": 72742,
+    "source_rect": [
+      975,
+      35,
+      373,
+      410
+    ]
+  },
+  "phoenix_v9_hit.png": {
+    "anchor": [
+      256,
+      496
+    ],
+    "pixel_sha256": "03cf4ca826b77ee86d77f1715b000f82e8ded393d085cedbd0d93c552dd76bd2",
+    "review": "accepted_visual_review",
+    "sheet": "res://../arte/v9/phoenix_actions_sheet.png",
+    "source_pixels": 77919,
+    "source_rect": [
+      1395,
+      32,
+      348,
+      413
+    ]
+  },
+  "phoenix_v9_hurt.png": {
+    "anchor": [
+      256,
+      496
+    ],
+    "pixel_sha256": "3832ed589f07fee616b1cf60f0b1ca319f6771af481c9e4a6e1d903e92145517",
+    "review": "accepted_visual_review",
+    "sheet": "res://../arte/v9/phoenix_actions_sheet.png",
+    "source_pixels": 74336,
+    "source_rect": [
+      48,
+      483,
+      343,
+      385
+    ]
+  },
+  "phoenix_v9_idle.png": {
+    "anchor": [
+      256,
+      496
+    ],
+    "pixel_sha256": "310a663f54551c12fb022a06fcc18e2f1f7cbc82c58ea1a8543373eb785998cd",
+    "review": "accepted_visual_review",
+    "sheet": "res://../arte/v9/phoenix_weapon_sheet.png",
+    "source_pixels": 70184,
+    "source_rect": [
+      71,
+      24,
+      336,
+      417
+    ]
+  },
+  "phoenix_v9_ready.png": {
+    "anchor": [
+      256,
+      496
+    ],
+    "pixel_sha256": "681594c6f854279f302066c81757104c7cc5376f3a67f2d5f1f76701d0b3f829",
+    "review": "accepted_visual_review",
+    "sheet": "res://../arte/v9/phoenix_weapon_sheet.png",
+    "source_pixels": 69876,
+    "source_rect": [
+      895,
+      27,
+      381,
+      414
+    ]
+  },
+  "phoenix_v9_recoil_a.png": {
+    "anchor": [
+      256,
+      496
+    ],
+    "pixel_sha256": "72cd6007756aa29f4ba627d4fbbfbf13fb499296533a1898c28105ee5dab2fa4",
+    "review": "accepted_visual_review",
+    "sheet": "res://../arte/v9/phoenix_weapon_sheet.png",
+    "source_pixels": 68054,
+    "source_rect": [
+      46,
+      474,
+      395,
+      385
+    ]
+  },
+  "phoenix_v9_recoil_b.png": {
+    "anchor": [
+      256,
+      496
+    ],
+    "pixel_sha256": "293d42e6c4eee58bc9d07cb3b6b385ba76d8e8d067569650d4da18782c4537ae",
+    "review": "accepted_visual_review",
+    "sheet": "res://../arte/v9/phoenix_weapon_sheet.png",
+    "source_pixels": 67215,
+    "source_rect": [
+      477,
+      494,
+      385,
+      365
+    ]
+  },
+  "phoenix_v9_recover.png": {
+    "anchor": [
+      256,
+      496
+    ],
+    "pixel_sha256": "23e96e24e85ba1196660b46504d8d2ed88d41a0d71b137c2ca4295130bb15cdd",
+    "review": "accepted_visual_review",
+    "sheet": "res://../arte/v9/phoenix_weapon_sheet.png",
+    "source_pixels": 68324,
+    "source_rect": [
+      916,
+      457,
+      349,
+      402
+    ]
+  },
+  "phoenix_v9_release.png": {
+    "anchor": [
+      256,
+      496
+    ],
+    "pixel_sha256": "3321f0575c4db1a2f2c65cace62ba555481ba4786dacdb19967e859f21cc490e",
+    "review": "accepted_visual_review",
+    "sheet": "res://../arte/v9/phoenix_actions_sheet.png",
+    "source_pixels": 82057,
+    "source_rect": [
+      486,
+      34,
+      451,
+      411
+    ]
+  },
+  "phoenix_v9_settle.png": {
+    "anchor": [
+      256,
+      496
+    ],
+    "pixel_sha256": "e0824cebd2fa446532efa11d6cb395ff3412e9e641f3ef2e5f57a107d24bf23a",
+    "review": "accepted_visual_review",
+    "sheet": "res://../arte/v9/phoenix_weapon_sheet.png",
+    "source_pixels": 69230,
+    "source_rect": [
+      1364,
+      458,
+      347,
+      401
+    ]
+  },
+  "phoenix_v9_stagger.png": {
+    "anchor": [
+      256,
+      496
+    ],
+    "pixel_sha256": "d13bb05b23920bda6b4dff7fe59fb5d1ad151100d9ff798ec1f74763807a62b1",
+    "review": "accepted_visual_review",
+    "sheet": "res://../arte/v9/phoenix_actions_sheet.png",
+    "source_pixels": 68506,
+    "source_rect": [
+      924,
+      487,
+      349,
+      381
+    ]
+  },
+  "phoenix_v9_win.png": {
+    "anchor": [
+      256,
+      496
+    ],
+    "pixel_sha256": "0787b61d91d28b677aeffe3299a88cddc913f0015d78e67cb5051512536ce5b4",
+    "review": "accepted_after_extra_hand_correction",
+    "sheet": "res://../arte/v9/phoenix_win_corrected_source.png"
+  },
+  "phoenix_v9_windup.png": {
+    "anchor": [
+      256,
+      496
+    ],
+    "pixel_sha256": "180f6f6a3f0780f3314479c74b5054bb94c9e89a9c7595b76eedb36e67b0c8fc",
+    "review": "accepted_after_extra_hand_correction",
+    "sheet": "res://../arte/v9/phoenix_actions_sheet.png",
+    "source_pixels": 86754,
+    "source_rect": [
+      19,
+      28,
+      395,
+      415
+    ]
+  }
+}

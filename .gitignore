@@ -1,0 +1,27 @@
+# Local tools, original packages, captures and backups
+/Original/
+/ferramentas/
+/laboratorio/
+/revisoes/
+/resultados/
+/arte/**/rejeitados/
+
+# Keep text reports and validation summaries, not generated media or dumps
+/relatorios/**
+!/relatorios/**/
+!/relatorios/**/*.md
+!/relatorios/**/summary.json
+
+# Godot and Python generated files
+**/.godot/
+**/__pycache__/
+*.py[cod]
+*.tmp
+*.log
+
+# Credentials and local settings
+.env
+.env.*
+!.env.example
+*.pem
+*.key
