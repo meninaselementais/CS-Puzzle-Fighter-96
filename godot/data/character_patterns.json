@@ -1,0 +1,6 @@
+{
+  "A": {"arcade_index": 2, "label": "COLUNAS", "provenance": "MAME: tabela e entregas verificadas"},
+  "B": {"arcade_index": 3, "label": "LINHAS", "provenance": "MAME: tabela e entregas verificadas"},
+  "C": {"arcade_index": 0, "label": "BLOCOS", "provenance": "MAME: tabela e entregas verificadas"},
+  "D": {"arcade_index": 1, "label": "FAIXAS", "provenance": "MAME: tabela e entregas verificadas"}
+}

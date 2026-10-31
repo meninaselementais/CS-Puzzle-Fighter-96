@@ -1,8 +1,11 @@
 # Counter-Strike Puzzle Fighter '96 — duelo local e laboratório
 
-Versão jogável atual: execute `Jogar.cmd`. Dois jogadores locais, Power Gems, Crash Gems, Counter Gems, combos, cadeias, gravidade, pontos, ataques e vitória/derrota. P1: setas e Z/X; P2: A/D/S e Q/E; R reinicia. Segure a tecla de queda para acelerar.
+Versão atual: **Coin Flip + seleção CT contra TR + melhor de três rounds**.
+Execute `Jogar.cmd`: a moeda sorteia os lados antes da seleção. Cada jogador
+escolhe apenas agentes da equipe sorteada. Os lados ficam fixos até alguém
+vencer dois rounds. Veja `README_COIN_FLIP.md` para controles, testes e limites.
 
-O relatório atual está em `relatorios/fidelidade_v4/RELATORIO.md`: **247/247** comparações controladas, **33/33** de controles e **112/119** endpoints de partidas do arcade. As seis divergências anteriores de distribuição foram corrigidas com a regra das oito permutações e o estado observado do seletor. Restam sete diferenças nas partidas: cinco de chegada assíncrona de ataques, uma do bônus de primeiro ataque e uma envolvendo Diamond Gem. A sequência completa do gerador e a sincronização das animações continuam parciais. Consulte `README_FIDELIDADE_V4.md` para reproduzir a validação.
+A última base de fidelidade preservada tem **247/247** comparações controladas, **33/33** de controles e **119/119** endpoints de partidas naturais. A seleção não altera o núcleo, a C4, as Crash Orbs nem a quantidade de ataques. SAS e Phoenix mantêm a arte e as animações existentes; seis agentes usam silhuetas temporárias identificadas. A cronologia completa do arcade e o gerador de peças continuam com os limites documentados em `README_FIDELIDADE_V5.md`. Os relatórios V4 abaixo são históricos.
 
 Ferramentas de análise para os dumps de RAM do Super Puzzle Fighter II Turbo no MAME 0.289. Python 3.11 ou superior; somente biblioteca padrão. Os arquivos do MAME são abertos para leitura. Cada execução exige uma pasta de saída nova e recusa sobrescrever resultados existentes.
 

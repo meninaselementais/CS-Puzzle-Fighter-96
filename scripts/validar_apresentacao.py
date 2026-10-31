@@ -14,15 +14,15 @@ def main():
     parser.add_argument('--output', type=Path)
     args = parser.parse_args()
     project = Path(__file__).resolve().parents[1]
-    output = args.output or project / 'relatorios/animacoes_v9/final'
+    output = args.output or project / 'relatorios/coin_flip/final'
     output.mkdir(parents=True, exist_ok=True)
     godot = project / 'ferramentas/godot_4.7.2/Godot_v4.7.2-stable_win64_console.exe'
     env = dict(os.environ, PYTHONDONTWRITEBYTECODE='1', APPDATA=str(output / 'userdata'), PF_REPORT=str(output))
     commands = [('python', [sys.executable, '-B', '-m', 'unittest', 'discover', '-s', 'tests', '-v'])]
-    for name in ['test_models', 'test_rules', 'test_fidelity', 'test_controls_fidelity', 'test_natural_fidelity', 'test_duel', 'test_presentation', 'test_animation_v8', 'test_art_v9']:
+    for name in ['test_models', 'test_rules', 'test_fidelity', 'test_controls_fidelity', 'test_natural_fidelity', 'test_duel', 'test_presentation', 'test_animation_v8', 'test_art_v9', 'test_character_select', 'test_coin_flip']:
         commands.append((name, [str(godot), '--headless', '--path', str(project/'godot'), '--log-file', str(output/(name+'_engine.log')), '--script', 'res://tests/'+name+'.gd']))
     if args.render:
-        for name in ['render_preview', 'render_mechanics', 'test_showcase_ui', 'render_chains_and_c4_demo']:
+        for name in ['render_preview', 'render_mechanics', 'test_showcase_ui', 'test_character_select_ui', 'render_chains_and_c4_demo']:
             commands.append((name, [str(godot), '--path', str(project/'godot'), '--log-file', str(output/(name+'_engine.log')), '--script', 'res://tests/'+name+'.gd']))
     if args.render:
         commands[-1][1].extend(['--','--output',str(output/'legacy_demo')])

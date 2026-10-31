@@ -1,6 +1,10 @@
 extends SceneTree
+const Session = preload("res://core/match_session.gd")
 
 func _initialize() -> void:
+	Session.accept_server_assignment(true,[0,1])
+	Session.reveal()
+	assert(Session.lock_characters(["sas","phoenix"]))
 	call_deferred("run")
 
 func run() -> void:

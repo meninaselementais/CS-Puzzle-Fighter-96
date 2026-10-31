@@ -6,6 +6,14 @@ const Replay = preload("res://adapters/mame_replay.gd")
 const Gem = preload("res://core/gem_rules.gd")
 const Controls = preload("res://core/control_model.gd")
 const Arena = preload("res://presentation/cs_arena.gd")
+const Session = preload("res://core/match_session.gd")
+const MenuInput = preload("res://presentation/selection_input.gd")
+var input_decoder: RefCounted = MenuInput.new()
+var session_game: bool = false
+const Selection = preload("res://core/selection_state.gd")
+var pause_menu: CanvasLayer
+var menu_open: bool = false
+
 const TILE: int = 32
 const BOARD_ORIGINS: Array[Vector2] = [Vector2(64, 108), Vector2(744, 108)]
 
@@ -25,6 +33,17 @@ var arcade_accumulator: float = 0.0
 
 func _ready() -> void:
 	texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	# O Showcase mantém sua referência original SAS/Phoenix, independente da seleção.
+	if get_script().resource_path == "res://presentation/main.gd":
+		if not Selection.apply_to_match(model):
+			get_tree().change_scene_to_file("res://coin_flip.tscn")
+			set_physics_process(false)
+			return
+		session_game = true
+		arena.configure_characters(Session.characters)
+		arena.wins.assign(Session.round_wins)
+		if Session.phase in ["between_rounds","finished"]: model.winner = Session.last_round_result
+		create_pause_menu()
 	if replay.load_file("res://data/replay_mame.json"):
 		for item in replay.frames:
 			if item.players[0].colors[0] != 0 or item.players[1].colors[0] != 0:
@@ -46,24 +65,33 @@ func apply_frame() -> void:
 	status = "MAME | %s | quadro %d | %d/%d" % [item.case, item.frame, cursor + 1, keys.size()]
 
 func _physics_process(delta: float) -> void:
+	if menu_open: return
 	arcade_accumulator += delta
 	if arcade_accumulator < 1.0 / Controls.FRAMES_PER_SECOND: return
 	arcade_accumulator -= 1.0 / Controls.FRAMES_PER_SECOND
 	if not replay_mode:
 		for player in range(2):
 			var controls: Array = [KEY_LEFT, KEY_RIGHT, KEY_DOWN] if player == 0 else [KEY_A, KEY_D, KEY_S]
-			var direction := int(Input.is_physical_key_pressed(controls[1])) - int(Input.is_physical_key_pressed(controls[0]))
+			var direction: int = int(Input.is_physical_key_pressed(controls[1])) - int(Input.is_physical_key_pressed(controls[0]))
+			if Input.get_connected_joypads().has(player) and direction == 0:
+				direction = int(Input.is_joy_button_pressed(player,JOY_BUTTON_DPAD_RIGHT)) - int(Input.is_joy_button_pressed(player,JOY_BUTTON_DPAD_LEFT))
+				if direction == 0 and absf(Input.get_joy_axis(player,JOY_AXIS_LEFT_X)) > 0.55:
+					direction = 1 if Input.get_joy_axis(player,JOY_AXIS_LEFT_X) > 0 else -1
 			if observed_pair[player] != model.pair_index[player]:
 				observed_pair[player] = model.pair_index[player]
 				controls_model.reset_pair(player)
 			if controls_model.horizontal(player,direction):
 				model.move(player, Vector2i(direction, 0))
-			if controls_model.drop(player,Input.is_physical_key_pressed(controls[2]),model.pair_age[player]): model.soft_drop(player)
+			var dropping: bool = Input.is_physical_key_pressed(controls[2])
+			if Input.get_connected_joypads().has(player): dropping = dropping or Input.is_joy_button_pressed(player,JOY_BUTTON_DPAD_DOWN) or Input.get_joy_axis(player,JOY_AXIS_LEFT_Y) > 0.55
+			if controls_model.drop(player,dropping,model.pair_age[player]): model.soft_drop(player)
 		model.tick()
 		arena.step_from_model(model, BOARD_ORIGINS)
+		sync_round_result()
 	queue_redraw()
 
 func _process(delta: float) -> void:
+	if menu_open: return
 	if replay_mode and playing and not keys.is_empty():
 		elapsed += delta
 		if elapsed >= 0.3:
@@ -75,6 +103,10 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	if not event is InputEventKey or not event.pressed or event.echo:
 		return
 	var key: int = event.physical_keycode
+	if key == KEY_ESCAPE:
+		toggle_menu()
+		return
+	if menu_open: return
 	if key == KEY_F4:
 		get_tree().change_scene_to_file("res://animation_showcase.tscn")
 		return
@@ -101,6 +133,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		else:
 			model.restart()
 			arena.reset_state()
+			if session_game and Session.phase in ["between_rounds","finished"]: model.winner = Session.last_round_result
 		return
 	if replay_mode:
 		if key == KEY_SPACE:
@@ -111,11 +144,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		KEY_X: model.rotate(0, 1)
 		KEY_Q: model.rotate(1, -1)
 		KEY_E: model.rotate(1, 1)
-		KEY_R:
-			model.restart()
-			arena.reset_state()
-			controls_model = Controls.new()
-			observed_pair = [-1,-1]
+		KEY_R: continue_round_or_match()
 
 func gem(point: Vector2, origin: Vector2, code: int, phase_seed: int = 0, scale_mod: Vector2 = Vector2.ONE) -> void:
 	if point.y < 2.0 or point.y >= 14.0 or point.x < 0.0 or point.x >= 6.0:
@@ -200,7 +229,86 @@ func _draw() -> void:
 	arena.draw_foreground_vfx(self, font)
 	# Rodapé de comandos do gabinete
 	var mode := "REPLAY DO MAME" if replay_mode else "CPS-2 ARCADE DUEL — CS PUZZLE FIGHTER '96"
-	if model.winner >= 0 and not replay_mode: mode = "P%d VENCEU — PRESSIONE R PARA REVANCHE" % (model.winner + 1)
-	elif model.winner == -1 and not replay_mode: mode = "EMPATE — PRESSIONE R PARA REVANCHE"
-	Arena.draw_outlined_text(self, font, Vector2(36, 658), mode + "   |   P1 (SAS): Setas, Z/X   |   P2 (PHOENIX): A/D/S, Q/E   |   1/2/3/M: Cenário   |   R: Reiniciar", 14, Color("ffe868"))
-	Arena.draw_outlined_text(self, font, Vector2(36, 682), "TAB: Replay MAME   |   Espaço: Pausa   |   " + status, 13, Color("9cc8ff"))
+	if model.winner >= 0 and not replay_mode: mode = "P%d VENCEU O ROUND — R: CONTINUAR" % (model.winner + 1)
+	elif model.winner == -1 and not replay_mode: mode = "EMPATE — R: REPETIR ROUND"
+	if session_game:
+		var series: String = "ROUND %d / MD3     P1 %s  %d - %d  P2 %s" % [Session.round_number,Session.team_for(0),Session.round_wins[0],Session.round_wins[1],Session.team_for(1)]
+		if Session.phase == "finished":
+			series = "P%d VENCEU A PARTIDA  %d - %d / R: NOVO SORTEIO" % [Session.winner+1,Session.round_wins[0],Session.round_wins[1]]
+			mode = "P%d VENCEU A PARTIDA — R: NOVO SORTEIO" % (Session.winner+1)
+		draw_rect(Rect2(275,607,450,25),Color("090f20"))
+		Arena.draw_outlined_text(self,font,Vector2(283,625),series,13,Color("ffe49a"))
+	Arena.draw_outlined_text(self, font, Vector2(36, 658), mode + "   |   P1: Setas, Z/X   |   P2: A/D/S, Q/E   |   1/2/3/M: Cenário   |   R: Reiniciar", 14, Color("ffe868"))
+	Arena.draw_outlined_text(self, font, Vector2(36, 682), "ESC: Menu   |   F4: Animation Showcase   |   TAB: Replay MAME   |   " + status, 13, Color("9cc8ff"))
+
+func create_pause_menu() -> void:
+	pause_menu = CanvasLayer.new()
+	pause_menu.layer = 10
+	add_child(pause_menu)
+	var overlay := ColorRect.new()
+	overlay.color = Color(0.015,0.025,0.07,0.88)
+	overlay.size = Vector2(1000,700)
+	pause_menu.add_child(overlay)
+	var title := Label.new()
+	title.text = "PAUSA / PLAYER MENU"
+	title.position = Vector2(300,220)
+	title.size = Vector2(400,50)
+	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	title.add_theme_font_size_override("font_size",28)
+	overlay.add_child(title)
+	var labels := ["CONTINUAR", "NOVA PARTIDA / SORTEAR LADOS", "ANIMATION SHOWCASE"]
+	for index in range(labels.size()):
+		var button := Button.new()
+		button.text = labels[index]
+		button.position = Vector2(320,290+index*64)
+		button.size = Vector2(360,50)
+		button.add_theme_font_size_override("font_size",18)
+		overlay.add_child(button)
+		match index:
+			0: button.pressed.connect(toggle_menu)
+			1: button.pressed.connect(return_to_selection)
+			2: button.pressed.connect(func(): get_tree().change_scene_to_file("res://animation_showcase.tscn"))
+	pause_menu.hide()
+
+func toggle_menu() -> void:
+	if pause_menu == null: return
+	menu_open = not menu_open
+	pause_menu.visible = menu_open
+	if menu_open:
+		pause_menu.get_child(0).get_child(1).grab_focus()
+	else:
+		get_viewport().gui_release_focus()
+
+func return_to_selection() -> void:
+	Session.close_match()
+	get_tree().change_scene_to_file("res://coin_flip.tscn")
+
+func sync_round_result() -> void:
+	if session_game and not replay_mode and model.winner != -2:
+		if Session.record_round(model.winner):
+			arena.wins.assign(Session.round_wins)
+			queue_redraw()
+
+func continue_round_or_match() -> void:
+	sync_round_result()
+	if session_game and Session.phase == "finished":
+		return_to_selection()
+		return
+	if session_game and Session.phase == "between_rounds": Session.advance_round()
+	model.restart()
+	arena.reset_state()
+	if session_game: arena.wins.assign(Session.round_wins)
+	controls_model = Controls.new()
+	observed_pair = [-1,-1]
+	arcade_accumulator = 0.0
+
+func _unhandled_input(event: InputEvent) -> void:
+	if not event is InputEventJoypadButton: return
+	var command: Dictionary = input_decoder.decode(event)
+	if command.is_empty(): return
+	if command.command == "menu":
+		toggle_menu()
+	elif not menu_open:
+		if model.winner != -2 and command.command == "confirm": continue_round_or_match()
+		elif command.command in ["confirm","cancel"]:
+			model.rotate(int(command.player),1 if command.command == "confirm" else -1)

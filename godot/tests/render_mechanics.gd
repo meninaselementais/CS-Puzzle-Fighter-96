@@ -1,8 +1,12 @@
 extends SceneTree
+const Session = preload("res://core/match_session.gd")
 
 const Pair = preload("res://core/pair_model.gd")
 
 func _initialize() -> void:
+	Session.accept_server_assignment(true,[0,1])
+	Session.reveal()
+	assert(Session.lock_characters(["sas","phoenix"]))
 	call_deferred("capture")
 
 func press(scene, key: int) -> void:

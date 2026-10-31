@@ -1,0 +1,6 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://presentation/coin_flip.gd" id="1"]
+
+[node name="CoinFlip" type="Node2D"]
+script = ExtResource("1")

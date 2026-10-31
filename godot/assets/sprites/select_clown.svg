@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+<g transform="translate(512 0) scale(-1 1)" stroke="#080f1b" stroke-width="8" stroke-linejoin="round">
+<path d="M196 350l-22 126h64l22-98 16 98h65l-26-126z" fill="#1a2434"/>
+<path d="M172 470h73v26h-87zM273 470h75l10 26h-87z" fill="#111827"/>
+<path d="M181 228l-28 107 43 21 23-66 12 70h79l15-74 20 67 37-20-33-103-53-22z" fill="#b75b83"/>
+<path d="M212 233h94v121h-94z" fill="#263447"/><path d="M225 250h25v32h-25zM266 250h25v32h-25zM225 301h66v21h-66z" fill="#506174"/>
+<path d="M224 202v34l35 21 35-21v-34" fill="#2c3544"/>
+<ellipse cx="258" cy="162" rx="62" ry="67" fill="#394458"/><path d="M188 143q-35-22-17-50 20-15 36 7 15-45 53-14 46-35 55 9 40-12 36 31l-33 22z" fill="#50364e"/><path d="M217 168l10-17 10 17m37 0 10-17 10 17" fill="none" stroke="#ad6b86" stroke-width="8"/>
+<path d="M224 200h70" stroke="#637085" stroke-width="4"/>
+<path d="M275 283h140v17H285l-18 31h-21l10-45zM406 280h40v11h-40z" fill="#101b29"/>
+<path d="M192 283l47 9 23 15-8 24-35-19-39-4z" fill="#b75b83"/>
+<path d="M223 282l26 12 17 17-11 17-27-14z" fill="#5b687a"/>
+</g></svg>

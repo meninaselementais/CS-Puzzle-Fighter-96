@@ -2,7 +2,7 @@ config_version=5
 
 [application]
 config/name="Counter-Strike Puzzle Fighter '96 — Laboratório"
-run/main_scene="res://main.tscn"
+run/main_scene="res://coin_flip.tscn"
 
 [display]
 window/size/viewport_width=1000

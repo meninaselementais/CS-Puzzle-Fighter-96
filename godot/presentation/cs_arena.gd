@@ -17,6 +17,10 @@ var textures: Dictionary = {}
 var boot_anchors: Dictionary = {}
 var boot_floors: Dictionary = {}
 var imported_frames: Dictionary = {}
+var fighter_anims: Dictionary = FIGHTER_ANIMS.duplicate(true)
+var selected_characters: Array[Dictionary] = []
+var fighter_native_side: Array[int] = [0, 1]
+var fighter_mirrored: Array[bool] = [false, false]
 var stage_index: int = 0
 var anim_tick: int = 0
 
@@ -199,7 +203,12 @@ func load_tex(file_name: String) -> Texture2D:
 	if textures.has(file_name):
 		return textures[file_name]
 	var global_path := ProjectSettings.globalize_path(SPRITE_DIR + file_name)
-	var img := Image.load_from_file(global_path)
+	var img: Image
+	if file_name.ends_with(".svg"):
+		img = Image.new()
+		if img.load_svg_from_string(FileAccess.get_file_as_string(global_path)) != OK: return null
+	else:
+		img = Image.load_from_file(global_path)
 	if img == null or img.is_empty():
 		return null
 	if file_name.begins_with("sas_") or file_name.begins_with("phoenix_"):
@@ -220,6 +229,27 @@ func load_tex(file_name: String) -> Texture2D:
 	var tex := ImageTexture.create_from_image(img)
 	textures[file_name] = tex
 	return tex
+
+func configure_characters(ids: Array[String]) -> void:
+	var catalog = load("res://core/character_catalog.gd")
+	selected_characters.clear()
+	for player in range(2):
+		var character: Dictionary = catalog.find(ids[player])
+		selected_characters.append(character)
+		var native_side := 0 if character.team == "CT" else 1
+		fighter_native_side[player] = native_side
+		fighter_mirrored[player] = player != native_side
+		fighter_anims[player] = FIGHTER_ANIMS[native_side].duplicate(true)
+		if character.temporary:
+			for state in fighter_anims[player]:
+				for keyframe in fighter_anims[player][state]:
+					keyframe.tex = character.sprite
+					if keyframe.has("muzzle"): keyframe.muzzle = Vector2(0.87 if native_side == 0 else 0.13,0.56)
+					if keyframe.has("hand"): keyframe.hand = Vector2(0.55 if native_side == 0 else 0.45,0.6)
+			load_tex(character.sprite)
+			boot_anchors[character.sprite] = 256.0
+			boot_floors[character.sprite] = 496.0
+	reset_state()
 
 func load_all_textures() -> void:
 	imported_frames = JSON.parse_string(FileAccess.get_file_as_string("res://assets/sprites/phoenix_v9_frames.json"))
@@ -351,12 +381,12 @@ func set_fighter_state(player: int, new_state: String, duration: int = 0, restar
 		if new_state in ["victory", "defeat"]: pending_hit[player] = 0
 		if new_state in ["shoot", "grenade", "hit"]:
 			var length := 0
-			for keyframe in FIGHTER_ANIMS[player][new_state]: length += int(keyframe.ticks)
+			for keyframe in fighter_anims[player][new_state]: length += int(keyframe.ticks)
 			fighter_timer[player] = maxi(duration, length)
 		enter_fighter_frame(player)
 
 func enter_fighter_frame(player: int) -> void:
-	var kf: Dictionary = FIGHTER_ANIMS[player][fighter_state[player]][fighter_anim_frame[player]]
+	var kf: Dictionary = fighter_anims[player][fighter_state[player]][fighter_anim_frame[player]]
 	var flash := int(kf.get("flash", 0))
 	if flash > 0:
 		fighter_flash[player] = flash
@@ -370,6 +400,7 @@ func enter_fighter_frame(player: int) -> void:
 
 func attachment_position(player: int, attachment: Vector2) -> Vector2:
 	var rect := fighter_draw_rect(player)
+	if fighter_mirrored[player]: attachment.x = 1.0 - attachment.x
 	return rect.position + rect.size * attachment
 
 func spawn_fighter_projectile(player: int, grenade: bool, attachment: Vector2) -> void:
@@ -377,7 +408,7 @@ func spawn_fighter_projectile(player: int, grenade: bool, attachment: Vector2) -
 	var target_pos := Vector2(586, 396) if player == 0 else Vector2(414, 396)
 	if not grenade:
 		vfx_sprites = vfx_sprites.filter(func(f): return int(f.get("muzzle_owner", -1)) != player)
-		var muzzle_tex := "vfx_muzzle_sas.png" if player == 0 else "vfx_muzzle_phoenix.png"
+		var muzzle_tex := "vfx_muzzle_sas.png" if fighter_native_side[player] == 0 else "vfx_muzzle_phoenix.png"
 		var strength := 0.17 + float(mini(fighter_attack_level[player],3)) * 0.025
 		spawn_vfx(muzzle_tex, start_pos, strength, strength * 0.55, 2)
 		vfx_sprites[-1]["muzzle_owner"] = player
@@ -883,7 +914,7 @@ func advance_fighter_anim(player: int, model) -> void:
 		var desired := "danger" if is_board_in_danger(model, player) else "idle"
 		if fighter_state[player] != desired:
 			set_fighter_state(player, desired, 0)
-	var p_anims: Dictionary = FIGHTER_ANIMS.get(player, FIGHTER_ANIMS[0])
+	var p_anims: Dictionary = fighter_anims.get(player, fighter_anims[0])
 	var seq: Array = p_anims.get(fighter_state[player], p_anims["idle"])
 	if seq.is_empty():
 		return
@@ -1414,13 +1445,14 @@ func draw_fighter_texture(canvas: CanvasItem, tex: Texture2D, name: String, dst:
 		canvas.draw_texture_rect_region(tex,Rect2(dst.position+Vector2(region.position)*sc,Vector2(region.size)*sc),Rect2(region),tint)
 
 func fighter_draw_rect(player: int) -> Rect2:
-	var seq: Array = FIGHTER_ANIMS[player][fighter_state[player]]
+	var seq: Array = fighter_anims[player][fighter_state[player]]
 	var key: String = seq[clampi(fighter_anim_frame[player], 0, seq.size() - 1)].tex
 	var tex := load_tex(key)
-	var scale_base := 0.44 if player == 0 else 0.50
+	var scale_base := 0.44 if fighter_native_side[player] == 0 else 0.50
 	var scale_mod := Vector2.ONE * scale_base
 	var size := Vector2(tex.get_size()) * scale_mod
 	var boot_x := float(boot_anchors.get(key, tex.get_width() * 0.5)) * scale_mod.x
+	if fighter_mirrored[player]: boot_x = size.x - boot_x
 	var anchor_x := 376.0 if player == 0 else 624.0
 	var floor_y := float(boot_floors.get(key,tex.get_height())) * scale_mod.y
 	var motion := fighter_pos_offset[player]
@@ -1452,9 +1484,9 @@ func draw_central_arena_and_hud(canvas: CanvasItem, font: Font, model, next_pair
 		canvas.draw_rect(nbox, Color("d8e6ff"), false, 2.0)
 		draw_outlined_text(canvas, font, Vector2(nx + 4, ny - 8), "NEXT", 18, Color.WHITE, team_c.darkened(0.45), 2)
 		# Nome do personagem abaixo da caixa NEXT (como "RYU" e "KEN" no CPS-2!)
-		var char_label := "SAS" if i == 0 else "PHOENIX"
+		var char_label: String = selected_characters[i].name if not selected_characters.is_empty() else ("SAS" if i == 0 else "PHOENIX")
 		var name_x := nx + 10.0 if i == 0 else nx - 10.0
-		draw_outlined_text(canvas, font, Vector2(name_x, ny + 136), char_label, 18, Color("ffe052"), Color("140c08"), 2)
+		draw_outlined_text(canvas, font, Vector2(name_x, ny + 136), char_label, 12 if char_label.length() > 9 else 18, Color("ffe052"), Color("140c08"), 2)
 		# As duas gemas da próxima dupla serão desenhadas pelo main.gd usando draw_gem_sprite
 
 	# 3. Lutadores Chibi na Arena Central — Animação Real Quadro a Quadro com Ancoragem nos Pés
@@ -1466,7 +1498,7 @@ func draw_central_arena_and_hud(canvas: CanvasItem, font: Font, model, next_pair
 		canvas.draw_rect(Rect2(base_anchors_x[0] + fighter_pos_offset[0].x * 0.5 - bw * 0.5, by_off, bw, bh), Color(0, 0, 0, 0.38))
 		canvas.draw_rect(Rect2(base_anchors_x[1] + fighter_pos_offset[1].x * 0.5 - bw * 0.5, by_off, bw, bh), Color(0, 0, 0, 0.38))
 	for i in range(2):
-		var p_anims: Dictionary = FIGHTER_ANIMS.get(i, FIGHTER_ANIMS[0])
+		var p_anims: Dictionary = fighter_anims.get(i, fighter_anims[0])
 		var seq: Array = p_anims.get(fighter_state[i], p_anims["idle"])
 		var frame_idx := clampi(fighter_anim_frame[i], 0, maxi(0, seq.size() - 1))
 		var tex_name: String = seq[frame_idx]["tex"] if not seq.is_empty() else ("sas_idle_0.png" if i == 0 else "phoenix_idle_0.png")
@@ -1481,7 +1513,12 @@ func draw_central_arena_and_hud(canvas: CanvasItem, font: Font, model, next_pair
 			f_mod = Color(1.6, 0.55, 0.55, 1.0)
 		elif fighter_state[i] == "defeat":
 			f_mod = Color(0.72, 0.72, 0.82, 1.0)
+		if fighter_mirrored[i]:
+			canvas.draw_set_transform(Vector2(draw_rect.get_center().x * 2.0,0),0,Vector2(-1,1))
 		draw_fighter_texture(canvas,f_tex,tex_name,draw_rect,f_mod)
+		canvas.draw_set_transform(Vector2.ZERO)
+		if not selected_characters.is_empty() and selected_characters[i].temporary:
+			draw_outlined_text(canvas,font,Vector2(base_anchors_x[i]-56,510),"ARTE TEMPORARIA",11,Color("ffcc88"))
 		# Indicadores visuais extras de estado (gotas de tensão em Danger, estrelas de KO em Defeat)
 		if fighter_state[i] == "danger" and (anim_tick / 10) % 2 == 0:
 			var sweat_x := base_anchors_x[i] + (-48.0 if i == 0 else 44.0)
