@@ -1,0 +1,11 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 591.86 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 5070
+
+ERROR: match 1: scene res://presentation/player_select.gd
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] require (res://tests/test_match_flow.gd:32)
+       [1] require_scene (res://tests/test_match_flow.gd:84)
+       [2] enter_selection (res://tests/test_match_flow.gd:104)
+       [3] key (res://tests/test_match_flow.gd:55)
+       [4] send (res://tests/test_match_flow.gd:43)

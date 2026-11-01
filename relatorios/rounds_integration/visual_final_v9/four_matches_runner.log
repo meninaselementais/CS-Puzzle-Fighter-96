@@ -1,0 +1,2 @@
+[worker 1] ERROR: match 1: scene res://presentation/player_select.gd
+{"visual": true, "requested": 4, "completed": 0, "rounds": 0, "checks": 8, "elapsed_s": 2.593, "passed": false}

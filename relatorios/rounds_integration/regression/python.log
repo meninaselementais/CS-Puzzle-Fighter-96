@@ -1,0 +1,22 @@
+test_board_layout_coordinates_and_invalid_border (test_analise.AnalysisTests.test_board_layout_coordinates_and_invalid_border) ... ok
+test_control_compares_endpoints_including_different_value_at_same_address (test_analise.AnalysisTests.test_control_compares_endpoints_including_different_value_at_same_address) ... ok
+test_endian_signed_and_half_aligned_pointer (test_analise.AnalysisTests.test_endian_signed_and_half_aligned_pointer) ... ok
+test_rejects_bad_size_csv_and_existing_output (test_analise.AnalysisTests.test_rejects_bad_size_csv_and_existing_output) ... ok
+test_color_recognition_ignores_gray_and_borders (test_automacao.AutomationTests.test_color_recognition_ignores_gray_and_borders) ... ok
+test_copy_preserves_source_and_refuses_divergent_target (test_automacao.AutomationTests.test_copy_preserves_source_and_refuses_divergent_target) ... ok
+test_invalid_memory_grid_is_rejected (test_automacao.AutomationTests.test_invalid_memory_grid_is_rejected) ... ok
+test_runner_refuses_original_directory_as_project (test_automacao.AutomationTests.test_runner_refuses_original_directory_as_project) ... ok
+test_incomplete_or_reordered_rng_trace_is_rejected (test_fidelidade.FidelityTests.test_incomplete_or_reordered_rng_trace_is_rejected) ... ok
+test_invalid_session_cannot_supply_reference_data (test_fidelidade.FidelityTests.test_invalid_session_cannot_supply_reference_data) ... ok
+test_profiles_decode_palette_and_validate_permutations (test_fidelidade.FidelityTests.test_profiles_decode_palette_and_validate_permutations) ... ok
+test_rng_trace_survives_native_line_wrapping (test_fidelidade.FidelityTests.test_rng_trace_survives_native_line_wrapping) ... ok
+test_graphics_flags_do_not_change_gem_kind (test_mecanicas.MechanicsTests.test_graphics_flags_do_not_change_gem_kind) ... ok
+test_grid_size_is_validated (test_mecanicas.MechanicsTests.test_grid_size_is_validated) ... ok
+test_incomplete_arcade_run_is_rejected (test_mecanicas.MechanicsTests.test_incomplete_arcade_run_is_rejected) ... ok
+test_power_geometry_uses_all_four_corners (test_mecanicas.MechanicsTests.test_power_geometry_uses_all_four_corners) ... ok
+test_repetition_detects_memory_difference (test_mecanicas.MechanicsTests.test_repetition_detects_memory_difference) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.244s
+
+OK

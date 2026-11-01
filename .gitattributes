@@ -1,0 +1,4 @@
+# Preserve validation evidence bytes and SHA-256 on Windows checkout
+/relatorios/rounds_integration/visual_final_v9/** -text
+/relatorios/rounds_integration/regression/*.log -text
+/relatorios/rounds_integration/bulk/worker_*/console.log -text

@@ -11,6 +11,46 @@ Ferramentas de análise para os dumps de RAM do Super Puzzle Fighter II Turbo no
 
 A automação está em `README_AUTOMACAO.md`; o Godot está descrito em `ARQUITETURA_GODOT.md`. O relatório `relatorios/automacao_20261028_consolidada/RELATORIO.md` preserva a validação anterior de 25 casos de movimento, mapa X/Y, deslocamento vertical, orientações e cores. As investigações iniciais continuam preservadas.
 
+## V9 — validação concluída; fechamento v0.9.0 preparado
+
+A base validada é o commit `2daf6aea9dc0992f2aa9bd81a26ffa8cae845490`.
+O fechamento acrescenta documentação e evidências em texto; não altera motor
+lógico, animações ou mecânicas. A criação do commit e da tag anotada `v0.9.0`
+depende da autorização do responsável. A V10 não foi iniciada.
+
+| Validação preservada | Resultado |
+|---|---|
+| Integração lógica | 1.000/1.000 partidas, 2.500 rounds, 51.000 verificações, zero falhas |
+| Fidelidade / controles / partidas naturais | 247/247, 33/33 e 119/119 |
+| Regras / Python | 34/34 e 17/17 |
+| Windows gráfico, Godot 4.7.2 | 4/4 partidas, 10 rounds, 276 verificações, zero falhas na repetição |
+| Replay MAME original / arte V9 | Aprovado / 102 verificações aprovadas |
+| Cenários e fluxo visual | Dust2, Mirage, Inferno, Coin Flip, seleção, 1×1, terceiro round, 2×0 e 2×1 aprovados |
+
+Os resultados lógicos anteriores estão preservados em
+[`bulk/summary.json`](relatorios/rounds_integration/bulk/summary.json) e
+[`regression/summary.json`](relatorios/rounds_integration/regression/summary.json).
+Não foram repetidas as 1.000 partidas no fechamento.
+O [relatório visual Windows](relatorios/rounds_integration/visual_final_v9/RELATORIO_FINAL_V9.md)
+registra a execução gráfica e suas limitações. As quatro séries usam fixtures
+de top-out pelo resolvedor original, não quatro partidas naturais completas;
+os eventos de gamepad são simulados, sem teste de controle físico.
+
+**Falha inicial preservada:** o teste original pressionou Enter antes de terminar
+a guarda de 0,2 segundo após a revelação da moeda, falhando na transição para
+a seleção. Uma cópia de validação,
+[`test_match_flow_windows.gd`](relatorios/rounds_integration/visual_final_v9/test_match_flow_windows.gd),
+acrescentou uma espera de 0,22 segundo após capturar o resultado. Essa cópia
+concluiu as quatro partidas sem retirar asserções. O teste original permanece
+intacto e sujeito à falha de temporização. Os registros da tentativa falha e
+da repetição aprovada estão em `four_matches/` e `four_matches_retry/`.
+
+As 51 capturas, incluindo duas da janela nativa do Windows, permanecem locais
+em `relatorios/rounds_integration/visual_final_v9/`, com manifesto SHA-256.
+As imagens, assets, ROMs, ferramentas e caches não integram este commit de
+fechamento. Consulte o [registro de preparação](relatorios/rounds_integration/visual_final_v9/FECHAMENTO_V9.md)
+para integridade, arquivos preparados e escopo da conferência de publicação.
+
 ## Repetir as comparações
 
 No PowerShell, na pasta do projeto:

@@ -1,0 +1,19 @@
+{
+	"cases": [],
+	"checkpoints": [],
+	"checks": 8,
+	"completed": 0,
+	"ct_player_one": 1,
+	"elapsed_s": 1.83,
+	"failures": [
+		"match 1: scene res://presentation/player_select.gd"
+	],
+	"renderer": "gl_compatibility",
+	"requested": 4,
+	"rounds": 0,
+	"screenshots": [
+		"00_ct_2_0_coin.png",
+		"00_ct_2_0_coin_result.png"
+	],
+	"visual": true
+}

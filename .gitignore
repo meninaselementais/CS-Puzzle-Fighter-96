@@ -25,3 +25,6 @@
 !.env.example
 *.pem
 *.key
+
+# Local Godot userdata and shader caches from validation
+/relatorios/**/userdata/
