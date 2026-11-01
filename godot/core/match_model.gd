@@ -6,7 +6,11 @@ const Rules = preload("res://core/resolution.gd")
 const Gem = preload("res://core/gem_rules.gd")
 const Economy = preload("res://core/attack_rules.gd")
 const ArcadeRng = preload("res://core/arcade_rng.gd")
+const Motion = preload("res://core/gem_motion.gd")
 const GRAVITY_TICKS: int = 32
+var motion: Array = []
+var input_masks: Array[int] = [0,0]
+var turn_number: Array[int] = [1,1]
 var boards: Array = []
 var pairs: Array = []
 var lost: Array[bool] = [false, false]
@@ -19,12 +23,13 @@ var pair_age: Array[int] = [0,0]
 var stream: Array = []
 var last_results: Array = [{}, {}]
 var residual_index: Array[int] = [0, 0]
+var locked_residual: Array[int] = [-1, -1]
 var character_ids: Array[int] = [2, 3]
 var global_seed: int = 0x5785
 var winner: int = -2
 var first_attack: bool = false
 var accelerated: Array[bool] = [false, false]
-# Padrões medidos de Ryu (colunas) e Ken (linhas), nesta revisão do arcade.
+# PadrÃƒÆ’Ã‚Âµes medidos de Ryu (colunas) e Ken (linhas), nesta revisÃƒÆ’Ã‚Â£o do arcade.
 
 func _init() -> void:
 	restart()
@@ -32,6 +37,9 @@ func _init() -> void:
 func restart() -> void:
 	rng.seed = 96
 	boards = [Board.new(), Board.new()]
+	motion = [Motion.new(), Motion.new()]
+	input_masks = [0,0]
+	turn_number = [1,1]
 	lost = [false, false]
 	pairs = [null, null]
 	frame = 0
@@ -41,6 +49,7 @@ func restart() -> void:
 	stream = []
 	last_results = [{}, {}]
 	residual_index = [0, 0]
+	locked_residual = [-1, -1]
 	global_seed = 0x5785
 	winner = -2
 	first_attack = false
@@ -50,6 +59,13 @@ func restart() -> void:
 
 func spawn(player: int) -> void:
 	pair_age[player] = 0
+	var previous_motion: RefCounted = motion[player]
+	motion[player] = Motion.new()
+	motion[player].fall_interval = previous_motion.fall_interval
+	motion[player].fall_increment = previous_motion.fall_increment
+	motion[player].fall_offset = previous_motion.fall_offset
+	motion[player].previous_input = previous_motion.previous_input
+	motion[player].horizontal_timer = previous_motion.horizontal_timer
 	while stream.size() <= pair_index[player]:
 		var idx := stream.size()
 		var colors := [rng.randi_range(1, 4), rng.randi_range(1, 4)]
@@ -63,7 +79,7 @@ func spawn(player: int) -> void:
 	lost[player] = not boards[player].can_place(pairs[player])
 
 func move(player: int, delta: Vector2i) -> bool:
-	if player not in [0, 1] or lost[player] or winner != -2:
+	if player not in [0, 1] or lost[player] or winner != -2 or motion[player].phase != 0 or motion[player].contact == 1:
 		return false
 	var candidate = pairs[player].copy()
 	candidate.pivot += delta
@@ -73,6 +89,10 @@ func move(player: int, delta: Vector2i) -> bool:
 	return true
 
 func rotate(player: int, direction: int) -> bool:
+	if player not in [0,1] or lost[player] or winner != -2: return false
+	return motion[player].rotate(self,player,direction)
+
+func rotate_geometry(player: int, direction: int) -> bool:
 	if player not in [0, 1] or lost[player] or winner != -2 or direction not in [-1, 1]:
 		return false
 	var candidate = pairs[player].copy()
@@ -95,15 +115,13 @@ func rotate(player: int, direction: int) -> bool:
 	return true
 
 func soft_drop(player: int, manual: bool = true) -> void:
-	if player not in [0, 1] or lost[player] or winner != -2:
-		return
-	if manual: accelerated[player] = true
-	if not move(player, Vector2i.DOWN):
-		if boards[player].commit(pairs[player]):
-			resolve_turn(player)
-		else:
-			lost[player] = true
-			check_winner()
+	if player not in [0,1] or lost[player] or winner != -2 or motion[player].phase != 0: return
+	if manual:
+		accelerated[player] = true
+		motion[player].manual_bonus = true
+	if motion[player].contact > 0: return
+	if not move(player,Vector2i.DOWN): motion[player].enter_contact()
+	motion[player].offset = 0
 
 func resolve_turn(player: int) -> void:
 	var result: Dictionary = Rules.resolve(boards[player], true)
@@ -174,12 +192,9 @@ func check_winner() -> void:
 
 func tick() -> void:
 	frame += 1
-	# shortcut: relógio global fora da queda livre ainda não sincronizado com animações e outros consumidores.
 	for player in range(2):
 		if not lost[player] and winner == -2:
-			pair_age[player] += 1
+			# O consumo global anterior ÃƒÆ’Ã‚Â© preservado; sincronizaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o de todos os consumidores CPS-2 continua sendo uma limitaÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o explÃƒÆ’Ã‚Â­cita.
 			global_seed = ArcadeRng.advance(global_seed)
-			residual_index[player] = global_seed & 7
-	if frame % GRAVITY_TICKS == 0:
-		soft_drop(0, false)
-		soft_drop(1, false)
+			residual_index[player] = locked_residual[player] if locked_residual[player] >= 0 else (global_seed & 7)
+			motion[player].step(self,player,input_masks[player])

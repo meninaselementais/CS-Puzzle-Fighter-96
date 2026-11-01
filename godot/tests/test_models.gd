@@ -28,6 +28,7 @@ func _initialize() -> void:
 	model.pairs[0].rotation = 0
 	model.pairs[0].pivot = Vector2i(2, 13)
 	model.soft_drop(0)
+	finish_turn(model,0)
 	assert(model.boards[0].cells[13 * 6 + 2] != 0)
 	assert(model.pairs[0].pivot == Vector2i(3, 1))
 	assert(model.boards[1].cells.count(0) == 84)
@@ -55,3 +56,10 @@ func _initialize() -> void:
 	assert(model.pairs[0].rotation == 0)
 	print("GODOT_TESTS_OK: limites, colisao, assentamento atomico, dois tabuleiros, importacao e geometria MAME")
 	quit(0)
+
+func finish_turn(model: RefCounted, player: int) -> void:
+	var index: int = model.pair_index[player]
+	for _frame in range(600):
+		if model.pair_index[player] != index or model.winner != -2: return
+		model.tick()
+	assert(false,"Temporal turn did not finish")

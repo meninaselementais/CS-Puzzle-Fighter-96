@@ -975,12 +975,15 @@ func step_from_model(model, board_origins: Array[Vector2] = [Vector2(64, 108), V
 				sq_arr[idx] = maxf(0.0, sq_arr[idx] - 0.14)
 		var cur_cells: PackedInt32Array = model.boards[i].cells
 		var old_cells: PackedInt32Array = prev_cells[i]
-		if old_cells.size() == 84 and active_wave[i].is_empty():
+		if old_cells.size() == 84 and active_wave[i].is_empty() and model.motion[i].phase == 0:
 			for idx in range(12, 84):
 				if cur_cells[idx] != 0 and old_cells[idx] == 0:
 					# Nova pedra pousou ou caiu nesta célula
 					dy_arr[idx] = 22.0
 					sq_arr[idx] = 0.85
+		if model.motion[i].phase == 1:
+			dy_arr.fill(0.0)
+			sq_arr.fill(0.0)
 		cell_drop_y[i] = dy_arr
 		cell_squash[i] = sq_arr
 		# Detecta formação ou expansão de Power Gems para disparar flash de cristalização
@@ -997,8 +1000,10 @@ func step_from_model(model, board_origins: Array[Vector2] = [Vector2(64, 108), V
 		if prev_pair_idx[i] != -1 and prev_pair_idx[i] != int(model.pair_index[i]) and fighter_state[i] in ["idle", "danger"]:
 			fighter_scale_mod[i] = Vector2(1.04, 0.96)
 			fighter_pos_offset[i] += Vector2(0, 2.5)
+		if model.motion[i].phase == 9 and (model.motion[i].clear_timer > 0 or not model.motion[i].result.get("waves", []).is_empty()) and model.motion[i].chain_count == 0 and active_wave[i].is_empty() and model.motion[i].pre_resolve_cells.size() == 84:
+			enqueue_visual_waves(i, model.motion[i].pre_resolve_cells, board_origins[i], false)
 		var score_delta: int = model.scores[i] - prev_scores[i]
-		if score_delta >= 200 and active_wave[i].is_empty():
+		if score_delta >= 200 and active_wave[i].is_empty() and model.motion[i].phase == 0:
 			var enqueued := 0
 			if old_cells.size() == 84 and prev_pair_snapshot[i] != null:
 				var sim_pre := Board.new()

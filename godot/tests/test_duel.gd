@@ -25,6 +25,9 @@ func _initialize() -> void:
 		for _drop in range(16):
 			model.soft_drop(player)
 			if model.pair_index[player] != initial or model.winner != -2: break
+		for _frame in range(600):
+			if model.pair_index[player] != initial or model.winner != -2: break
+			model.tick()
 		assert(model.pair_index[player] != initial or model.winner != -2)
 		var result: Dictionary = model.last_results[player]
 		if not result.is_empty():

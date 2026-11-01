@@ -1,0 +1,197 @@
+{
+  "scope": "Existing MAME-derived fixtures; not a new full-match MAME synchronization test",
+  "results": [
+    {
+      "name": "python",
+      "passed": true,
+      "exit_code": 0,
+      "seconds": 0.438,
+      "command": [
+        "C:\\Users\\MauTrIX\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ]
+    },
+    {
+      "name": "test_models",
+      "passed": false,
+      "exit_code": 0,
+      "seconds": 0.375,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "relatorios\\v10_gem_physics\\baseline\\test_models_engine.log",
+        "--script",
+        "res://tests/test_models.gd"
+      ]
+    },
+    {
+      "name": "test_rules",
+      "passed": false,
+      "exit_code": 0,
+      "seconds": 0.172,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "relatorios\\v10_gem_physics\\baseline\\test_rules_engine.log",
+        "--script",
+        "res://tests/test_rules.gd"
+      ]
+    },
+    {
+      "name": "test_fidelity",
+      "passed": false,
+      "exit_code": 0,
+      "seconds": 0.25,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "relatorios\\v10_gem_physics\\baseline\\test_fidelity_engine.log",
+        "--script",
+        "res://tests/test_fidelity.gd"
+      ]
+    },
+    {
+      "name": "test_controls_fidelity",
+      "passed": false,
+      "exit_code": 0,
+      "seconds": 0.25,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "relatorios\\v10_gem_physics\\baseline\\test_controls_fidelity_engine.log",
+        "--script",
+        "res://tests/test_controls_fidelity.gd"
+      ]
+    },
+    {
+      "name": "test_natural_fidelity",
+      "passed": false,
+      "exit_code": 0,
+      "seconds": 0.25,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "relatorios\\v10_gem_physics\\baseline\\test_natural_fidelity_engine.log",
+        "--script",
+        "res://tests/test_natural_fidelity.gd"
+      ]
+    },
+    {
+      "name": "test_duel",
+      "passed": false,
+      "exit_code": 0,
+      "seconds": 0.813,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "relatorios\\v10_gem_physics\\baseline\\test_duel_engine.log",
+        "--script",
+        "res://tests/test_duel.gd"
+      ]
+    },
+    {
+      "name": "test_presentation",
+      "passed": false,
+      "exit_code": 0,
+      "seconds": 1.375,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "relatorios\\v10_gem_physics\\baseline\\test_presentation_engine.log",
+        "--script",
+        "res://tests/test_presentation.gd"
+      ]
+    },
+    {
+      "name": "test_animation_v8",
+      "passed": false,
+      "exit_code": 0,
+      "seconds": 1.468,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "relatorios\\v10_gem_physics\\baseline\\test_animation_v8_engine.log",
+        "--script",
+        "res://tests/test_animation_v8.gd"
+      ]
+    },
+    {
+      "name": "test_art_v9",
+      "passed": false,
+      "exit_code": 0,
+      "seconds": 0.547,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "relatorios\\v10_gem_physics\\baseline\\test_art_v9_engine.log",
+        "--script",
+        "res://tests/test_art_v9.gd"
+      ]
+    },
+    {
+      "name": "test_character_select",
+      "passed": false,
+      "exit_code": 0,
+      "seconds": 1.938,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "relatorios\\v10_gem_physics\\baseline\\test_character_select_engine.log",
+        "--script",
+        "res://tests/test_character_select.gd"
+      ]
+    },
+    {
+      "name": "test_coin_flip",
+      "passed": false,
+      "exit_code": 0,
+      "seconds": 0.265,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--headless",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "relatorios\\v10_gem_physics\\baseline\\test_coin_flip_engine.log",
+        "--script",
+        "res://tests/test_coin_flip.gd"
+      ]
+    }
+  ]
+}

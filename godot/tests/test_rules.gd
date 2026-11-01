@@ -98,8 +98,10 @@ func _initialize() -> void:
 		if Gem.kind(code) == Gem.Kind.COUNTER: counter_count += 1
 	expect(counter_count == 3, "Duelo deixa tres Counter Gems apos ataques iguais")
 	model.restart();model.pairs[0].pivot = Vector2i(3,13);model.soft_drop(0,false)
+	finish_turn(model,0)
 	expect(model.scores[0] == 0, "Queda natural nao concede bonus de aceleracao")
 	model.restart();model.pairs[0].pivot = Vector2i(3,13);model.soft_drop(0)
+	finish_turn(model,0)
 	expect(model.scores[0] == 10, "Queda acelerada concede dez pontos no caso observado")
 	# Diamond Gem (código 5) validada no MAME (diamante.lua)
 	board = Board.new()
@@ -132,3 +134,10 @@ func _initialize() -> void:
 	expect(model.stream[24][1] == 5 and Gem.kind(model.stream[24][1]) == Gem.Kind.DIAMOND, "25a dupla gera Diamond Gem no satelite")
 	print("RULE_TESTS ", checks, " checks; failures=", failures)
 	quit(0 if failures.is_empty() else 1)
+
+func finish_turn(model: RefCounted, player: int) -> void:
+	var index: int = model.pair_index[player]
+	for _frame in range(600):
+		if model.pair_index[player] != index or model.winner != -2: return
+		model.tick()
+	assert(false,"Temporal turn did not finish")

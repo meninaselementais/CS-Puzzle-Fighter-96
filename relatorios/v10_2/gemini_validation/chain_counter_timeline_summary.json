@@ -1,0 +1,17 @@
+{
+	"cases": 22,
+	"cases_passed": 22,
+	"categories": {
+		"counter_delivery": 1,
+		"counter_fall": 2,
+		"intermediate_gravity": 2,
+		"multi_wave_chains": 6,
+		"simple_destruction": 5,
+		"simultaneous_attacks": 6
+	},
+	"check_failures": [],
+	"checks": 54,
+	"failures": [],
+	"samples": 5066,
+	"samples_matched": 5066
+}

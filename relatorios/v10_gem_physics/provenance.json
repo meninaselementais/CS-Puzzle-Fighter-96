@@ -1,0 +1,39 @@
+{
+  "base": "03cfd1e7ac9433ea6b5b76cf052e2f7d6bb8f90e",
+  "branch": "feature/v10-gem-physics",
+  "source_files_match_v9": 198,
+  "timing_rows": 1250,
+  "timing_cases": 40,
+  "timing_csv_sha256": "9d7f368b9ffd7754155b9009c0ac78d2ddb78888575405424e8bf66c00c95c87",
+  "sources": [
+    {
+      "session": "C:\\Projetos\\CS-Puzzle-Fighter-96\\laboratorio\\auto_20261028_231155_374892",
+      "lua_sha256": "2e01638e70bb1357b513a736c646972308417e1be3dee0bca2b9f3bdb412015a",
+      "version": "MAME v0.289 (mame0289)",
+      "valid": true
+    },
+    {
+      "session": "C:\\Projetos\\CS-Puzzle-Fighter-96\\laboratorio\\auto_20261028_230219_781771",
+      "lua_sha256": "7e19be4eb99a3a6ac1399af4087121a4e52319ad00a5545a16485d5beb99f3c9",
+      "version": "MAME v0.289 (mame0289)",
+      "valid": true
+    },
+    {
+      "session": "C:\\Projetos\\CS-Puzzle-Fighter-96\\laboratorio\\auto_20261028_231304_380937",
+      "lua_sha256": "2aec06a8b4d67f049e997b762d84705a30635a2cf48a6109eb4c519737d6c958",
+      "version": "MAME v0.289 (mame0289)",
+      "valid": true
+    },
+    {
+      "session": "C:\\Projetos\\CS-Puzzle-Fighter-96\\laboratorio\\auto_20261028_230328_525289",
+      "lua_sha256": "4f0d85f72895df0523d31069827dc6fa56f823c0b7f10cf305cd6993b362853d",
+      "version": "MAME v0.289 (mame0289)",
+      "valid": true
+    }
+  ],
+  "mechanics_csv_sha256": "2b0b4f6e7465cb23bf16334c109d77d9276a8802956abe3e291937abec3a4619",
+  "visual_session": "C:\\Projetos\\CS-Puzzle-Fighter-96\\laboratorio\\auto_20261030_180156_204005",
+  "visual_lua_sha256": "9ab4f1fc97466e68e153b893e00e466c2e83d915d04568e219329caa40b45476",
+  "visual_csv_sha256": "3a453fed42630d6cc227435367545d50d1a8b3f1e443f017455a5d0b4b27443d",
+  "scope": "Existing MAME 0.289 evidence inspected; no new emulator run, ROM modification, game-code change or commit."
+}

@@ -30,6 +30,9 @@ var visual_rows: Array[float] = [0.0, 0.0]
 var controls_model = Controls.new()
 var observed_pair: Array[int] = [-1,-1]
 var arcade_accumulator: float = 0.0
+var keyboard_masks: Array[int] = [0,0]
+var joy_masks: Array[int] = [0,0]
+var latched_masks: Array[int] = [0,0]
 
 func _ready() -> void:
 	texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
@@ -67,27 +70,25 @@ func apply_frame() -> void:
 func _physics_process(delta: float) -> void:
 	if menu_open: return
 	arcade_accumulator += delta
-	if arcade_accumulator < 1.0 / Controls.FRAMES_PER_SECOND: return
-	arcade_accumulator -= 1.0 / Controls.FRAMES_PER_SECOND
-	if not replay_mode:
-		for player in range(2):
-			var controls: Array = [KEY_LEFT, KEY_RIGHT, KEY_DOWN] if player == 0 else [KEY_A, KEY_D, KEY_S]
-			var direction: int = int(Input.is_physical_key_pressed(controls[1])) - int(Input.is_physical_key_pressed(controls[0]))
-			if Input.get_connected_joypads().has(player) and direction == 0:
-				direction = int(Input.is_joy_button_pressed(player,JOY_BUTTON_DPAD_RIGHT)) - int(Input.is_joy_button_pressed(player,JOY_BUTTON_DPAD_LEFT))
-				if direction == 0 and absf(Input.get_joy_axis(player,JOY_AXIS_LEFT_X)) > 0.55:
-					direction = 1 if Input.get_joy_axis(player,JOY_AXIS_LEFT_X) > 0 else -1
-			if observed_pair[player] != model.pair_index[player]:
-				observed_pair[player] = model.pair_index[player]
-				controls_model.reset_pair(player)
-			if controls_model.horizontal(player,direction):
-				model.move(player, Vector2i(direction, 0))
-			var dropping: bool = Input.is_physical_key_pressed(controls[2])
-			if Input.get_connected_joypads().has(player): dropping = dropping or Input.is_joy_button_pressed(player,JOY_BUTTON_DPAD_DOWN) or Input.get_joy_axis(player,JOY_AXIS_LEFT_Y) > 0.55
-			if controls_model.drop(player,dropping,model.pair_age[player]): model.soft_drop(player)
-		model.tick()
-		arena.step_from_model(model, BOARD_ORIGINS)
-		sync_round_result()
+	var quantum: float = 1.0 / Controls.FRAMES_PER_SECOND
+	while arcade_accumulator >= quantum:
+		arcade_accumulator -= quantum
+		if not replay_mode:
+			for player in range(2):
+				var mask: int = keyboard_masks[player] | joy_masks[player] | latched_masks[player]
+				var keys_now: Array = [KEY_RIGHT,KEY_LEFT,KEY_DOWN,KEY_X,KEY_Z] if player == 0 else [KEY_D,KEY_A,KEY_S,KEY_E,KEY_Q]
+				var bits: Array = [1,2,4,512,256]
+				for index in range(keys_now.size()):
+					if Input.is_physical_key_pressed(keys_now[index]) or Input.is_key_pressed(keys_now[index]): mask |= int(bits[index])
+				if Input.get_connected_joypads().has(player):
+					var axis: float = Input.get_joy_axis(player,JOY_AXIS_LEFT_X)
+					if absf(axis)>0.55: mask |= 1 if axis>0 else 2
+					if Input.get_joy_axis(player,JOY_AXIS_LEFT_Y)>0.55: mask |= 4
+				model.input_masks[player] = mask
+				latched_masks[player] = 0
+			model.tick()
+			arena.step_from_model(model,BOARD_ORIGINS)
+			sync_round_result()
 	queue_redraw()
 
 func _process(delta: float) -> void:
@@ -100,9 +101,18 @@ func _process(delta: float) -> void:
 			apply_frame()
 
 func _unhandled_key_input(event: InputEvent) -> void:
-	if not event is InputEventKey or not event.pressed or event.echo:
-		return
-	var key: int = event.physical_keycode
+	if not event is InputEventKey or event.echo: return
+	var key: int = event.physical_keycode if event.physical_keycode != 0 else event.keycode
+	var mappings: Array = [[KEY_RIGHT,KEY_LEFT,KEY_DOWN,KEY_X,KEY_Z],[KEY_D,KEY_A,KEY_S,KEY_E,KEY_Q]]
+	for player in range(2):
+		var index: int = mappings[player].find(key)
+		if index >= 0:
+			var bit: int = [1,2,4,512,256][index]
+			if event.pressed:
+				keyboard_masks[player] |= bit
+				latched_masks[player] |= bit
+			else: keyboard_masks[player] &= ~bit
+	if not event.pressed: return
 	if key == KEY_ESCAPE:
 		toggle_menu()
 		return
@@ -140,10 +150,6 @@ func _unhandled_key_input(event: InputEvent) -> void:
 			playing = not playing
 		return
 	match key:
-		KEY_Z: model.rotate(0, -1)
-		KEY_X: model.rotate(0, 1)
-		KEY_Q: model.rotate(1, -1)
-		KEY_E: model.rotate(1, 1)
 		KEY_R: continue_round_or_match()
 
 func gem(point: Vector2, origin: Vector2, code: int, phase_seed: int = 0, scale_mod: Vector2 = Vector2.ONE) -> void:
@@ -209,10 +215,8 @@ func _draw() -> void:
 		var sub_y := 0.0
 		var pair_scale := Vector2.ONE
 		if not replay_mode:
-			var below_pair = Pair.new(pair.pivot + Vector2i(0, 1), pair.colors[0], pair.colors[1])
-			below_pair.rotation = pair.rotation
-			if model.boards[i].can_place(below_pair):
-				sub_y = float(model.frame % model.GRAVITY_TICKS) / float(model.GRAVITY_TICKS)
+			if model.motion[i].phase != 0: continue
+			sub_y = float(model.motion[i].offset) / 16.0
 			if bool(model.accelerated[i]):
 				pair_scale = Vector2(0.94, 1.07)
 		for n in range(2):
@@ -301,14 +305,24 @@ func continue_round_or_match() -> void:
 	controls_model = Controls.new()
 	observed_pair = [-1,-1]
 	arcade_accumulator = 0.0
+	keyboard_masks = [0,0]
+	joy_masks = [0,0]
+	latched_masks = [0,0]
 
 func _unhandled_input(event: InputEvent) -> void:
 	if not event is InputEventJoypadButton: return
+	if event.device in [0,1]:
+		var buttons: Array = [JOY_BUTTON_DPAD_RIGHT,JOY_BUTTON_DPAD_LEFT,JOY_BUTTON_DPAD_DOWN,JOY_BUTTON_A,JOY_BUTTON_B]
+		var index: int = buttons.find(event.button_index)
+		if index >= 0:
+			var bit: int = [1,2,4,512,256][index]
+			if event.pressed:
+				joy_masks[event.device] |= bit
+				latched_masks[event.device] |= bit
+			else: joy_masks[event.device] &= ~bit
 	var command: Dictionary = input_decoder.decode(event)
 	if command.is_empty(): return
 	if command.command == "menu":
 		toggle_menu()
 	elif not menu_open:
 		if model.winner != -2 and command.command == "confirm": continue_round_or_match()
-		elif command.command in ["confirm","cancel"]:
-			model.rotate(int(command.player),1 if command.command == "confirm" else -1)

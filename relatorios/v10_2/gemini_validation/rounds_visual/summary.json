@@ -1,0 +1,285 @@
+{
+  "visual": true,
+  "requested": 4,
+  "completed": 4,
+  "rounds": 10,
+  "checks": 276,
+  "elapsed_s": 20.062,
+  "passed": true,
+  "workers": [
+    {
+      "worker": 1,
+      "requested": 4,
+      "passed": true,
+      "exit_code": 0,
+      "log": "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\rounds_integration\\visual\\console.log",
+      "report": {
+        "cases": [
+          {
+            "case": "ct_2_0",
+            "characters": [
+              "sas",
+              "phoenix"
+            ],
+            "draw_id": 1,
+            "final_score_ct_tr": [
+              2,
+              0
+            ],
+            "index": 1,
+            "next_draw_id": 2,
+            "passed": true,
+            "patterns": [
+              2,
+              2
+            ],
+            "rounds": [
+              {
+                "draw_id": 1,
+                "phase": "between_rounds",
+                "round": 1,
+                "score_ct_tr": [
+                  1,
+                  0
+                ],
+                "winning_team": "CT"
+              },
+              {
+                "draw_id": 1,
+                "phase": "finished",
+                "round": 2,
+                "score_ct_tr": [
+                  2,
+                  0
+                ],
+                "winning_team": "CT"
+              }
+            ],
+            "teams": [
+              "CT",
+              "TR"
+            ]
+          },
+          {
+            "case": "tr_0_2",
+            "characters": [
+              "sas",
+              "phoenix"
+            ],
+            "draw_id": 3,
+            "final_score_ct_tr": [
+              0,
+              2
+            ],
+            "index": 2,
+            "next_draw_id": 4,
+            "passed": true,
+            "patterns": [
+              2,
+              2
+            ],
+            "rounds": [
+              {
+                "draw_id": 3,
+                "phase": "between_rounds",
+                "round": 1,
+                "score_ct_tr": [
+                  0,
+                  1
+                ],
+                "winning_team": "TR"
+              },
+              {
+                "draw_id": 3,
+                "phase": "finished",
+                "round": 2,
+                "score_ct_tr": [
+                  0,
+                  2
+                ],
+                "winning_team": "TR"
+              }
+            ],
+            "teams": [
+              "CT",
+              "TR"
+            ]
+          },
+          {
+            "case": "ct_2_1",
+            "characters": [
+              "sas",
+              "phoenix"
+            ],
+            "draw_id": 5,
+            "final_score_ct_tr": [
+              2,
+              1
+            ],
+            "index": 3,
+            "next_draw_id": 6,
+            "passed": true,
+            "patterns": [
+              2,
+              2
+            ],
+            "rounds": [
+              {
+                "draw_id": 5,
+                "phase": "between_rounds",
+                "round": 1,
+                "score_ct_tr": [
+                  1,
+                  0
+                ],
+                "winning_team": "CT"
+              },
+              {
+                "draw_id": 5,
+                "phase": "between_rounds",
+                "round": 2,
+                "score_ct_tr": [
+                  1,
+                  1
+                ],
+                "winning_team": "TR"
+              },
+              {
+                "draw_id": 5,
+                "phase": "finished",
+                "round": 3,
+                "score_ct_tr": [
+                  2,
+                  1
+                ],
+                "winning_team": "CT"
+              }
+            ],
+            "teams": [
+              "CT",
+              "TR"
+            ]
+          },
+          {
+            "case": "tr_1_2",
+            "characters": [
+              "sas",
+              "phoenix"
+            ],
+            "draw_id": 7,
+            "final_score_ct_tr": [
+              1,
+              2
+            ],
+            "index": 4,
+            "next_draw_id": 8,
+            "passed": true,
+            "patterns": [
+              2,
+              2
+            ],
+            "rounds": [
+              {
+                "draw_id": 7,
+                "phase": "between_rounds",
+                "round": 1,
+                "score_ct_tr": [
+                  1,
+                  0
+                ],
+                "winning_team": "CT"
+              },
+              {
+                "draw_id": 7,
+                "phase": "between_rounds",
+                "round": 2,
+                "score_ct_tr": [
+                  1,
+                  1
+                ],
+                "winning_team": "TR"
+              },
+              {
+                "draw_id": 7,
+                "phase": "finished",
+                "round": 3,
+                "score_ct_tr": [
+                  1,
+                  2
+                ],
+                "winning_team": "TR"
+              }
+            ],
+            "teams": [
+              "CT",
+              "TR"
+            ]
+          }
+        ],
+        "checkpoints": [
+          {
+            "completed": 1,
+            "elapsed_s": 4.26,
+            "nodes": 4
+          },
+          {
+            "completed": 2,
+            "elapsed_s": 8.397,
+            "nodes": 4
+          },
+          {
+            "completed": 3,
+            "elapsed_s": 13.419,
+            "nodes": 4
+          },
+          {
+            "completed": 4,
+            "elapsed_s": 18.467,
+            "nodes": 4
+          }
+        ],
+        "checks": 276,
+        "completed": 4,
+        "ct_player_one": 4,
+        "elapsed_s": 19.262,
+        "failures": [],
+        "renderer": "gl_compatibility",
+        "requested": 4,
+        "rounds": 10,
+        "screenshots": [
+          "00_ct_2_0_coin.png",
+          "00_ct_2_0_coin_result.png",
+          "00_ct_2_0_selection.png",
+          "00_ct_2_0_score_1_0.png",
+          "00_ct_2_0_score_2_0.png",
+          "00_ct_2_0_new_toss.png",
+          "01_tr_0_2_coin.png",
+          "01_tr_0_2_coin_result.png",
+          "01_tr_0_2_selection.png",
+          "01_tr_0_2_score_0_1.png",
+          "01_tr_0_2_score_0_2.png",
+          "01_tr_0_2_new_toss.png",
+          "02_ct_2_1_coin.png",
+          "02_ct_2_1_coin_result.png",
+          "02_ct_2_1_selection.png",
+          "02_ct_2_1_score_1_0.png",
+          "02_ct_2_1_score_1_1.png",
+          "02_ct_2_1_third_round_started.png",
+          "02_ct_2_1_score_2_1.png",
+          "02_ct_2_1_new_toss.png",
+          "03_tr_1_2_coin.png",
+          "03_tr_1_2_coin_result.png",
+          "03_tr_1_2_selection.png",
+          "03_tr_1_2_score_1_0.png",
+          "03_tr_1_2_score_1_1.png",
+          "03_tr_1_2_third_round_started.png",
+          "03_tr_1_2_score_1_2.png",
+          "03_tr_1_2_new_toss.png",
+          "04_local_new_draw_result.png",
+          "04_return_selection_new_draw.png"
+        ],
+        "visual": true
+      }
+    }
+  ]
+}

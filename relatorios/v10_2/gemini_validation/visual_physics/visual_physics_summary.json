@@ -1,0 +1,17 @@
+{
+	"captures": [
+		"01_contact_16_rot_ignored_move_ok.png",
+		"02_contact_15_rotation_and_lateral_move.png",
+		"02b_contact_02_rot_accepted.png",
+		"03_contact_01_last_frame_rot_ignored.png",
+		"04_lost_support_contact_reset.png",
+		"05_deposited_before_independent_fall.png",
+		"06_independent_fall_step.png",
+		"07_power_gem_formed_after_gravity.png",
+		"08_next_pair_spawned_cleanly.png",
+		"09_live_combo_explosion_and_attack.png"
+	],
+	"checks": 46,
+	"events": [],
+	"failures": []
+}

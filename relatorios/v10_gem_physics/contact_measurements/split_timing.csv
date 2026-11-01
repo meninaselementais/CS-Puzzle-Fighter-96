@@ -1,0 +1,13 @@
+case,supported,commit_frame,first_fall_frame,support_reached_frame,rows_fallen,frames_to_support
+split_r1_pivot_depth1,pivot,57,58,58,1,1
+split_r1_pivot_depth3,pivot,57,58,60,3,3
+split_r1_pivot_depth6,pivot,57,58,63,6,6
+split_r1_satellite_depth1,satellite,57,58,58,1,1
+split_r1_satellite_depth3,satellite,57,58,60,3,3
+split_r1_satellite_depth6,satellite,57,58,63,6,6
+split_r3_pivot_depth1,pivot,57,58,58,1,1
+split_r3_pivot_depth3,pivot,57,58,60,3,3
+split_r3_pivot_depth6,pivot,57,58,63,6,6
+split_r3_satellite_depth1,satellite,57,58,58,1,1
+split_r3_satellite_depth3,satellite,57,58,60,3,3
+split_r3_satellite_depth6,satellite,57,58,63,6,6

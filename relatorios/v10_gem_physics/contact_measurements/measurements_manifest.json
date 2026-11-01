@@ -1,0 +1,64 @@
+{
+  "distinct_cases": 112,
+  "expected_samples": 14072,
+  "repeat_common_samples": 12221,
+  "repeat_edges_samples": 1531,
+  "repeat_leave_samples": 562,
+  "repeat_differences": 0,
+  "source_files_unchanged": 198,
+  "old_fidelity_passed": "247/247",
+  "primary_screenshots": 2957,
+  "primary_ram_dumps": 6200,
+  "runs": [
+    {
+      "key": "matrix_first",
+      "session": "C:\\Projetos\\CS-Puzzle-Fighter-96\\laboratorio\\auto_20261101_001341_447156",
+      "source_manifest_sha256": "35bb1b3ec1f201a0e6daba7f552b91d8c080b5d1b433d7f9748eda13567373a7",
+      "lua_sha256": "68985ff1e397d7e3b8fd488e8cc121efd24976ff2517632f765af43013bfc31b",
+      "ram_dumps": 2565,
+      "screenshots": 2301,
+      "contact_csv_sha256": "60647e72a70bb3461d183a0f853e31b86b1b437d77942a83922082ffffc88186",
+      "preserved_sources": true
+    },
+    {
+      "key": "matrix_final",
+      "session": "C:\\Projetos\\CS-Puzzle-Fighter-96\\laboratorio\\auto_20261101_001520_164035",
+      "source_manifest_sha256": "adbae1eecf17c081cecb0ec4221cbac022c569c2eb6aa1730a366245865a5a59",
+      "lua_sha256": "b420f36c82420c0a97eba24425d7a761a509f4f904192fdb32eb735ba46faa21",
+      "ram_dumps": 4870,
+      "screenshots": 2303,
+      "contact_csv_sha256": "26707cb95d31635dcb9faa6a9d966a279911dfae3cbe9ca5a5b0dd0114cb1072",
+      "preserved_sources": true
+    },
+    {
+      "key": "edges_first",
+      "session": "C:\\Projetos\\CS-Puzzle-Fighter-96\\laboratorio\\auto_20261101_001630_187456",
+      "source_manifest_sha256": "de10903307c32d182b5eb3c289219da46a7c381edd4500e553456dbd87918742",
+      "lua_sha256": "e6aef335282e12ff68675cedf12603d1cfebdbcd1a2a1efddd51a8a047db9fba",
+      "ram_dumps": 1330,
+      "screenshots": 654,
+      "contact_csv_sha256": "9a97bac77572273a08b4e451d9dcb8c6532c1df43f117a6ab155c605377faa74",
+      "preserved_sources": true
+    },
+    {
+      "key": "edges_repeat",
+      "session": "C:\\Projetos\\CS-Puzzle-Fighter-96\\laboratorio\\auto_20261101_001829_946248",
+      "source_manifest_sha256": "dc336902328083d4b9666743065f8f11a524c5b3b21fd4d046d1a7f0082c5b9b",
+      "lua_sha256": "e6aef335282e12ff68675cedf12603d1cfebdbcd1a2a1efddd51a8a047db9fba",
+      "ram_dumps": 1330,
+      "screenshots": 654,
+      "contact_csv_sha256": "9a97bac77572273a08b4e451d9dcb8c6532c1df43f117a6ab155c605377faa74",
+      "preserved_sources": true
+    },
+    {
+      "key": "leave_repeat",
+      "session": "C:\\Projetos\\CS-Puzzle-Fighter-96\\laboratorio\\auto_20261101_002015_292708",
+      "source_manifest_sha256": "7b8c1ec332882853ae85058479f14ef5b3c6d9619081be7ad30fb933fb13eb64",
+      "lua_sha256": "3831a02cac2d2a6b005c37ebfc0a12f1a97a3d60ace20db0ee6240728fc20636",
+      "ram_dumps": 240,
+      "screenshots": 118,
+      "contact_csv_sha256": "102a51bf8633bc6d0b669a7f88786e2c4be4126563392fad235dd1ce0a5b057b",
+      "preserved_sources": true
+    }
+  ]
+}

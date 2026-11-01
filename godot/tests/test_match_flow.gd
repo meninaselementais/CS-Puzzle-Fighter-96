@@ -41,6 +41,8 @@ func send(event: InputEvent) -> void:
 	Input.parse_input_event(event)
 	await process_frame
 	await process_frame
+	if current_scene != null and current_scene.get_script().resource_path == "res://presentation/main.gd" and not current_scene.is_physics_processing():
+		current_scene._physics_process(1.0 / current_scene.Controls.FRAMES_PER_SECOND)
 
 func key(code: Key) -> void:
 	var event: InputEventKey = InputEventKey.new()

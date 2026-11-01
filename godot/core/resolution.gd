@@ -10,7 +10,7 @@ static func form_powers(board) -> void:
 		if c != 0 and board.indices(rect).all(func(i): return Gem.can_power(board.cells[i], c)):
 			valid.append(rect)
 	board.power_gems = valid
-	# shortcut: desempates entre retângulos concorrentes ainda precisam de casos irregulares do arcade.
+	# shortcut: desempates entre retÃƒÂ¢ngulos concorrentes ainda precisam de casos irregulares do arcade.
 	for _attempt in range(84):
 		var best := Rect2i()
 		for y in range(12, -1, -1):
@@ -38,6 +38,93 @@ static func form_powers(board) -> void:
 		kept.append(best)
 		board.power_gems = kept
 		for index in board.indices(best): board.cells[index] = Gem.color(board.cells[index]) | 128
+
+static func gravity_step(board) -> int:
+	# Uma cÃƒÂ©lula livre por coluna e quadro; Power Gems continuam corpos rÃƒÂ­gidos.
+	var moved: int = 0
+	var covered: Dictionary = {}
+	for rect in board.power_gems:
+		for index in board.indices(rect): covered[index] = true
+	for x in range(6):
+		for y in range(12,-1,-1):
+			var index: int = y*6+x
+			if not covered.has(index) and board.cells[index] != 0 and board.cells[index+6] == 0:
+				board.cells[index+6] = board.cells[index]
+				board.cells[index] = 0
+				moved += 1
+				break
+	for i in range(board.power_gems.size()-1,-1,-1):
+		var rect: Rect2i = board.power_gems[i]
+		if rect.end.y >= 14: continue
+		var free: bool = true
+		for x in range(rect.position.x,rect.end.x):
+			if board.cells[rect.end.y*6+x] != 0: free = false
+		if not free: continue
+		for y in range(rect.end.y-1,rect.position.y-1,-1):
+			for x in range(rect.position.x,rect.end.x):
+				board.cells[(y+1)*6+x] = board.cells[y*6+x]
+				board.cells[y*6+x] = 0
+		rect.position.y += 1
+		board.power_gems[i] = rect
+		moved += rect.get_area()
+	return moved
+
+static func counter_gravity_step(board) -> int:
+	# Em $D058 (fase 19), todas as gemas sem suporte de cada coluna descem 1 linha no mesmo quadro.
+	var moved: int = 0
+	var covered: Dictionary = {}
+	for rect in board.power_gems:
+		for index in board.indices(rect): covered[index] = true
+	for x in range(6):
+		for y in range(12, -1, -1):
+			var index: int = y * 6 + x
+			if not covered.has(index) and board.cells[index] != 0 and board.cells[index + 6] == 0:
+				board.cells[index + 6] = board.cells[index]
+				board.cells[index] = 0
+				moved += 1
+	return moved
+
+static func count_flood_steps(board) -> int:
+	# Conta os passos síncronos de propagação ($D3D6 + $D26A + $D462) na fase 8 da CPS-2.
+	for i in range(84):
+		if Gem.is_diamond(board.cells[i]):
+			return 1
+	var flags: PackedInt32Array = PackedInt32Array()
+	flags.resize(84)
+	var steps: int = 0
+	for _pass in range(84):
+		for i in range(84):
+			if (flags[i] & 0x20) != 0:
+				flags[i] |= 0x10
+		var d5: bool = false
+		for x in range(6):
+			for y in range(13, 0, -1):
+				var idx: int = y * 6 + x
+				var c: int = board.cells[idx]
+				if c == 0 or Gem.kind(c) == Gem.Kind.COUNTER:
+					continue
+				if (flags[idx] & 0x20) != 0:
+					if (flags[idx] & 0x10) == 0:
+						continue
+				else:
+					if (flags[idx] & 0x40) != 0 or Gem.kind(c) != Gem.Kind.CRASH:
+						continue
+				flags[idx] = (flags[idx] & ~0x20) | 0x40
+				var col: int = Gem.color(c)
+				var d4: bool = false
+				for n in [idx - 1, idx + 1, idx + 6, idx - 6]:
+					if (n == idx - 1 and x == 0) or (n == idx + 1 and x == 5) or n < 0 or n >= 84:
+						continue
+					var nc: int = board.cells[n]
+					if nc != 0 and Gem.kind(nc) != Gem.Kind.COUNTER and (flags[n] & 0x40) == 0 and Gem.color(nc) == col:
+						flags[n] |= 0x20
+						d4 = true
+						d5 = true
+		if d5:
+			steps += 1
+		else:
+			break
+	return steps
 
 static func gravity(board) -> int:
 	var distance := 0
@@ -147,7 +234,7 @@ static func diamond_wave(board, chain: int) -> Dictionary:
 	return wave
 
 static func resolve(board, decrement: bool = true) -> Dictionary:
-	# shortcut: resolução lógica imediata; duração e interações durante as animações ainda não foram portadas.
+	# shortcut: resoluÃƒÂ§ÃƒÂ£o lÃƒÂ³gica imediata; duraÃƒÂ§ÃƒÂ£o e interaÃƒÂ§ÃƒÂµes durante as animaÃƒÂ§ÃƒÂµes ainda nÃƒÂ£o foram portadas.
 	var result := {"waves": [], "score": 0, "attack": 0, "converted": 0, "gravity": 0}
 	if decrement: result.converted = advance_counters(board)
 	form_powers(board)
@@ -194,3 +281,38 @@ static func resolve(board, decrement: bool = true) -> Dictionary:
 		result.gravity += gravity(board)
 	form_powers(board)
 	return result
+
+static func resolve_single_wave(board, chain: int) -> Dictionary:
+	form_powers(board)
+	var dwave := diamond_wave(board, chain)
+	if not dwave.is_empty():
+		return dwave
+	var groups := crash_groups(board)
+	if groups.is_empty():
+		return {}
+	var removed := {}
+	var collateral := {}
+	var wave := {"chain": chain, "combo": groups.size(), "groups": [], "counter": 0, "removed": 0, "score": 0, "attack": 0}
+	for group in groups:
+		var event := {"normal": 0, "crash": 0, "powers": [], "count": group.size(), "color": Gem.color(board.cells[group[0]])}
+		for i in group:
+			removed[i] = true
+			if Gem.kind(board.cells[i]) == Gem.Kind.CRASH: event.crash += 1
+			elif Gem.kind(board.cells[i]) == Gem.Kind.NORMAL: event.normal += 1
+			for next in board.neighbors(i):
+				if Gem.kind(board.cells[next]) == Gem.Kind.COUNTER: collateral[next] = true
+		for rect in board.power_gems:
+			if group.has(rect.position.y * 6 + rect.position.x): event.powers.append([rect.size.x, rect.size.y])
+		wave.groups.append(event)
+	wave.counter = collateral.size()
+	for i in collateral: removed[i] = true
+	wave.removed = removed.size()
+	var economy := Economy.wave(wave)
+	wave.score = economy.score
+	wave.attack = economy.attack
+	for i in removed: board.cells[i] = 0
+	var kept: Array[Rect2i] = []
+	for rect in board.power_gems:
+		if not removed.has(rect.position.y * 6 + rect.position.x): kept.append(rect)
+	board.power_gems = kept
+	return wave
