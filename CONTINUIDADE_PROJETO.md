@@ -1,12 +1,13 @@
 # Continuidade — Counter-Strike Puzzle Fighter '96
 
-Atualizado em **03/11/2026**, America/Sao_Paulo, após conclusão e regressão da **V10.3.3**. V10.3.3 aprovada pelo usuário; checkpoint Git local autorizado em 03/11/2026. **V10.3.4 não iniciada.**
+Atualizado em **03/11/2026**, America/Sao_Paulo, após conclusão e regressão da **V10.3.3**. **V10.3.1, V10.3.2 e V10.3.3 concluídas** conforme as evidências disponíveis. Checkpoint Git local executado em 03/11/2026 — `dde581f`. **V10.3.4 ainda não autorizada.**
 
 ## Estado atual
 
 - Projeto: `C:\Projetos\CS-Puzzle-Fighter-96`.
 - Branch: `feature/v10-gem-physics`.
-- HEAD: `136238edf12b68761d72713b2225de9363e6ba94`; permanece o checkpoint V10.2 publicado informado anteriormente. Nenhuma consulta remota nesta retomada.
+- HEAD local: `dde581fa9f7e9cf5217297173a5043b40f9597af` (`dde581f`), `checkpoint: V10.3.1-V10.3.3 gem physics and visual fidelity`, 03/11/2026 00:51, sobre a base `136238edf12b68761d72713b2225de9363e6ba94`. Árvore de trabalho limpa.
+- Remoto `origin`: `https://github.com/mautrix666/CS-Puzzle-Fighter-96.git`. A branch remota `feature/v10-gem-physics` está em `136238e`; `dde581f` **não existe no GitHub remoto**. Branch local **à frente da remota em 1 commit**. `main` remota em `03cfd1e`. Nenhum push, merge ou staging realizado.
 - V10.3.1: medições concluídas no escopo P1 documentado.
 - V10.3.2: implementação temporal local concluída, preservada.
 - V10.3.3: rotação gráfica de oito passos integrada, validada e documentada no escopo medido. Alterações locais, **sem staging, commit, merge ou push**.
@@ -71,7 +72,7 @@ Cópia para o usuário: `C:\Users\MauTrIX\Documents\Codex\2026-11-03\continuar-v
 
 Não declarar fidelidade visual integral: a arte CS difere, Power/explosões mantêm limites internos registrados na V10.3.2, e não foram certificados todos os casos de P2, cores, geometrias ou partidas naturais completas. Os avisos preexistentes de lint continuam documentados.
 
-**Próxima ação: concluir o checkpoint local autorizado. V10.3.4 continua sem autorização de implementação.** Não avançar à V10.3.4, alterar o núcleo, editar testes para acomodar resultados nem publicar alterações por inferência. Não houve commit, merge, push ou staging. Ao retomar, conferir Git, hashes e eventuais mudanças posteriores antes de escrever.
+**Próxima ação: nenhuma de código autorizada. O checkpoint local autorizado foi concluído (`dde581f`); a V10.3.4 continua sem autorização de implementação.** O commit `dde581f` permanece apenas local: push, merge, rebase e publicação não foram autorizados. Não avançar à V10.3.4, alterar o núcleo, editar testes para acomodar resultados nem publicar alterações por inferência. Não houve merge, push ou staging. Ao retomar, conferir Git, hashes e eventuais mudanças posteriores antes de escrever.
 
 ## Checkpoint local autorizado — 03/11/2026
 
@@ -82,3 +83,9 @@ A seleção contém exclusivamente os 90 caminhos auditados, incluindo `.gitattr
 A validação em cópia isolada, sem laboratório ou ferramentas locais, aprovou 20/20 execuções. As cadeias funcionam sem dumps (22 casos/5.066 amostras/10 checks); os 44 checks adicionais de integridade dependem das RAMs locais. Permanecem documentados os caminhos locais das ferramentas históricas, as dependências externas dos comparadores e o aviso de duas instâncias ObjectDB no encerramento do teste de partidas.
 
 O plano V10.3.4 limita-se às animações internas de Power Gems e continua separado da implementação. Não iniciar essa versão automaticamente. Push, merge, rebase, reset, alterações do núcleo e exclusão de evidências não foram autorizados. O resultado e o hash deste checkpoint devem ser consultados no Git e no relatório externo em `outputs/checkpoint_local_v10_3_3`, preservando este documento como conteúdo do próprio commit.
+
+### Resultado do checkpoint — confirmado em 03/11/2026
+
+O checkpoint foi **executado e confirmado** no Git local: commit `dde581fa9f7e9cf5217297173a5043b40f9597af` (`dde581f`), mensagem `checkpoint: V10.3.1-V10.3.3 gem physics and visual fidelity`, autor MauTrIX, 03/11/2026 00:51, parent `136238e`. A árvore de trabalho está limpa. Este documento foi atualizado após o commit e, por isso, aparece como alteração local pendente até um próximo checkpoint autorizado.
+
+Verificação remota (somente leitura): `refs/heads/feature/v10-gem-physics` no `origin` aponta para `136238e`; `refs/heads/main` aponta para `03cfd1e`. Consequentemente, `dde581f` **não existe no GitHub remoto** e a branch local está **1 commit à frente** da remota. Nenhuma operação de escrita remota foi feita.
