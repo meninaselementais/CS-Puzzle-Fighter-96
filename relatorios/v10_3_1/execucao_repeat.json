@@ -1,0 +1,90 @@
+{
+  "versao": "MAME v0.289 (mame0289)",
+  "comando": [
+    "C:\\Projetos\\CS-Puzzle-Fighter-96\\laboratorio\\runtime_0289\\mame.exe",
+    "spf2tu",
+    "-noreadconfig",
+    "-skip_gameinfo",
+    "-noplugins",
+    "-noautosave",
+    "-window",
+    "-video",
+    "gdi",
+    "-sound",
+    "none",
+    "-nothrottle",
+    "-frameskip",
+    "0",
+    "-rompath",
+    "C:\\Projetos\\CS-Puzzle-Fighter-96\\laboratorio\\runtime_0289\\roms",
+    "-inipath",
+    "C:\\Projetos\\CS-Puzzle-Fighter-96\\laboratorio\\auto_20261101_222903_899708\\ini",
+    "-homepath",
+    "C:\\Projetos\\CS-Puzzle-Fighter-96\\laboratorio\\auto_20261101_222903_899708",
+    "-autoboot_delay",
+    "0",
+    "-autoboot_script",
+    "C:\\Projetos\\CS-Puzzle-Fighter-96\\laboratorio\\auto_20261101_222903_899708\\run.lua",
+    "-seconds_to_run",
+    "0",
+    "-cfg_directory",
+    "C:\\Projetos\\CS-Puzzle-Fighter-96\\laboratorio\\auto_20261101_222903_899708\\cfg",
+    "-nvram_directory",
+    "C:\\Projetos\\CS-Puzzle-Fighter-96\\laboratorio\\auto_20261101_222903_899708\\nvram",
+    "-state_directory",
+    "C:\\Projetos\\CS-Puzzle-Fighter-96\\laboratorio\\auto_20261101_222903_899708\\sta",
+    "-snapshot_directory",
+    "C:\\Projetos\\CS-Puzzle-Fighter-96\\laboratorio\\auto_20261101_222903_899708\\snap",
+    "-input_directory",
+    "C:\\Projetos\\CS-Puzzle-Fighter-96\\laboratorio\\auto_20261101_222903_899708\\inp",
+    "-comment_directory",
+    "C:\\Projetos\\CS-Puzzle-Fighter-96\\laboratorio\\auto_20261101_222903_899708\\comments",
+    "-diff_directory",
+    "C:\\Projetos\\CS-Puzzle-Fighter-96\\laboratorio\\auto_20261101_222903_899708\\diff"
+  ],
+  "copias": [
+    {
+      "origem": "C:\\MAME\\mame.exe",
+      "copia": "C:\\Projetos\\CS-Puzzle-Fighter-96\\laboratorio\\runtime_0289\\mame.exe",
+      "sha256": "af6966108d9b52c22465c6d50f4e5d50cc371b50f2d27dc443935f287aad37a3"
+    },
+    {
+      "origem": "C:\\MAME\\roms\\spf2t.zip",
+      "copia": "C:\\Projetos\\CS-Puzzle-Fighter-96\\laboratorio\\runtime_0289\\roms\\spf2t.zip",
+      "sha256": "1386a45f22f76f1944d915ca0ba70e943fea2c42b20e68120e939c6e0d94aa57"
+    },
+    {
+      "origem": "C:\\MAME\\roms\\spf2tu.zip",
+      "copia": "C:\\Projetos\\CS-Puzzle-Fighter-96\\laboratorio\\runtime_0289\\roms\\spf2tu.zip",
+      "sha256": "2344390c6c070517d2b04549deb5f27aadc3b3e4b90c9d66b7d93c2462f4d5a8"
+    },
+    {
+      "origem": "C:\\MAME\\roms\\qsound_hle.zip",
+      "copia": "C:\\Projetos\\CS-Puzzle-Fighter-96\\laboratorio\\runtime_0289\\roms\\qsound_hle.zip",
+      "sha256": "55feb9b70dacb7364f0310ed16cc9281b5b0a31318b9e2e0587ae06d15f95356"
+    },
+    {
+      "origem": "C:\\MAME\\roms\\qsound.zip",
+      "copia": "C:\\Projetos\\CS-Puzzle-Fighter-96\\laboratorio\\runtime_0289\\roms\\qsound.zip",
+      "sha256": "55feb9b70dacb7364f0310ed16cc9281b5b0a31318b9e2e0587ae06d15f95356"
+    },
+    {
+      "origem": "C:\\MAME\\nvram\\spf2tu\\eeprom",
+      "copia": "C:\\Projetos\\CS-Puzzle-Fighter-96\\laboratorio\\auto_20261101_222903_899708\\nvram\\spf2tu\\eeprom",
+      "sha256": "ff8fa5589b7931b4275c49b97f74e675fd3432cbfbef83e3e51bace168e89222"
+    },
+    {
+      "origem": "C:\\Projetos\\CS-Puzzle-Fighter-96\\laboratorio\\auto_20261028_155033_010970\\sta\\spf2tu\\baseline.sta.sta",
+      "copia": "C:\\Projetos\\CS-Puzzle-Fighter-96\\laboratorio\\auto_20261101_222903_899708\\sta\\spf2tu\\input.sta",
+      "sha256": "4fce8afe569173625dc29d02b646f766b0c908c5341d84b6b764476044ee43ee"
+    }
+  ],
+  "lua": "C:\\Users\\MauTrIX\\Documents\\Codex\\2026-11-01\\continuar-counter-strike-puzzle-fighter-96\\outputs\\v10_3_1\\probe_corrigido.lua",
+  "lua_sha256": "cf8e97494fe41cecc1d7817f994c2ee3760890f65cc3be1bac27d5bab3b3e1f3",
+  "runner_sha256": "d06ed1acfa674ac6a3775e16c4c5dfe9405f90721150da16640a9d671357922d",
+  "exit_code": 0,
+  "segundos_reais": 14.359000000054948,
+  "fontes_preservadas": true,
+  "lua_concluiu": true,
+  "lua_sem_erros": true
+}

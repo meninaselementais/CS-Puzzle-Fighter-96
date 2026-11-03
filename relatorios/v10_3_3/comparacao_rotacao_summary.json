@@ -1,0 +1,9 @@
+{
+  "pairs": 80,
+  "different_pixels": 0,
+  "overlap_frames": 36,
+  "overlap_pixels": 268,
+  "mame_occlusion_errors": 0,
+  "godot_occlusion_errors": 0,
+  "nonuniform_blocks": 0
+}

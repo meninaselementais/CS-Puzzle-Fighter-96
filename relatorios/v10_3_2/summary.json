@@ -1,0 +1,31 @@
+{
+  "branch": "feature/v10-gem-physics",
+  "head": "136238edf12b68761d72713b2225de9363e6ba94",
+  "existing_suites_passed": 17,
+  "physics_cases": 112,
+  "physics_samples": 14072,
+  "chain_cases": 22,
+  "chain_samples": 5066,
+  "new_checks": 123863,
+  "new_failures": [],
+  "rounds_matches": 4,
+  "rounds_checks": 204,
+  "captures": 172,
+  "native_contour_pairs": 20,
+  "native_fall_pairs": 4,
+  "different_mask_pixels": 0,
+  "protected_files": 45,
+  "competitive_core_changed": false,
+  "match_model_changed": false,
+  "main_changed": false,
+  "old_tests_changed": false,
+  "new_mame_collections": 0,
+  "full_native_visual_equivalence": false,
+  "limitations": [
+    "Eight-step rotation graphics not integrated; logical window preserved",
+    "Native internal Power tile animation not reconstructed",
+    "Native per-cell pre-removal explosion sprite chronology differs",
+    "Coverage limited to measured configurations"
+  ],
+  "commit_merge_push": false
+}

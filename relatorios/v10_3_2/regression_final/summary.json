@@ -1,0 +1,46 @@
+[
+  {
+    "name": "existing_suite",
+    "passed": true,
+    "exit_code": 0,
+    "seconds": 42.39,
+    "command": [
+      "C:\\Users\\MauTrIX\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+      "C:\\Projetos\\CS-Puzzle-Fighter-96\\scripts\\validar_apresentacao.py",
+      "--render",
+      "--output",
+      "C:\\Users\\MauTrIX\\Documents\\Codex\\2026-11-01\\continuar-counter-strike-puzzle-fighter-96\\outputs\\v10_3_2\\regression_final\\existing"
+    ]
+  },
+  {
+    "name": "gem_timeline",
+    "passed": true,
+    "exit_code": 0,
+    "seconds": 1.12,
+    "command": [
+      "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+      "--headless",
+      "--path",
+      "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+      "--script",
+      "res://tests/test_gem_timeline.gd",
+      "--",
+      "--fixtures=C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v10_gem_physics\\contact_measurements\\mame_contact_fixtures.json",
+      "--out=C:\\Users\\MauTrIX\\Documents\\Codex\\2026-11-01\\continuar-counter-strike-puzzle-fighter-96\\outputs\\v10_3_2\\regression_final\\gem_timeline.json"
+    ]
+  },
+  {
+    "name": "chain_counter_timeline",
+    "passed": true,
+    "exit_code": 0,
+    "seconds": 0.64,
+    "command": [
+      "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+      "--headless",
+      "--path",
+      "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+      "--script",
+      "res://tests/test_chain_counter_timeline.gd"
+    ]
+  }
+]

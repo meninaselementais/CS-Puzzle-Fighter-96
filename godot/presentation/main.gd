@@ -6,6 +6,8 @@ const Replay = preload("res://adapters/mame_replay.gd")
 const Gem = preload("res://core/gem_rules.gd")
 const Controls = preload("res://core/control_model.gd")
 const Arena = preload("res://presentation/cs_arena.gd")
+const PairRotation = preload("res://presentation/pair_rotation_visual.gd")
+var pair_rotation: Array[RefCounted] = [PairRotation.new(),PairRotation.new()]
 const Session = preload("res://core/match_session.gd")
 const MenuInput = preload("res://presentation/selection_input.gd")
 var input_decoder: RefCounted = MenuInput.new()
@@ -86,7 +88,10 @@ func _physics_process(delta: float) -> void:
 					if Input.get_joy_axis(player,JOY_AXIS_LEFT_Y)>0.55: mask |= 4
 				model.input_masks[player] = mask
 				latched_masks[player] = 0
+			var before_rotation: Array[Dictionary] = [PairRotation.snapshot(model,0),PairRotation.snapshot(model,1)]
 			model.tick()
+			for player in range(2):
+				pair_rotation[player].step(before_rotation[player],PairRotation.snapshot(model,player))
 			arena.step_from_model(model,BOARD_ORIGINS)
 			sync_round_result()
 	queue_redraw()
@@ -139,9 +144,11 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	if key == KEY_TAB:
 		replay_mode = not replay_mode
 		if replay_mode:
+			for visual in pair_rotation: visual.reset()
 			apply_frame()
 		else:
 			model.restart()
+			for visual in pair_rotation: visual.reset()
 			arena.reset_state()
 			if session_game and Session.phase in ["between_rounds","finished"]: model.winner = Session.last_round_result
 		return
@@ -211,24 +218,14 @@ func _draw() -> void:
 			Arena.draw_outlined_text(self, font, origin + Vector2(6, 412), "%d CADEIA(S)  +%d PTS" % [result.waves.size(), result.score], 16, Color("55ff90"))
 		var pair = model.pairs[i]
 		if model.lost[i]: continue
-		var points = pair.positions()
-		var sub_y := 0.0
-		var pair_scale := Vector2.ONE
 		if not replay_mode:
-			if model.motion[i].phase != 0: continue
-			sub_y = float(model.motion[i].offset) / 16.0
-			if bool(model.accelerated[i]):
-				pair_scale = Vector2(0.94, 1.07)
+			pair_rotation[i].draw_pair(self,arena,pair,model.motion[i],PairRotation.identity_of(model,i),origin,model.lost[i])
+			continue
+		var points = pair.positions()
 		for n in range(2):
 			var point := Vector2(points[n])
-			if replay_mode:
-				point.y += visual_rows[i] - pair.pivot.y
-			else:
-				point.y += sub_y
-				if bool(model.accelerated[i]) and point.y >= 2.25:
-					var trail_c := origin + Vector2(point.x * TILE + TILE / 2.0, (point.y - 2.38) * TILE + TILE / 2.0)
-					draw_circle(trail_c, 11.0, Color(1.0, 1.0, 1.0, 0.22))
-			gem(point, origin, pair.colors[n], 90 + n, pair_scale)
+			point.y += visual_rows[i] - pair.pivot.y
+			gem(point, origin, pair.colors[n], 90 + n)
 	# Desenha projéteis, explosões e banners de combo sobre os tabuleiros e a arena
 	arena.draw_foreground_vfx(self, font)
 	# Rodapé de comandos do gabinete
@@ -300,6 +297,7 @@ func continue_round_or_match() -> void:
 		return
 	if session_game and Session.phase == "between_rounds": Session.advance_round()
 	model.restart()
+	for visual in pair_rotation: visual.reset()
 	arena.reset_state()
 	if session_game: arena.wins.assign(Session.round_wins)
 	controls_model = Controls.new()

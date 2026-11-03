@@ -1,0 +1,573 @@
+{
+	"cases": 112,
+	"cases_passed": 112,
+	"field_failures": {},
+	"fields_compared": "x,y,offset,orientation,contact,phase,turn,colors,age,contact_count,score,canonical board; upkick fields where captured",
+	"first_failures": [],
+	"not_compared": "raw graphical flags, auxiliary RAM, global RNG consumers, native piece RNG and animation RAM",
+	"results": [
+		{
+			"case": "speed_0_down_0",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "speed_0_down_1",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "speed_7_down_0",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "speed_7_down_1",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "speed_15_down_0",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "speed_15_down_1",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "floor_orientation_0",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "floor_orientation_1",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "floor_orientation_2",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "floor_orientation_3",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "rotate_b1_issued_c00",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "rotate_b1_issued_c01",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "rotate_b1_issued_c02",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "rotate_b1_issued_c03",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "rotate_b1_issued_c04",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "rotate_b1_issued_c05",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "rotate_b1_issued_c06",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "rotate_b1_issued_c07",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "rotate_b1_issued_c08",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "rotate_b1_issued_c09",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "rotate_b1_issued_c10",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "rotate_b1_issued_c11",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "rotate_b1_issued_c12",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "rotate_b1_issued_c13",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "rotate_b1_issued_c14",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "rotate_b1_issued_c15",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "rotate_b2_issued_c00",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "rotate_b2_issued_c01",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "rotate_b2_issued_c02",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "rotate_b2_issued_c03",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "rotate_b2_issued_c04",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "rotate_b2_issued_c05",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "rotate_b2_issued_c06",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "rotate_b2_issued_c07",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "rotate_b2_issued_c08",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "rotate_b2_issued_c09",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "rotate_b2_issued_c10",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "rotate_b2_issued_c11",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "rotate_b2_issued_c12",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "rotate_b2_issued_c13",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "rotate_b2_issued_c14",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "rotate_b2_issued_c15",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "move_left_issued_c00",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "move_left_issued_c08",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "move_left_issued_c12",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "move_left_issued_c13",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "move_left_issued_c14",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "move_left_issued_c15",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "move_right_issued_c00",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "move_right_issued_c08",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "move_right_issued_c12",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "move_right_issued_c13",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "move_right_issued_c14",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "move_right_issued_c15",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "sim_right_cw_c00",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "sim_right_cw_c12",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "sim_right_cw_c13",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "sim_left_ccw_c00",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "sim_left_ccw_c12",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "sim_left_ccw_c13",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "sim_both_rotate_c00",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "sim_both_rotate_c12",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "sim_both_rotate_c13",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "sim_both_horizontal_c00",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "sim_both_horizontal_c12",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "sim_both_horizontal_c13",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "sim_down_cw_c00",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "sim_down_cw_c12",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "sim_down_cw_c13",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "wall_0_cw",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "wall_0_ccw",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "wall_0_inward_cw",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "wall_0_outward_cw",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "wall_5_cw",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "wall_5_ccw",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "wall_5_inward_cw",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "wall_5_outward_cw",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "corridor_b1",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "irregular_b1",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "corridor_b2",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "irregular_b2",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "split_r1_pivot_depth1",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "split_r1_pivot_depth3",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "split_r1_pivot_depth6",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "split_r1_satellite_depth1",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "split_r1_satellite_depth3",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "split_r1_satellite_depth6",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "split_r3_pivot_depth1",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "split_r3_pivot_depth3",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "split_r3_pivot_depth6",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "split_r3_satellite_depth1",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "split_r3_satellite_depth3",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "split_r3_satellite_depth6",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "split_forms_power",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "leave_support_move",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "leave_support_rotate",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "prior_contact_count_6",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "prior_contact_count_7",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "held_right",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "held_rotation",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "repeated_rotation",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "first_contact_cw_issue_f38",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "first_contact_right_issue_f38",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "first_contact_right_cw_issue_f38",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "first_contact_cw_issue_f39",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "first_contact_right_issue_f39",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "first_contact_right_cw_issue_f39",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "first_contact_cw_issue_f40",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "first_contact_right_issue_f40",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "first_contact_right_cw_issue_f40",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "upkick_third_synthetic",
+			"passed": true,
+			"sample_failures": 0
+		},
+		{
+			"case": "upkick_cycles_natural_after_setup",
+			"passed": true,
+			"sample_failures": 0
+		}
+	],
+	"samples": 14072,
+	"samples_matched": 14072,
+	"strict_native_state_complete": false
+}

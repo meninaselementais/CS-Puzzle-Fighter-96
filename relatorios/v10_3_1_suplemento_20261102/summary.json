@@ -1,0 +1,22 @@
+{
+  "primary": "C:\\Projetos\\CS-Puzzle-Fighter-96\\laboratorio\\auto_20261102_172410_209057",
+  "repeat": "C:\\Projetos\\CS-Puzzle-Fighter-96\\laboratorio\\auto_20261102_172448_482209",
+  "supplemental_physics_cases": 2,
+  "background_control_cases": 1,
+  "frames_per_case": 96,
+  "cpu_samples_per_run": 288,
+  "video_samples_per_run": 288,
+  "sprite_rows_per_run": 23040,
+  "pngs_per_run": 288,
+  "png_sha256_matches": 288,
+  "states_identical": true,
+  "sprites_identical": true,
+  "injections_identical": true,
+  "video_f_matches_cpu_f_plus_1": 285,
+  "pixel_alignment": "PNG F matches video RAM F-2 for measured approach F3..31; tile transition landmarks also +2",
+  "new_native_percentage_claimed": false,
+  "initial_visible_gem_shape": "14x14 / 184 pixels",
+  "same_color_intermediate": "14x32 / 424 pixels / 4 frames F36..39",
+  "same_color_stable": "16x32 / 488 pixels / F40..96",
+  "halo": "16x16 / 60 pink pixels; not gem compression"
+}

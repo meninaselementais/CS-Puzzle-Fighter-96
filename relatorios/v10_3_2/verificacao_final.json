@@ -1,0 +1,301 @@
+{
+  "protected_files": [
+    {
+      "path": "godot/core/arcade_rng.gd",
+      "head_blob": "d75d779d05b53a63ef112ad7aaa4a438e424bcb5",
+      "working_blob": "d75d779d05b53a63ef112ad7aaa4a438e424bcb5",
+      "sha256": "3bb4829d5854263d7756ba0da6320d36879e9f45e1d5c92f74efe7e1652765f9"
+    },
+    {
+      "path": "godot/core/attack_rules.gd",
+      "head_blob": "400d0f05c90e546f750a47795a32f1e4e68b6695",
+      "working_blob": "400d0f05c90e546f750a47795a32f1e4e68b6695",
+      "sha256": "df93b626f973efb61c78d86a5fd5395eb4f836e136ce3392051cb4d0a3433dd7"
+    },
+    {
+      "path": "godot/core/attack_rules.gd.uid",
+      "head_blob": "5538511d799e270c67e12ecf8a91cfa4b2876200",
+      "working_blob": "5538511d799e270c67e12ecf8a91cfa4b2876200",
+      "sha256": "03875975d693e6c80c1ec12bef548ddfbbc821f2a6c4e0b862b6784fac115378"
+    },
+    {
+      "path": "godot/core/board_model.gd",
+      "head_blob": "05327dd3db03ef278770f7b20fba6f3d62cf732b",
+      "working_blob": "05327dd3db03ef278770f7b20fba6f3d62cf732b",
+      "sha256": "c17ef59ae0a251b06991e48744c501972f31b54b767c65022eadc867a89e391a"
+    },
+    {
+      "path": "godot/core/board_model.gd.uid",
+      "head_blob": "b494ac2248edc3a5302a240d1f4afc11bd1d27e6",
+      "working_blob": "b494ac2248edc3a5302a240d1f4afc11bd1d27e6",
+      "sha256": "b7706238ea2e6c01672a06ef0eb18d75fdcc228e3719fc22911c2f9a88bae591"
+    },
+    {
+      "path": "godot/core/character_catalog.gd",
+      "head_blob": "0fc2f317a3153515e95e98936a0297f10829b00a",
+      "working_blob": "0fc2f317a3153515e95e98936a0297f10829b00a",
+      "sha256": "9525c0e146788c4b3a4259399056964da6592dbb5de6a6f52cdf078fe802706a"
+    },
+    {
+      "path": "godot/core/control_model.gd",
+      "head_blob": "7bb821dabd97ef1198c38e9043e4d9f816f7d0b5",
+      "working_blob": "7bb821dabd97ef1198c38e9043e4d9f816f7d0b5",
+      "sha256": "4c8a6cb0dd7f52386f34c5119b46c8c6bd971ed527cdb741f2aa9119db78809e"
+    },
+    {
+      "path": "godot/core/gem_motion.gd",
+      "head_blob": "2c41629022bd53676c02ee17c46108df34d8a2c1",
+      "working_blob": "2c41629022bd53676c02ee17c46108df34d8a2c1",
+      "sha256": "5bed72de670c4b31d13d484d81e85b675cc495076530741219669fa9a1e3267e"
+    },
+    {
+      "path": "godot/core/gem_rules.gd",
+      "head_blob": "db0e5499422ced65a0f63566653aefe57205889f",
+      "working_blob": "db0e5499422ced65a0f63566653aefe57205889f",
+      "sha256": "795590059a76d038b1f6866bbace87a73ab0f69816f87717f6d593d46ef1fefe"
+    },
+    {
+      "path": "godot/core/gem_rules.gd.uid",
+      "head_blob": "f6069ca404e0ee86dec08f95afc76dd6f1b369ce",
+      "working_blob": "f6069ca404e0ee86dec08f95afc76dd6f1b369ce",
+      "sha256": "61d35b96a692aa34c30c97e47f7175a68d6324aa7d900f027491b3739cdac891"
+    },
+    {
+      "path": "godot/core/match_model.gd",
+      "head_blob": "b4f970357b7df37dd788e22b8f1288b99fe83150",
+      "working_blob": "b4f970357b7df37dd788e22b8f1288b99fe83150",
+      "sha256": "408e31e6489b4566fc0f9bb55e399f54a4b117aef9dc00a8be035dfd1c882aaa"
+    },
+    {
+      "path": "godot/core/match_model.gd.uid",
+      "head_blob": "c63e11bdf99574b39ce480c41e477d549d43defd",
+      "working_blob": "c63e11bdf99574b39ce480c41e477d549d43defd",
+      "sha256": "f253d7eea990d2c74fd0d3a00857fe367f718cf749b1a8cf2007f31c65033350"
+    },
+    {
+      "path": "godot/core/match_session.gd",
+      "head_blob": "15001b44b9b53c2638297eff5472d6dcc4405815",
+      "working_blob": "15001b44b9b53c2638297eff5472d6dcc4405815",
+      "sha256": "e5ae6f0334113c347370b77f8d6b7c2fa1a1d64447734255d60d4cbbdc73f99c"
+    },
+    {
+      "path": "godot/core/pair_model.gd",
+      "head_blob": "b24759039ea47726273642b01ef6ed9076041b36",
+      "working_blob": "b24759039ea47726273642b01ef6ed9076041b36",
+      "sha256": "1ea94d1262eb7bff868c51443d8f28c6f414bd5188f7d4afb4023cb28e8fda18"
+    },
+    {
+      "path": "godot/core/pair_model.gd.uid",
+      "head_blob": "b9ff774953e9da071c8230458069411a84de8e25",
+      "working_blob": "b9ff774953e9da071c8230458069411a84de8e25",
+      "sha256": "082c26080a17053aa38baf83ab321fdb945ac9554e7779ed2f0e31130bef838c"
+    },
+    {
+      "path": "godot/core/resolution.gd",
+      "head_blob": "35f9f124c6bc3f41fd29c5f08db9225c5f86d359",
+      "working_blob": "35f9f124c6bc3f41fd29c5f08db9225c5f86d359",
+      "sha256": "1bfd6139ac792693e4d732258aa6131606b9aa0b49db5454e3467717d3a630e6"
+    },
+    {
+      "path": "godot/core/resolution.gd.uid",
+      "head_blob": "ddaa86223a44033b1de8d2ac83861ce3a3128418",
+      "working_blob": "ddaa86223a44033b1de8d2ac83861ce3a3128418",
+      "sha256": "c8c27673f1d4f012fdb63feac30706d93a16e08949502f6cf6a4eb8639fe47a5"
+    },
+    {
+      "path": "godot/core/selection_state.gd",
+      "head_blob": "e6d519a3f573d3eec382503f8b2a44178997e30d",
+      "working_blob": "e6d519a3f573d3eec382503f8b2a44178997e30d",
+      "sha256": "761245b817ee59c096626c9132f9dbd76e61eb514f3fa33b8c12c2bfafba510f"
+    },
+    {
+      "path": "godot/presentation/main.gd",
+      "head_blob": "3e7fdf5f3e686ab9d3cc2617816c79d1af89deca",
+      "working_blob": "3e7fdf5f3e686ab9d3cc2617816c79d1af89deca",
+      "sha256": "e371751bcbba1c2c16a8992574420ba81523b064c89d080c3ccfd958a4643bbb"
+    },
+    {
+      "path": "godot/tests/reference_v8/cs_arena.gd",
+      "head_blob": "069addb90f358c76c173cbcab5c7e618ec2b60c1",
+      "working_blob": "069addb90f358c76c173cbcab5c7e618ec2b60c1",
+      "sha256": "369ad05f0a86de24f5497ba0e8fa1b4bce0a5ecaa871bbd60ddc370c93fdc7ce"
+    },
+    {
+      "path": "godot/tests/render_animation_showcase.gd",
+      "head_blob": "3a61a9603601d0c87ca6d740a79fb12490a77321",
+      "working_blob": "3a61a9603601d0c87ca6d740a79fb12490a77321",
+      "sha256": "11c14f18d53f469425e845594001bec8d11dcdbb22eaf010ab63258782d33bc1"
+    },
+    {
+      "path": "godot/tests/render_art_v9.gd",
+      "head_blob": "14e0489e311658c53c44630ae1121d118a8d991e",
+      "working_blob": "14e0489e311658c53c44630ae1121d118a8d991e",
+      "sha256": "0da6f5d97f4e1304ca2c527404e4766b2767169a7f6eed8d15170fcb873497c7"
+    },
+    {
+      "path": "godot/tests/render_chains_and_c4_demo.gd",
+      "head_blob": "69f168cf7cbc923cdba06d2d8d1ee742bdbc8b78",
+      "working_blob": "69f168cf7cbc923cdba06d2d8d1ee742bdbc8b78",
+      "sha256": "ed50924ee37bef48caaf49ad12da71d91a65822456b3ef9a6027936916d6c536"
+    },
+    {
+      "path": "godot/tests/render_mechanics.gd",
+      "head_blob": "2a91ebde06cd4c2ca9cc0fbca77cb4ac5b874ef9",
+      "working_blob": "2a91ebde06cd4c2ca9cc0fbca77cb4ac5b874ef9",
+      "sha256": "21ef3a4b2ceffba8f224d1043e7299267a4da6fad1cf826f3c0f3529b0511b7b"
+    },
+    {
+      "path": "godot/tests/render_preview.gd",
+      "head_blob": "43fed477caea5d4a1c3f4db815f6b2e823b57e84",
+      "working_blob": "43fed477caea5d4a1c3f4db815f6b2e823b57e84",
+      "sha256": "fb18bb8ff1ce2ea9d23c1aa97229e141f35b0bfbe5ff03222031866e2028ab1f"
+    },
+    {
+      "path": "godot/tests/render_preview.gd.uid",
+      "head_blob": "06bfd17ec836e2fd8a222aae227e7f20d4ee07f2",
+      "working_blob": "06bfd17ec836e2fd8a222aae227e7f20d4ee07f2",
+      "sha256": "641bd6e0cc171648cc9b922e3e1b9f9dfb98daa4ff88df9a4c466e358bb9dd7b"
+    },
+    {
+      "path": "godot/tests/test_animation_v8.gd",
+      "head_blob": "a4e99b3314f3c42eac30c45631259c4d4dc60344",
+      "working_blob": "a4e99b3314f3c42eac30c45631259c4d4dc60344",
+      "sha256": "4e86ce25edddf74c043e96f33994f25af8824909662ec64e7f8ba865e77b0288"
+    },
+    {
+      "path": "godot/tests/test_art_v9.gd",
+      "head_blob": "c66804b4f80e1f3da298c915e0a2a43b7b68f72d",
+      "working_blob": "c66804b4f80e1f3da298c915e0a2a43b7b68f72d",
+      "sha256": "565b3b67385b8e06503afbd7a7db6b196ee078c1582dfea6ad210289ae8259c1"
+    },
+    {
+      "path": "godot/tests/test_chain_counter_timeline.gd",
+      "head_blob": "de648c546e6086dac17c8b206aa6bfb98ccb17bd",
+      "working_blob": "de648c546e6086dac17c8b206aa6bfb98ccb17bd",
+      "sha256": "50f8eabc9a1ba3ab4a0ea69c845b1af595774a064e95bd3b24478bea568c6a3c"
+    },
+    {
+      "path": "godot/tests/test_character_select.gd",
+      "head_blob": "1fc8f3909a9f8f4b9e7754b3bbd9ad5ff8c928e8",
+      "working_blob": "1fc8f3909a9f8f4b9e7754b3bbd9ad5ff8c928e8",
+      "sha256": "4f3efbb9d4a1f39ac14a0208d19ac80c4d9cbd0d36cd1e1117026822059a751e"
+    },
+    {
+      "path": "godot/tests/test_character_select_ui.gd",
+      "head_blob": "4a5dc0cf0306fee577126e08642656a5fbb510df",
+      "working_blob": "4a5dc0cf0306fee577126e08642656a5fbb510df",
+      "sha256": "634e0113a3e7127700f8f6b6be0e6ac438b3d65d28ddc8b753f90e4568a9e925"
+    },
+    {
+      "path": "godot/tests/test_coin_flip.gd",
+      "head_blob": "5fc50ddd4384f29bec7d16cd3dfa63e980e7f38f",
+      "working_blob": "5fc50ddd4384f29bec7d16cd3dfa63e980e7f38f",
+      "sha256": "3369e1d713d59b3ee3c6c8de235bd7059409be047518430bd1b6e3c97fb3fdac"
+    },
+    {
+      "path": "godot/tests/test_controls_fidelity.gd",
+      "head_blob": "19a6d15752b26267e053adb14affb132c669513b",
+      "working_blob": "19a6d15752b26267e053adb14affb132c669513b",
+      "sha256": "58e5df04e0408530fdc65b1d7a5b206d9e14bf1eb9898ad8d69a1d0e4cf8a593"
+    },
+    {
+      "path": "godot/tests/test_duel.gd",
+      "head_blob": "db1558d566540b0c350cdeeda509be330bcff8be",
+      "working_blob": "db1558d566540b0c350cdeeda509be330bcff8be",
+      "sha256": "c20784a171fe114c12b28f03b27c5f909b0cb8a3f767770936f9839111c8b4a5"
+    },
+    {
+      "path": "godot/tests/test_fidelity.gd",
+      "head_blob": "c82c7d043b83a41f375fe9e10e3147d97ae2a834",
+      "working_blob": "c82c7d043b83a41f375fe9e10e3147d97ae2a834",
+      "sha256": "f3314de6a1be4fb815989c7a909ea39cc79ba2f938b27ec6ff228886123af8be"
+    },
+    {
+      "path": "godot/tests/test_fidelity.gd.uid",
+      "head_blob": "d81a3c7100eaf54872b2db3f5dc360f88561132a",
+      "working_blob": "d81a3c7100eaf54872b2db3f5dc360f88561132a",
+      "sha256": "1de39c012a065dabd495b2d1b25fbb9d38e4521cc2a308ff4e4d3440e80889bb"
+    },
+    {
+      "path": "godot/tests/test_gem_timeline.gd",
+      "head_blob": "30fd079e7392ffecf662be2d8b2a32855a58cea5",
+      "working_blob": "30fd079e7392ffecf662be2d8b2a32855a58cea5",
+      "sha256": "dfe1ddd2ee29c256c9506904a14d385d4af8077294234c40ca004724a6a027d0"
+    },
+    {
+      "path": "godot/tests/test_match_flow.gd",
+      "head_blob": "2f132d2da91e8d80760e36f72f526307b78bdd81",
+      "working_blob": "2f132d2da91e8d80760e36f72f526307b78bdd81",
+      "sha256": "a2f089fbd708b99e64e8cae230ede1bc4e96f7a71945ef9deba0873a87f396fe"
+    },
+    {
+      "path": "godot/tests/test_models.gd",
+      "head_blob": "1f55f13f890a3d906e3d822eb5750849050d68e4",
+      "working_blob": "1f55f13f890a3d906e3d822eb5750849050d68e4",
+      "sha256": "2d6bce14b12bdb0f2f0bdf8fb0b84eef07d93f198fcd378bbb8764bbf2daf251"
+    },
+    {
+      "path": "godot/tests/test_models.gd.uid",
+      "head_blob": "3eda4d472e2e45e05df0654c88b1c34965b9135a",
+      "working_blob": "3eda4d472e2e45e05df0654c88b1c34965b9135a",
+      "sha256": "7bd89d1ee2b8977d7d23800cff03f3d2022d652b260ee909c11ba680ac77f9ad"
+    },
+    {
+      "path": "godot/tests/test_natural_fidelity.gd",
+      "head_blob": "c311fd0dad62ade159dbe9ec373acbb73756ded5",
+      "working_blob": "c311fd0dad62ade159dbe9ec373acbb73756ded5",
+      "sha256": "024079ac738027ba801089ae441a4aefc288935316f738dc31231d9a81b1d1f8"
+    },
+    {
+      "path": "godot/tests/test_presentation.gd",
+      "head_blob": "e7134317fd18123ca138c7d201f9f85effed3cb6",
+      "working_blob": "e7134317fd18123ca138c7d201f9f85effed3cb6",
+      "sha256": "e0e107ce272a366940ed8600cc452456e3b17e5b2f66d979f5887421715dff5a"
+    },
+    {
+      "path": "godot/tests/test_rules.gd",
+      "head_blob": "adb7dde79374ba3f0f81fb6c4d0349b15c77dc58",
+      "working_blob": "adb7dde79374ba3f0f81fb6c4d0349b15c77dc58",
+      "sha256": "7fcbeba394942b8c952ea283c85da5a1943bedb04c874ff9e3bf2c841482a5e2"
+    },
+    {
+      "path": "godot/tests/test_rules.gd.uid",
+      "head_blob": "9d6ec65d20642fe12eac2f8f3c915be13f822f12",
+      "working_blob": "9d6ec65d20642fe12eac2f8f3c915be13f822f12",
+      "sha256": "aae8f7a0b57a87973eabea61b4eced7531d519154ed714ac7abf20f90893cb4c"
+    },
+    {
+      "path": "godot/tests/test_showcase_ui.gd",
+      "head_blob": "a80909dbfedfc86acac2aedcdbdb79f439bbb046",
+      "working_blob": "a80909dbfedfc86acac2aedcdbdb79f439bbb046",
+      "sha256": "539162f89baa5b9734f768cb5aa2cabd1b2f094da049590500be2668261b4bf7"
+    }
+  ],
+  "old_manifests_before_continuity_update": [
+    {
+      "manifest": "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v10_3_1\\MANIFESTO_SHA256.json",
+      "files": 48,
+      "verified": true
+    },
+    {
+      "manifest": "C:\\Users\\MauTrIX\\Documents\\Codex\\2026-11-01\\continuar-counter-strike-puzzle-fighter-96\\outputs\\v10_3_1\\MANIFESTO_SHA256.json",
+      "files": 49,
+      "verified": true
+    },
+    {
+      "manifest": "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v10_3_1_suplemento_20261102\\MANIFESTO_SHA256.json",
+      "files": 307,
+      "verified": true
+    },
+    {
+      "manifest": "C:\\Users\\MauTrIX\\Documents\\Codex\\2026-11-01\\continuar-counter-strike-puzzle-fighter-96\\outputs\\v10_3_1_suplemento\\MANIFESTO_SHA256.json",
+      "files": 307,
+      "verified": true
+    }
+  ],
+  "continuity_before_sha256": "644ac58b87b7b041e09015c81b4a81edff805112857f0eb1c04c1c825811f231",
+  "continuity_after_sha256": "789a4cd6e02f7e222be0515c23d059603e3bae1a0c885b9efbf2c7b9e2afb180",
+  "tracked_diff": "godot/presentation/cs_arena.gd",
+  "staged_diff": "",
+  "status": "M godot/presentation/cs_arena.gd\n?? CONTINUIDADE_PROJETO.md\n?? godot/tests/render_visual_timeline_v10_3_2.gd\n?? godot/tests/test_visual_timeline_v10_3_2.gd\n?? relatorios/v10_3_1/\n?? relatorios/v10_3_1_suplemento_20261102/\n?? scripts/analisar_dupla_ativa_v10_3_1.py\n?? scripts/analisar_visual_v10_3_1.py\n?? scripts/comparar_contornos_v10_3_2.py\n?? scripts/medir_dupla_ativa_v10_3_1.lua\n?? scripts/medir_visual_v10_3_1.lua\n?? scripts/png_rgb_v10_3_1.py\n?? scripts/reproduzir_ghost_v10_3_1.gd"
+}

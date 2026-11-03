@@ -1,0 +1,8 @@
+{
+  "branch": "feature/v10-gem-physics",
+  "head": "136238edf12b68761d72713b2225de9363e6ba94",
+  "status": "?? relatorios/v10_3_1/\n?? scripts/analisar_visual_v10_3_1.py\n?? scripts/medir_visual_v10_3_1.lua\n?? scripts/reproduzir_ghost_v10_3_1.gd",
+  "tracked_changed": false,
+  "staged_changed": false,
+  "commit_push_executed": false
+}

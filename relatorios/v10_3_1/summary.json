@@ -1,0 +1,15 @@
+{
+  "cases": 18,
+  "cpu_samples": 1100,
+  "video_samples": 1099,
+  "sprite_samples": 39564,
+  "rotation_steps": 80,
+  "old_animation_ram_matches": 794,
+  "old_cases_compared": 55,
+  "video_f_matches_cpu_f_plus_1": 1080,
+  "repeat_cpu_equal": true,
+  "repeat_video_equal": true,
+  "primary": "C:\\Projetos\\CS-Puzzle-Fighter-96\\laboratorio\\auto_20261101_222825_850720",
+  "repeat": "C:\\Projetos\\CS-Puzzle-Fighter-96\\laboratorio\\auto_20261101_222903_899708",
+  "probe_sha256": "cf8e97494fe41cecc1d7817f994c2ee3760890f65cc3be1bac27d5bab3b3e1f3"
+}

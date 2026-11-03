@@ -1,0 +1,5 @@
+godot_frame,mame_png_frame,native_case,background_differences_outside_occupied_columns,different_pixels,match,godot_bounds,mame_bounds
+2,58,split_r1_pivot_depth3,0,0,True,"(65, 145, 78, 158)","(65, 145, 78, 158)"
+3,59,split_r1_pivot_depth3,0,0,True,"(65, 161, 78, 174)","(65, 161, 78, 174)"
+4,60,split_r1_pivot_depth3,0,0,True,"(65, 177, 78, 190)","(65, 177, 78, 190)"
+5,61,split_r1_pivot_depth3,0,0,True,"(65, 193, 78, 206)","(65, 193, 78, 206)"

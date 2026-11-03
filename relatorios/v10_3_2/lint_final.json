@@ -1,0 +1,140 @@
+{
+  "ok": true,
+  "project_path": "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+  "counts": {
+    "total": 11,
+    "errors": 0,
+    "warnings": 11,
+    "parse_errors": 0
+  },
+  "categories": {
+    "godot3_api": 0,
+    "godot3_shader": 0,
+    "inference": 0,
+    "node_ref": 0,
+    "unique_name": 0,
+    "signal_target": 0,
+    "missing_resource": 0,
+    "input_action": 0,
+    "group_ref": 0,
+    "res_path": 11,
+    "animation_ref": 0
+  },
+  "scan_summary": {
+    "gd": 46,
+    "tscn": 4,
+    "tres": 0,
+    "shader": 0,
+    "project_godot": 1,
+    "scene_script_pairs": 4,
+    "node_paths_checked": 0,
+    "skipped_dynamic_paths": 0,
+    "skipped_gdignore_dirs": 0
+  },
+  "suppressions": {
+    "total": 2,
+    "used": 2,
+    "unused": []
+  },
+  "diagnostics": [
+    {
+      "severity": "warning",
+      "category": "res_path",
+      "rule": "res_path_missing",
+      "message": "The literal `res://../relatorios/animacoes_v9/demo_v9` does not exist on disk (no file and no directory). Nothing here proves it is loaded, so this is a warning \u2014 but a `res://` string in a script is almost always a path that is about to be opened, and the load will return null.",
+      "file": "res://tests/render_animation_showcase.gd",
+      "line": 16,
+      "suggested_fix": "Create `res://../relatorios/animacoes_v9/demo_v9`, fix the path, or \u2014 if the file is produced at runtime \u2014 write it through `FileAccess.open(\u2026, FileAccess.WRITE)` / `ResourceSaver.save()`, which the linter recognises and stops reporting. `# lint:ignore res_path` on the line silences it for good."
+    },
+    {
+      "severity": "warning",
+      "category": "res_path",
+      "rule": "res_path_missing",
+      "message": "The literal `res://../relatorios/animacoes_v9/quadros_phoenix_v9.png` does not exist on disk (no file and no directory). Nothing here proves it is loaded, so this is a warning \u2014 but a `res://` string in a script is almost always a path that is about to be opened, and the load will return null.",
+      "file": "res://tests/render_art_v9.gd",
+      "line": 23,
+      "suggested_fix": "Create `res://../relatorios/animacoes_v9/quadros_phoenix_v9.png`, fix the path, or \u2014 if the file is produced at runtime \u2014 write it through `FileAccess.open(\u2026, FileAccess.WRITE)` / `ResourceSaver.save()`, which the linter recognises and stops reporting. `# lint:ignore res_path` on the line silences it for good."
+    },
+    {
+      "severity": "warning",
+      "category": "res_path",
+      "rule": "res_path_missing",
+      "message": "The literal `res://../relatorios/fidelidade_v6` does not exist on disk (no file and no directory). Nothing here proves it is loaded, so this is a warning \u2014 but a `res://` string in a script is almost always a path that is about to be opened, and the load will return null.",
+      "file": "res://tests/render_chains_and_c4_demo.gd",
+      "line": 78,
+      "suggested_fix": "Create `res://../relatorios/fidelidade_v6`, fix the path, or \u2014 if the file is produced at runtime \u2014 write it through `FileAccess.open(\u2026, FileAccess.WRITE)` / `ResourceSaver.save()`, which the linter recognises and stops reporting. `# lint:ignore res_path` on the line silences it for good."
+    },
+    {
+      "severity": "warning",
+      "category": "res_path",
+      "rule": "res_path_missing",
+      "message": "The literal `res://../relatorios/automacao_20261028_consolidada` does not exist on disk (no file and no directory). Nothing here proves it is loaded, so this is a warning \u2014 but a `res://` string in a script is almost always a path that is about to be opened, and the load will return null.",
+      "file": "res://tests/render_preview.gd",
+      "line": 26,
+      "suggested_fix": "Create `res://../relatorios/automacao_20261028_consolidada`, fix the path, or \u2014 if the file is produced at runtime \u2014 write it through `FileAccess.open(\u2026, FileAccess.WRITE)` / `ResourceSaver.save()`, which the linter recognises and stops reporting. `# lint:ignore res_path` on the line silences it for good."
+    },
+    {
+      "severity": "warning",
+      "category": "res_path",
+      "rule": "res_path_missing",
+      "message": "The literal `res://../laboratorio/` does not exist on disk (no file and no directory). Nothing here proves it is loaded, so this is a warning \u2014 but a `res://` string in a script is almost always a path that is about to be opened, and the load will return null.",
+      "file": "res://tests/test_gem_timeline.gd",
+      "line": 25,
+      "suggested_fix": "Create `res://../laboratorio/`, fix the path, or \u2014 if the file is produced at runtime \u2014 write it through `FileAccess.open(\u2026, FileAccess.WRITE)` / `ResourceSaver.save()`, which the linter recognises and stops reporting. `# lint:ignore res_path` on the line silences it for good."
+    },
+    {
+      "severity": "warning",
+      "category": "res_path",
+      "rule": "res_path_missing",
+      "message": "The literal `res://../relatorios/animation_showcase_v7` does not exist on disk (no file and no directory). Nothing here proves it is loaded, so this is a warning \u2014 but a `res://` string in a script is almost always a path that is about to be opened, and the load will return null.",
+      "file": "res://tests/test_showcase_ui.gd",
+      "line": 31,
+      "suggested_fix": "Create `res://../relatorios/animation_showcase_v7`, fix the path, or \u2014 if the file is produced at runtime \u2014 write it through `FileAccess.open(\u2026, FileAccess.WRITE)` / `ResourceSaver.save()`, which the linter recognises and stops reporting. `# lint:ignore res_path` on the line silences it for good."
+    },
+    {
+      "severity": "warning",
+      "category": "res_path",
+      "rule": "res_path_missing",
+      "message": "The literal `res://../relatorios/animacoes_v9/sprites_v8_contato.png` does not exist on disk (no file and no directory). Nothing here proves it is loaded, so this is a warning \u2014 but a `res://` string in a script is almost always a path that is about to be opened, and the load will return null.",
+      "file": "res://tools/preparar_arte_v9.gd",
+      "line": 86,
+      "suggested_fix": "Create `res://../relatorios/animacoes_v9/sprites_v8_contato.png`, fix the path, or \u2014 if the file is produced at runtime \u2014 write it through `FileAccess.open(\u2026, FileAccess.WRITE)` / `ResourceSaver.save()`, which the linter recognises and stops reporting. `# lint:ignore res_path` on the line silences it for good."
+    },
+    {
+      "severity": "warning",
+      "category": "res_path",
+      "rule": "res_path_missing",
+      "message": "The literal `res://../arte/v9/phoenix_win_corrected_source.png` does not exist on disk (no file and no directory). Nothing here proves it is loaded, so this is a warning \u2014 but a `res://` string in a script is almost always a path that is about to be opened, and the load will return null.",
+      "file": "res://tools/preparar_arte_v9.gd",
+      "line": 103,
+      "suggested_fix": "Create `res://../arte/v9/phoenix_win_corrected_source.png`, fix the path, or \u2014 if the file is produced at runtime \u2014 write it through `FileAccess.open(\u2026, FileAccess.WRITE)` / `ResourceSaver.save()`, which the linter recognises and stops reporting. `# lint:ignore res_path` on the line silences it for good."
+    },
+    {
+      "severity": "warning",
+      "category": "res_path",
+      "rule": "res_path_missing",
+      "message": "The literal `res://../arte/v9/phoenix_win_corrected_source.png` does not exist on disk (no file and no directory). Nothing here proves it is loaded, so this is a warning \u2014 but a `res://` string in a script is almost always a path that is about to be opened, and the load will return null.",
+      "file": "res://tools/preparar_arte_v9.gd",
+      "line": 115,
+      "suggested_fix": "Create `res://../arte/v9/phoenix_win_corrected_source.png`, fix the path, or \u2014 if the file is produced at runtime \u2014 write it through `FileAccess.open(\u2026, FileAccess.WRITE)` / `ResourceSaver.save()`, which the linter recognises and stops reporting. `# lint:ignore res_path` on the line silences it for good."
+    },
+    {
+      "severity": "warning",
+      "category": "res_path",
+      "rule": "res_path_missing",
+      "message": "The literal `res://../arte/v9/phoenix_weapon_sheet.png` does not exist on disk (no file and no directory). Nothing here proves it is loaded, so this is a warning \u2014 but a `res://` string in a script is almost always a path that is about to be opened, and the load will return null.",
+      "file": "res://tools/preparar_arte_v9.gd",
+      "line": 119,
+      "suggested_fix": "Create `res://../arte/v9/phoenix_weapon_sheet.png`, fix the path, or \u2014 if the file is produced at runtime \u2014 write it through `FileAccess.open(\u2026, FileAccess.WRITE)` / `ResourceSaver.save()`, which the linter recognises and stops reporting. `# lint:ignore res_path` on the line silences it for good."
+    },
+    {
+      "severity": "warning",
+      "category": "res_path",
+      "rule": "res_path_missing",
+      "message": "The literal `res://../arte/v9/phoenix_actions_sheet.png` does not exist on disk (no file and no directory). Nothing here proves it is loaded, so this is a warning \u2014 but a `res://` string in a script is almost always a path that is about to be opened, and the load will return null.",
+      "file": "res://tools/preparar_arte_v9.gd",
+      "line": 120,
+      "suggested_fix": "Create `res://../arte/v9/phoenix_actions_sheet.png`, fix the path, or \u2014 if the file is produced at runtime \u2014 write it through `FileAccess.open(\u2026, FileAccess.WRITE)` / `ResourceSaver.save()`, which the linter recognises and stops reporting. `# lint:ignore res_path` on the line silences it for good."
+    }
+  ]
+}

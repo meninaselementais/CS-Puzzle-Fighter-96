@@ -1,0 +1,233 @@
+{
+  "visual": false,
+  "requested": 4,
+  "completed": 4,
+  "rounds": 10,
+  "checks": 204,
+  "elapsed_s": 5.172,
+  "passed": true,
+  "workers": [
+    {
+      "worker": 1,
+      "requested": 4,
+      "passed": true,
+      "exit_code": 0,
+      "log": "C:\\Users\\MauTrIX\\Documents\\Codex\\2026-11-03\\continuar-v10-3-3-counter-strike\\work\\match_flow\\worker_1\\console.log",
+      "report": {
+        "cases": [
+          {
+            "case": "ct_2_0",
+            "characters": [
+              "phoenix",
+              "sas"
+            ],
+            "draw_id": 1,
+            "final_score_ct_tr": [
+              2,
+              0
+            ],
+            "index": 1,
+            "next_draw_id": 2,
+            "passed": true,
+            "patterns": [
+              2,
+              2
+            ],
+            "rounds": [
+              {
+                "draw_id": 1,
+                "phase": "between_rounds",
+                "round": 1,
+                "score_ct_tr": [
+                  1,
+                  0
+                ],
+                "winning_team": "CT"
+              },
+              {
+                "draw_id": 1,
+                "phase": "finished",
+                "round": 2,
+                "score_ct_tr": [
+                  2,
+                  0
+                ],
+                "winning_team": "CT"
+              }
+            ],
+            "teams": [
+              "TR",
+              "CT"
+            ]
+          },
+          {
+            "case": "tr_0_2",
+            "characters": [
+              "professional",
+              "fbi"
+            ],
+            "draw_id": 2,
+            "final_score_ct_tr": [
+              0,
+              2
+            ],
+            "index": 2,
+            "next_draw_id": 3,
+            "passed": true,
+            "patterns": [
+              3,
+              3
+            ],
+            "rounds": [
+              {
+                "draw_id": 2,
+                "phase": "between_rounds",
+                "round": 1,
+                "score_ct_tr": [
+                  0,
+                  1
+                ],
+                "winning_team": "TR"
+              },
+              {
+                "draw_id": 2,
+                "phase": "finished",
+                "round": 2,
+                "score_ct_tr": [
+                  0,
+                  2
+                ],
+                "winning_team": "TR"
+              }
+            ],
+            "teams": [
+              "TR",
+              "CT"
+            ]
+          },
+          {
+            "case": "ct_2_1",
+            "characters": [
+              "seal",
+              "clown"
+            ],
+            "draw_id": 3,
+            "final_score_ct_tr": [
+              2,
+              1
+            ],
+            "index": 3,
+            "next_draw_id": 4,
+            "passed": true,
+            "patterns": [
+              0,
+              0
+            ],
+            "rounds": [
+              {
+                "draw_id": 3,
+                "phase": "between_rounds",
+                "round": 1,
+                "score_ct_tr": [
+                  1,
+                  0
+                ],
+                "winning_team": "CT"
+              },
+              {
+                "draw_id": 3,
+                "phase": "between_rounds",
+                "round": 2,
+                "score_ct_tr": [
+                  1,
+                  1
+                ],
+                "winning_team": "TR"
+              },
+              {
+                "draw_id": 3,
+                "phase": "finished",
+                "round": 3,
+                "score_ct_tr": [
+                  2,
+                  1
+                ],
+                "winning_team": "CT"
+              }
+            ],
+            "teams": [
+              "CT",
+              "TR"
+            ]
+          },
+          {
+            "case": "tr_1_2",
+            "characters": [
+              "gign",
+              "guerrilla"
+            ],
+            "draw_id": 4,
+            "final_score_ct_tr": [
+              1,
+              2
+            ],
+            "index": 4,
+            "next_draw_id": 5,
+            "passed": true,
+            "patterns": [
+              1,
+              1
+            ],
+            "rounds": [
+              {
+                "draw_id": 4,
+                "phase": "between_rounds",
+                "round": 1,
+                "score_ct_tr": [
+                  1,
+                  0
+                ],
+                "winning_team": "CT"
+              },
+              {
+                "draw_id": 4,
+                "phase": "between_rounds",
+                "round": 2,
+                "score_ct_tr": [
+                  1,
+                  1
+                ],
+                "winning_team": "TR"
+              },
+              {
+                "draw_id": 4,
+                "phase": "finished",
+                "round": 3,
+                "score_ct_tr": [
+                  1,
+                  2
+                ],
+                "winning_team": "TR"
+              }
+            ],
+            "teams": [
+              "CT",
+              "TR"
+            ]
+          }
+        ],
+        "checkpoints": [],
+        "checks": 204,
+        "completed": 4,
+        "ct_player_one": 2,
+        "elapsed_s": 4.939,
+        "failures": [],
+        "renderer": "gl_compatibility",
+        "requested": 4,
+        "rounds": 10,
+        "screenshots": [],
+        "visual": false
+      }
+    }
+  ]
+}

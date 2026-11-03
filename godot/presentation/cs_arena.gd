@@ -181,6 +181,14 @@ var prev_pending: Array[int] = [0, 0]
 var prev_cells: Array = [PackedInt32Array(), PackedInt32Array()]
 var wins: Array[int] = [0, 0]
 var last_winner_recorded: int = -2
+# Partida temporal lê a simulação; o showcase explícito mantém seu replay independente.
+var temporal_players: Array[bool] = [false, false]
+var temporal_origins: Array[Vector2] = [Vector2(64,108), Vector2(744,108)]
+var connection_age: Array = [PackedInt32Array(), PackedInt32Array()]
+var active_halo: Array[bool] = [false, false]
+var union_view: Array = [[], []]
+var union_age: Array[int] = [10, 10]
+var contour_textures: Dictionary = {}
 
 func _init() -> void:
 	init_cell_arrays()
@@ -198,6 +206,10 @@ func init_cell_arrays() -> void:
 		cell_squash[i] = sq
 		prev_powers[i] = []
 		power_flash_ticks[i] = 0
+		var ages: PackedInt32Array = PackedInt32Array()
+		ages.resize(84)
+		ages.fill(-1)
+		connection_age[i] = ages
 
 func load_tex(file_name: String) -> Texture2D:
 	if textures.has(file_name):
@@ -323,6 +335,10 @@ func reset_state() -> void:
 	prev_pending = [0, 0]
 	prev_cells = [PackedInt32Array(), PackedInt32Array()]
 	last_winner_recorded = -2
+	temporal_players = [false, false]
+	active_halo = [false, false]
+	union_view = [[], []]
+	union_age = [10, 10]
 
 func has_visual_override(player: int) -> bool:
 	var arr: PackedInt32Array = visual_cells_override[player]
@@ -333,6 +349,8 @@ func get_visual_cells(player: int, fallback: PackedInt32Array) -> PackedInt32Arr
 	return arr if arr.size() == 84 else fallback
 
 func get_visual_powers(player: int, fallback: Array) -> Array:
+	if temporal_players[player] and union_age[player] < 10:
+		return union_view[player]
 	var arr: PackedInt32Array = visual_cells_override[player]
 	return visual_powers_override[player] if arr.size() == 84 else fallback
 
@@ -358,10 +376,12 @@ func get_screen_shake_offset() -> Vector2:
 	return Vector2(roundf(sx), roundf(sy))
 
 func get_cell_visual_offset(player: int, idx: int) -> float:
+	if temporal_players[player]: return 0.0
 	var arr: PackedFloat32Array = cell_drop_y[player]
 	return -arr[idx] if idx >= 0 and idx < arr.size() else 0.0
 
 func get_cell_squash_scale(player: int, idx: int) -> Vector2:
+	if temporal_players[player]: return Vector2.ONE
 	var arr: PackedFloat32Array = cell_squash[player]
 	if idx < 0 or idx >= arr.size() or arr[idx] <= 0.001:
 		return Vector2.ONE
@@ -935,6 +955,122 @@ func advance_fighter_anim(player: int, model) -> void:
 	fighter_scale_mod[player] = fighter_scale_mod[player].lerp(target_sc, 0.38)
 	if entered: enter_fighter_frame(player)
 
+func temporal_connection_stage(player: int, idx: int) -> int:
+	var ages: PackedInt32Array = connection_age[player]
+	if idx < 0 or idx >= ages.size() or ages[idx] < 0: return 0
+	return 0 if ages[idx] < 4 else (1 if ages[idx] < 8 else 2)
+
+func normal_contour_texture(color_idx: int, stage: int) -> Texture2D:
+	var key: Vector2i = Vector2i(color_idx, stage)
+	if contour_textures.has(key): return contour_textures[key]
+	var source: Image = load_tex("gem_normal_%d.png" % color_idx).get_image()
+	source.resize(32, 32, Image.INTERPOLATE_NEAREST)
+	var image: Image = Image.create(32, 32, false, Image.FORMAT_RGBA8)
+	var width: int = 16 if stage == 2 else 14
+	var height: int = 14 if stage == 0 else 16
+	var left: int = (16 - width) / 2
+	var top: int = (16 - height) / 2
+	var colors: Array[Color] = [Color("58c8ff"),Color("ffe858"),Color("58ff98"),Color("ff5878")]
+	for y in range(32):
+		for x in range(32):
+			var nx: int = x / 2
+			var ny: int = y / 2
+			var edge: int = mini(ny - top, top + height - 1 - ny)
+			var cut: int = maxi(0, 2 - edge)
+			if ny < top or ny >= top + height or nx < left + cut or nx >= left + width - cut: continue
+			var pixel: Color = source.get_pixel(x,y)
+			if pixel.a < 0.1: pixel = colors[color_idx - 1]
+			pixel.a = 1.0
+			image.set_pixel(x,y,pixel)
+	var texture: Texture2D = ImageTexture.create_from_image(image)
+	contour_textures[key] = texture
+	return texture
+
+func temporal_halo_texture() -> Texture2D:
+	if contour_textures.has("halo"): return contour_textures["halo"]
+	var body: Image = normal_contour_texture(1,0).get_image()
+	var outer: Image = normal_contour_texture(1,2).get_image()
+	var image: Image = Image.create(32,32,false,Image.FORMAT_RGBA8)
+	for y in range(32):
+		for x in range(32):
+			if outer.get_pixel(x,y).a > 0.5 and body.get_pixel(x,y).a < 0.5:
+				image.set_pixel(x,y,Color(1.0,187.0/255.0,187.0/255.0,1.0))
+	var texture: Texture2D = ImageTexture.create_from_image(image)
+	contour_textures["halo"] = texture
+	return texture
+
+func temporal_player_at(center: Vector2) -> int:
+	for player in range(2):
+		var origin: Vector2 = temporal_origins[player]
+		if temporal_players[player] and center.x >= origin.x and center.x < origin.x + 192.0:
+			return player
+	return -1
+
+func sync_temporal_board(model: RefCounted, player: int, origin: Vector2) -> void:
+	var motion: RefCounted = model.motion[player]
+	var board: RefCounted = model.boards[player]
+	var cells: PackedInt32Array = board.cells
+	cell_drop_y[player].fill(0.0)
+	cell_squash[player].fill(0.0)
+	power_flash_ticks[player] = 0
+	# A ligação vertical azul é o contorno medido; outras geometrias ficam sem extrapolação.
+	for idx in range(84):
+		var adjacent: Array[int] = []
+		if cells[idx] == 1:
+			for neighbor in board.neighbors(idx):
+				if cells[neighbor] == 1: adjacent.append(neighbor)
+		var linked: bool = adjacent.size() == 1 and absi(int(adjacent[0]) - idx) == 6
+		if linked:
+			var partner_neighbors: int = 0
+			for neighbor in board.neighbors(adjacent[0]):
+				if cells[neighbor] == 1: partner_neighbors += 1
+			linked = partner_neighbors == 1
+		for below in range(idx + 6, 84, 6):
+			if cells[below] == 0: linked = false; break
+		if not linked: connection_age[player][idx] = -1
+		elif prev_cells[player].size() == 84 and prev_cells[player][idx] != cells[idx]: connection_age[player][idx] = 0
+		else: connection_age[player][idx] = maxi(0, connection_age[player][idx] + 1)
+	# O halo foi aferido apenas para P1 vertical azul/verde; não extrapolar paleta/rotação.
+	var pair: RefCounted = model.pairs[player]
+	active_halo[player] = player == 0 and motion.phase == 0 and pair.rotation == 0 and pair.colors == PackedInt32Array([1,3]) and model.pair_age[player] % 2 == 0
+	union_age[player] += 1
+	# União medida: duas 2x2 separadas por uma coluna -> 3x2 + 2x2 por dez quadros -> 5x2.
+	for rect in board.power_gems:
+		if rect.size != Vector2i(5,2) or rect in prev_powers[player]: continue
+		var left: Rect2i = Rect2i(rect.position, Vector2i(2,2))
+		var right: Rect2i = Rect2i(rect.position + Vector2i(3,0), Vector2i(2,2))
+		if left in prev_powers[player] and right in prev_powers[player]:
+			union_view[player] = [Rect2i(rect.position,Vector2i(3,2)),right]
+			union_age[player] = 0
+	if union_age[player] < 10:
+		var union_rect: Rect2i = Rect2i(union_view[player][0].position, Vector2i(5,2))
+		if union_rect not in board.power_gems: union_age[player] = 10
+	# Uma onda por vez, sem gravidade nem próximas ondas previstas no tabuleiro de desenho.
+	if not active_wave[player].is_empty() and bool(active_wave[player].get("temporal",false)):
+		var current: Dictionary = active_wave[player]
+		if motion.chain_count >= int(current.chain):
+			var actual: Array = motion.result.get("waves", [])
+			if not actual.is_empty(): current.score = int(actual[-1].score)
+			detonate_active_wave(player)
+			active_wave[player] = {}
+			visual_cells_override[player] = PackedInt32Array()
+			visual_powers_override[player] = []
+		else:
+			current.timer = motion.clear_timer
+			if motion.phase == 9 and not bool(current.get("prepared",false)): prepare_wave_fighter(player)
+	if motion.clear_timer > 0 and active_wave[player].is_empty():
+		var copy: RefCounted = Board.new()
+		copy.load_cells(cells)
+		copy.power_gems.assign(board.power_gems)
+		var event: Dictionary = Rules.resolve_single_wave(copy, motion.chain_count + 1)
+		if not event.is_empty():
+			var removed: Array[Dictionary] = []
+			var diamond: bool = bool(event.get("diamond",false))
+			for idx in range(12,84):
+				if cells[idx] == 0 or copy.cells[idx] != 0: continue
+				removed.append({"idx":idx,"x":idx%6,"y":idx/6,"code":cells[idx],"color":GemRules.color(cells[idx]),"is_power":GemRules.kind(cells[idx])==GemRules.Kind.POWER,"is_c4":diamond})
+			active_wave[player] = {"temporal":true,"phase":"pre","timer":motion.clear_timer,"chain":motion.chain_count+1,"origin":origin,"score":int(event.score),"removed":removed,"is_c4":diamond,"has_power":removed.any(func(r): return r.is_power),"powers_before":board.power_gems.duplicate(),"cells_mid":copy.cells.duplicate(),"powers_mid":copy.power_gems.duplicate()}
+
 func step_from_model(model, board_origins: Array[Vector2] = [Vector2(64, 108), Vector2(744, 108)]) -> void:
 	anim_tick += 1
 	if screen_shake_timer > 0:
@@ -950,8 +1086,11 @@ func step_from_model(model, board_origins: Array[Vector2] = [Vector2(64, 108), V
 			chain_banners[i]["ttl"] = int(chain_banners[i]["ttl"]) - 1
 			if int(chain_banners[i]["ttl"]) <= 0:
 				chain_banners[i] = {}
-		# Avança fila temporal de ondas (FASE 2, FASE 3 & FASE 5)
-		if not active_wave[i].is_empty():
+		temporal_origins[i] = board_origins[i]
+		if model.frame > 0 or model.motion[i].phase != 0: temporal_players[i] = true
+		if temporal_players[i]: sync_temporal_board(model, i, board_origins[i])
+		# Replay explícito do showcase; a partida temporal não usa esse relógio.
+		if not active_wave[i].is_empty() and not bool(active_wave[i].get("temporal",false)):
 			active_wave[i]["timer"] = int(active_wave[i]["timer"]) - 1
 			if str(active_wave[i].phase) == "pre":
 				var prepare_at := 9 if bool(active_wave[i].is_c4) or int(active_wave[i].chain)>=4 else 3
@@ -963,47 +1102,48 @@ func step_from_model(model, board_origins: Array[Vector2] = [Vector2(64, 108), V
 					begin_wave_fall(i)
 				else:
 					start_next_wave(i)
-		# Atualiza animações de queda e squash & stretch das células do tabuleiro
-		var dy_arr: PackedFloat32Array = cell_drop_y[i]
-		var sq_arr: PackedFloat32Array = cell_squash[i]
-		for idx in range(84):
-			if dy_arr[idx] > 0.0:
-				dy_arr[idx] = maxf(0.0, dy_arr[idx] - 14.0)
-				if dy_arr[idx] == 0.0:
-					sq_arr[idx] = 1.0
-			elif sq_arr[idx] > 0.0:
-				sq_arr[idx] = maxf(0.0, sq_arr[idx] - 0.14)
 		var cur_cells: PackedInt32Array = model.boards[i].cells
 		var old_cells: PackedInt32Array = prev_cells[i]
-		if old_cells.size() == 84 and active_wave[i].is_empty() and model.motion[i].phase == 0:
-			for idx in range(12, 84):
-				if cur_cells[idx] != 0 and old_cells[idx] == 0:
-					# Nova pedra pousou ou caiu nesta célula
-					dy_arr[idx] = 22.0
-					sq_arr[idx] = 0.85
-		if model.motion[i].phase == 1:
-			dy_arr.fill(0.0)
-			sq_arr.fill(0.0)
-		cell_drop_y[i] = dy_arr
-		cell_squash[i] = sq_arr
-		# Detecta formação ou expansão de Power Gems para disparar flash de cristalização
-		var cur_powers: Array = model.boards[i].power_gems
-		if cur_powers.size() > prev_powers[i].size():
-			power_flash_ticks[i] = 14
-		else:
-			for r_idx in range(mini(cur_powers.size(), prev_powers[i].size())):
-				if cur_powers[r_idx].get_area() > prev_powers[i][r_idx].get_area():
-					power_flash_ticks[i] = 14
-					break
-		prev_powers[i] = cur_powers.duplicate()
+		if not temporal_players[i]:
+			# Atualiza animações de queda e squash & stretch das células do tabuleiro
+			var dy_arr: PackedFloat32Array = cell_drop_y[i]
+			var sq_arr: PackedFloat32Array = cell_squash[i]
+			for idx in range(84):
+				if dy_arr[idx] > 0.0:
+					dy_arr[idx] = maxf(0.0, dy_arr[idx] - 14.0)
+					if dy_arr[idx] == 0.0:
+						sq_arr[idx] = 1.0
+				elif sq_arr[idx] > 0.0:
+					sq_arr[idx] = maxf(0.0, sq_arr[idx] - 0.14)
+			if old_cells.size() == 84 and active_wave[i].is_empty() and model.motion[i].phase == 0:
+				for idx in range(12, 84):
+					if cur_cells[idx] != 0 and old_cells[idx] == 0:
+						# Nova pedra pousou ou caiu nesta célula
+						dy_arr[idx] = 22.0
+						sq_arr[idx] = 0.85
+			if model.motion[i].phase == 1:
+				dy_arr.fill(0.0)
+				sq_arr.fill(0.0)
+			cell_drop_y[i] = dy_arr
+			cell_squash[i] = sq_arr
+			# Detecta formação ou expansão de Power Gems para disparar flash de cristalização
+			var cur_powers: Array = model.boards[i].power_gems
+			if cur_powers.size() > prev_powers[i].size():
+				power_flash_ticks[i] = 14
+			else:
+				for r_idx in range(mini(cur_powers.size(), prev_powers[i].size())):
+					if cur_powers[r_idx].get_area() > prev_powers[i][r_idx].get_area():
+						power_flash_ticks[i] = 14
+						break
+		prev_powers[i] = model.boards[i].power_gems.duplicate()
 		# Micro-reação tática ao assentar uma peça mesmo sem combo
 		if prev_pair_idx[i] != -1 and prev_pair_idx[i] != int(model.pair_index[i]) and fighter_state[i] in ["idle", "danger"]:
 			fighter_scale_mod[i] = Vector2(1.04, 0.96)
 			fighter_pos_offset[i] += Vector2(0, 2.5)
-		if model.motion[i].phase == 9 and (model.motion[i].clear_timer > 0 or not model.motion[i].result.get("waves", []).is_empty()) and model.motion[i].chain_count == 0 and active_wave[i].is_empty() and model.motion[i].pre_resolve_cells.size() == 84:
+		if not temporal_players[i] and model.motion[i].phase == 9 and (model.motion[i].clear_timer > 0 or not model.motion[i].result.get("waves", []).is_empty()) and model.motion[i].chain_count == 0 and active_wave[i].is_empty() and model.motion[i].pre_resolve_cells.size() == 84:
 			enqueue_visual_waves(i, model.motion[i].pre_resolve_cells, board_origins[i], false)
 		var score_delta: int = model.scores[i] - prev_scores[i]
-		if score_delta >= 200 and active_wave[i].is_empty() and model.motion[i].phase == 0:
+		if not temporal_players[i] and score_delta >= 200 and active_wave[i].is_empty() and model.motion[i].phase == 0:
 			var enqueued := 0
 			if old_cells.size() == 84 and prev_pair_snapshot[i] != null:
 				var sim_pre := Board.new()
@@ -1250,6 +1390,14 @@ func draw_warning_gems(canvas: CanvasItem, font: Font, origin: Vector2, pending_
 
 func draw_gem_sprite(canvas: CanvasItem, center: Vector2, code: int, KindEnum, phase_seed: int = 0, scale_mod: Vector2 = Vector2.ONE) -> void:
 	var k: int = KindEnum.kind(code)
+	var temporal_player: int = temporal_player_at(center)
+	if temporal_player >= 0 and k == KindEnum.Kind.NORMAL:
+		var stage: int = temporal_connection_stage(temporal_player,phase_seed) if phase_seed < 84 else 0
+		var contour: Texture2D = normal_contour_texture(clampi(KindEnum.color(code),1,4),stage)
+		canvas.draw_texture_rect(contour,Rect2(center-Vector2(16,16),Vector2(32,32)),false)
+		if phase_seed == 90 and active_halo[temporal_player]:
+			canvas.draw_texture_rect(temporal_halo_texture(),Rect2(center-Vector2(16,16),Vector2(32,32)),false)
+		return
 	var c: int = clampi(KindEnum.color(code), 1, 4)
 	var tex: Texture2D = null
 	var draw_center := center
@@ -1386,7 +1534,7 @@ func draw_power_gem_crystal(canvas: CanvasItem, rect: Rect2i, origin: Vector2, c
 	var pulse := 0.5 + 0.5 * sin(float(anim_tick) * 0.15)
 	var glow_colors := {1: Color("48a8ff"), 2: Color("ffe052"), 3: Color("55eb86"), 4: Color("ff5c70")}
 	var glow_col: Color = glow_colors.get(color_idx, Color.WHITE)
-	canvas.draw_rect(area_rect.grow(2.0 + intensity * 3.0), Color(glow_col.r, glow_col.g, glow_col.b, 0.24 + 0.22 * pulse))
+	if not temporal_players[player]: canvas.draw_rect(area_rect.grow(2.0 + intensity * 3.0), Color(glow_col.r, glow_col.g, glow_col.b, 0.24 + 0.22 * pulse))
 	if tex != null:
 		var tw := float(tex.get_width())
 		var th := float(tex.get_height())
@@ -1405,6 +1553,7 @@ func draw_power_gem_crystal(canvas: CanvasItem, rect: Rect2i, origin: Vector2, c
 				var dst := Rect2(Vector2(xs[rx], ys[ry]), Vector2(xs[rx + 1] - xs[rx], ys[ry + 1] - ys[ry]))
 				var src := Rect2(Vector2(uvs_x[rx], uvs_y[ry]), Vector2(uvs_x[rx + 1] - uvs_x[rx], uvs_y[ry + 1] - uvs_y[ry]))
 				canvas.draw_texture_rect_region(tex, dst, src)
+	if temporal_players[player]: return
 	# Varredura de reflexo especular interno na Power Gem
 	var sweep_t := fposmod(float(anim_tick) * 0.025 + float(rect.position.x) * 0.17, 1.4)
 	if sweep_t <= 1.0:

@@ -1,0 +1,13 @@
+scenario,clock,event,frame
+isolated_approach,cpu,first_contact,15
+isolated_approach,cpu,contact_1,30
+isolated_approach,cpu,deposit_phase_1,31
+isolated_approach,video,first_contact,14
+isolated_approach,video,contact_1,29
+isolated_approach,video,deposit_phase_1,30
+same_color_approach,cpu,first_contact,15
+same_color_approach,cpu,contact_1,30
+same_color_approach,cpu,deposit_phase_1,31
+same_color_approach,video,first_contact,14
+same_color_approach,video,contact_1,29
+same_color_approach,video,deposit_phase_1,30
