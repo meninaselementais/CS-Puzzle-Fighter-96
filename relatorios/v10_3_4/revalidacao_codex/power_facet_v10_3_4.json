@@ -1,0 +1,404 @@
+{
+  "checks": 394,
+  "failures": [],
+  "trace": [
+    {
+      "age": 1,
+      "case": "formation_2x2",
+      "phase": 0
+    },
+    {
+      "age": 2,
+      "case": "formation_2x2",
+      "phase": 0
+    },
+    {
+      "age": 3,
+      "case": "formation_2x2",
+      "phase": 0
+    },
+    {
+      "age": 4,
+      "case": "formation_2x2",
+      "phase": 0
+    },
+    {
+      "age": 5,
+      "case": "formation_2x2",
+      "phase": 0
+    },
+    {
+      "age": 6,
+      "case": "formation_2x2",
+      "phase": 0
+    },
+    {
+      "age": 7,
+      "case": "formation_2x2",
+      "phase": 0
+    },
+    {
+      "age": 8,
+      "case": "formation_2x2",
+      "phase": 1
+    },
+    {
+      "age": 9,
+      "case": "formation_2x2",
+      "phase": 1
+    },
+    {
+      "age": 10,
+      "case": "formation_2x2",
+      "phase": 1
+    },
+    {
+      "age": 11,
+      "case": "formation_2x2",
+      "phase": 1
+    },
+    {
+      "age": 12,
+      "case": "formation_2x2",
+      "phase": 1
+    },
+    {
+      "age": 13,
+      "case": "formation_2x2",
+      "phase": 1
+    },
+    {
+      "age": 14,
+      "case": "formation_2x2",
+      "phase": 1
+    },
+    {
+      "age": 15,
+      "case": "formation_2x2",
+      "phase": 1
+    },
+    {
+      "age": 16,
+      "case": "formation_2x2",
+      "phase": 2
+    },
+    {
+      "age": 17,
+      "case": "formation_2x2",
+      "phase": 2
+    },
+    {
+      "age": 18,
+      "case": "formation_2x2",
+      "phase": 2
+    },
+    {
+      "age": 19,
+      "case": "formation_2x2",
+      "phase": 2
+    },
+    {
+      "age": 20,
+      "case": "formation_2x2",
+      "phase": 2
+    },
+    {
+      "age": 21,
+      "case": "formation_2x2",
+      "phase": 2
+    },
+    {
+      "age": 22,
+      "case": "formation_2x2",
+      "phase": 2
+    },
+    {
+      "age": 23,
+      "case": "formation_2x2",
+      "phase": 2
+    },
+    {
+      "age": 24,
+      "case": "formation_2x2",
+      "phase": 3
+    },
+    {
+      "age": 25,
+      "case": "formation_2x2",
+      "phase": 3
+    },
+    {
+      "age": 26,
+      "case": "formation_2x2",
+      "phase": 3
+    },
+    {
+      "age": 27,
+      "case": "formation_2x2",
+      "phase": 3
+    },
+    {
+      "age": 28,
+      "case": "formation_2x2",
+      "phase": 3
+    },
+    {
+      "age": 29,
+      "case": "formation_2x2",
+      "phase": 3
+    },
+    {
+      "age": 30,
+      "case": "formation_2x2",
+      "phase": 3
+    },
+    {
+      "age": 31,
+      "case": "formation_2x2",
+      "phase": 3
+    },
+    {
+      "age": 32,
+      "case": "formation_2x2",
+      "phase": 4
+    },
+    {
+      "age": 33,
+      "case": "formation_2x2",
+      "phase": 4
+    },
+    {
+      "age": 34,
+      "case": "formation_2x2",
+      "phase": 4
+    },
+    {
+      "age": 35,
+      "case": "formation_2x2",
+      "phase": 4
+    },
+    {
+      "age": 36,
+      "case": "formation_2x2",
+      "phase": 4
+    },
+    {
+      "age": 37,
+      "case": "formation_2x2",
+      "phase": 4
+    },
+    {
+      "age": 38,
+      "case": "formation_2x2",
+      "phase": 4
+    },
+    {
+      "age": 39,
+      "case": "formation_2x2",
+      "phase": 4
+    },
+    {
+      "age": 40,
+      "case": "formation_2x2",
+      "phase": 5
+    },
+    {
+      "age": 41,
+      "case": "formation_2x2",
+      "phase": 5
+    },
+    {
+      "age": 42,
+      "case": "formation_2x2",
+      "phase": 5
+    },
+    {
+      "age": 43,
+      "case": "formation_2x2",
+      "phase": 5
+    },
+    {
+      "age": 44,
+      "case": "formation_2x2",
+      "phase": 5
+    },
+    {
+      "age": 45,
+      "case": "formation_2x2",
+      "phase": 5
+    },
+    {
+      "age": 46,
+      "case": "formation_2x2",
+      "phase": 5
+    },
+    {
+      "age": 47,
+      "case": "formation_2x2",
+      "phase": 5
+    },
+    {
+      "age": 48,
+      "case": "formation_2x2",
+      "phase": 6
+    },
+    {
+      "age": 49,
+      "case": "formation_2x2",
+      "phase": 6
+    },
+    {
+      "age": 50,
+      "case": "formation_2x2",
+      "phase": 6
+    },
+    {
+      "age": 51,
+      "case": "formation_2x2",
+      "phase": 6
+    },
+    {
+      "age": 52,
+      "case": "formation_2x2",
+      "phase": 6
+    },
+    {
+      "age": 53,
+      "case": "formation_2x2",
+      "phase": 6
+    },
+    {
+      "age": 54,
+      "case": "formation_2x2",
+      "phase": 6
+    },
+    {
+      "age": 55,
+      "case": "formation_2x2",
+      "phase": 6
+    },
+    {
+      "age": 56,
+      "case": "formation_2x2",
+      "phase": 6
+    },
+    {
+      "age": 2,
+      "case": "p1_p2",
+      "p1": 2,
+      "p2": 1
+    },
+    {
+      "age": 3,
+      "case": "p1_p2",
+      "p1": 3,
+      "p2": 2
+    },
+    {
+      "age": 4,
+      "case": "p1_p2",
+      "p1": 4,
+      "p2": 3
+    },
+    {
+      "age": 5,
+      "case": "p1_p2",
+      "p1": 5,
+      "p2": 4
+    },
+    {
+      "age": 6,
+      "case": "p1_p2",
+      "p1": 6,
+      "p2": 5
+    },
+    {
+      "age": 7,
+      "case": "p1_p2",
+      "p1": 7,
+      "p2": 6
+    },
+    {
+      "age": 8,
+      "case": "p1_p2",
+      "p1": 8,
+      "p2": 7
+    },
+    {
+      "age": 9,
+      "case": "p1_p2",
+      "p1": 9,
+      "p2": 8
+    },
+    {
+      "age": 10,
+      "case": "p1_p2",
+      "p1": 10,
+      "p2": 9
+    },
+    {
+      "age": 11,
+      "case": "p1_p2",
+      "p1": 11,
+      "p2": 10
+    },
+    {
+      "age": 12,
+      "case": "p1_p2",
+      "p1": 12,
+      "p2": 11
+    },
+    {
+      "age": 13,
+      "case": "p1_p2",
+      "p1": 13,
+      "p2": 12
+    },
+    {
+      "age": 14,
+      "case": "p1_p2",
+      "p1": 14,
+      "p2": 13
+    },
+    {
+      "age": 15,
+      "case": "p1_p2",
+      "p1": 15,
+      "p2": 14
+    },
+    {
+      "age": 16,
+      "case": "p1_p2",
+      "p1": 16,
+      "p2": 15
+    },
+    {
+      "age": 17,
+      "case": "p1_p2",
+      "p1": 17,
+      "p2": 16
+    },
+    {
+      "age": 18,
+      "case": "p1_p2",
+      "p1": 18,
+      "p2": 17
+    },
+    {
+      "age": 19,
+      "case": "p1_p2",
+      "p1": 19,
+      "p2": 18
+    },
+    {
+      "case": "growth_2x3",
+      "old_age": 0,
+      "top_age": 0
+    },
+    {
+      "bridge_age": 0,
+      "case": "union_5x2",
+      "left_age": 0
+    }
+  ]
+}

@@ -1,3 +1,25 @@
+# Continuidade — V10.3.4 auditada em 03/11/2026
+
+**V10.3.4 concluída no escopo temporal/estrutural documentado; checkpoint aguarda autorização.** Esta atualização substitui o estado corrente dos textos históricos abaixo. A retomada da V10.3.4 foi expressamente autorizada pelo usuário nesta sessão.
+
+- Branch `feature/v10-gem-physics`, HEAD `70a52c58017d9560043d9a3f463edd01ff8816fd`, preservados. Preparação seletiva no índice autorizada pelo usuário; sem commit ou push.
+- Implementação do DeepSeek aproveitada, incluindo os 12 sprites preservados. Corrigidos os relógios por região no crescimento e nas duas etapas da união, o recorte do perímetro e o comparador insuficiente.
+- Power: 394 checks; confronto MAME: 1.192/1.192 amostras de células; estrutura: 181 pares de capturas/1.407 checks, sem falhas.
+- V10.3.2: 123.863 checks; V10.3.3: 119.052; física V10.2: 112 casos/14.072 amostras; cadeias: 22 casos/5.066 amostras/54 checks. Todos aprovados.
+- Suíte existente 17/17 PASS, incluindo regras, controles/RNG, 119 fixtures naturais, Coin Flip e seleção. Quatro partidas integradas headless (dez rounds/204 checks) e quatro em janela (dez rounds/276 checks) aprovadas.
+- O teste gráfico histórico envia confirmação cedo demais; adaptador `test_match_flow_visual_v10_3_4.gd` aguarda a janela real. Jogo e teste histórico intactos; falha original registrada.
+- Núcleo, main.gd, fixtures e testes anteriores à V10.3.4 preservados. Lint: zero erros/11 avisos herdados; validação nativa: zero erros/73 avisos, os mesmos do checkpoint em cópia isolada.
+- Ler `relatorios/v10_3_4/RELATORIO_V10_3_4.md` e `summary.json`. Evidências selecionadas em `revalidacao_codex/`; coleção integral e backup DeepSeek na entrega externa `C:\Users\MauTrIX\Documents\Codex\2026-11-03\continuar-counter-strike-puzzle-fighter-96\outputs\v10_3_4`.
+- Não declarar fidelidade visual integral: overlays CS não copiam pixels nativos. Não certificados todos os casos de P2, cores/geometrias/velocidades ou partidas naturais completas. Limitações anteriores de explosões permanecem.
+
+**Próxima ação:** análise do usuário e autorização explícita para registrar checkpoint. Não fazer commit/push, merge/rebase, tag v0.10.0, alterações do núcleo ou iniciar V11 por inferência.
+
+---
+
+## Histórico preservado — conteúdo anterior à retomada V10.3.4
+
+O texto abaixo é histórico; declarações de HEAD, estado limpo e autorizações antigas não descrevem o estado corrente acima. Cópia byte a byte anterior em `deepseek_preserved/CONTINUIDADE_PROJETO.md` da entrega externa.
+
 # Continuidade — Counter-Strike Puzzle Fighter '96
 
 Atualizado em **03/11/2026**, America/Sao_Paulo, após conclusão e regressão da **V10.3.3**. **V10.3.1, V10.3.2 e V10.3.3 concluídas** conforme as evidências disponíveis. Checkpoint Git local executado em 03/11/2026 — `dde581f`. **V10.3.4 ainda não autorizada.**

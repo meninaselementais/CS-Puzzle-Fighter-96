@@ -1,0 +1,37 @@
+{
+  "alignment": "Godot F = MAME CPU F+1; absolute frame-by-frame, all affected cells",
+  "source": "C:\\Projetos\\CS-Puzzle-Fighter-96\\laboratorio\\auto_20261101_222825_850720\\visual_trace_v10_3_1.csv",
+  "source_sha256": "ba57c3c65b5ff758043a8049fde87fad0151236233318b44ab7c0060e3f54d97",
+  "repeat_identical": true,
+  "summary": [
+    {
+      "case": "power_2x2",
+      "frames": 65,
+      "cell_samples": 256,
+      "matched": 256,
+      "preambles": 0
+    },
+    {
+      "case": "power_growth",
+      "frames": 56,
+      "cell_samples": 336,
+      "matched": 336,
+      "preambles": 2
+    },
+    {
+      "case": "power_union_5x2",
+      "frames": 60,
+      "cell_samples": 600,
+      "matched": 600,
+      "preambles": 2
+    }
+  ],
+  "unpaired": [
+    {
+      "case": "power_2x2",
+      "godot_frame": 65,
+      "reason": "MAME source ended"
+    }
+  ],
+  "failures": []
+}

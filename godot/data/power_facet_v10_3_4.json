@@ -1,0 +1,72 @@
+{
+  "versao": "V10.3.4",
+  "fonte": "laboratorio/auto_20261101_222825_850720/visual_trace_v10_3_1.csv",
+  "sequencia_facetas": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "c",
+    "b",
+    "a"
+  ],
+  "quadros_por_bloco": 8,
+  "quadros_de_transicao": 48,
+  "casos": [
+    {
+      "id": "power_2x2",
+      "celula_medida": [
+        0,
+        12
+      ],
+      "tiles": {
+        "a": "0x5A20",
+        "b": "0x5A22",
+        "c": "0x5A24",
+        "d": "0x5A26"
+      },
+      "preambulo": "tile 0x5A00 por 1 quadro antes da fase a",
+      "primeira_fase_a_frame": 2,
+      "assentamento": "fase a persistente a partir do quadro 50"
+    },
+    {
+      "id": "power_2x3",
+      "celula_medida": [
+        0,
+        11
+      ],
+      "tiles": {
+        "a": "0x5A20",
+        "b": "0x5A22",
+        "c": "0x5A24",
+        "d": "0x5A26"
+      },
+      "preambulo": "tile 0x5A00 no quadro da adicao; a fase a inicia no quadro seguinte",
+      "primeira_fase_a_frame": 37,
+      "nota": "As seis células da região expandida reiniciam; inclusive as quatro antigas, cujos descritores mudam no MAME."
+    },
+    {
+      "id": "power_union_5x2",
+      "celula_medida": [
+        2,
+        12
+      ],
+      "tiles": {
+        "a": "0x5A1C",
+        "b": "0x5A1D",
+        "c": "0x5A1E",
+        "d": "0x5A1F"
+      },
+      "preambulo": "Dez quadros em 3x2+2x2: esquerda e ponte reiniciam A; direita continua. A fusão final 5x2 reinicia as dez células.",
+      "primeira_fase_a_frame": 47,
+      "nota": "O estágio final começa em Godot F46 / CPU MAME F47; não antecipar o ciclo da ponte em dez quadros."
+    }
+  ],
+  "limites_nao_certificados": [
+    "Overlays CS preservados: arte criada pelo projeto, não cópia dos pixels ou facetas nativas do MAME.",
+    "P2 e cores 2..4 não foram certificados contra capturas MAME; independência dos relógios P1/P2 testada no Godot.",
+    "Outras geometrias, velocidades, explosões e partidas naturais completas não têm certificação visual integral.",
+    "A comparação estrutural usa controle sem overlay no mesmo quadro; não prova igualdade RGB/silhueta Power com o MAME."
+  ],
+  "alinhamento_comprovado": "Godot F = CPU MAME F+1, sem realinhamento individual dos ciclos; 1192 amostras de células verificadas"
+}

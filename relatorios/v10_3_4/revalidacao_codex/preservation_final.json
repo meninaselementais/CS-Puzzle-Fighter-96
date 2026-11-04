@@ -1,0 +1,16 @@
+{
+  "initial_files": 436,
+  "changed_since_takeover": [
+    "CONTINUIDADE_PROJETO.md",
+    "godot/presentation/cs_arena.gd",
+    "godot/data/power_facet_v10_3_4.json",
+    "godot/tests/render_power_facet_v10_3_4.gd",
+    "godot/tests/test_power_facet_v10_3_4.gd",
+    "scripts/comparar_facetas_v10_3_4.py"
+  ],
+  "core_changed": [],
+  "original_sprites_and_generator_preserved": true,
+  "head": "70a52c58017d9560043d9a3f463edd01ff8816fd",
+  "branch": "feature/v10-gem-physics",
+  "deleted_initial_files": []
+}

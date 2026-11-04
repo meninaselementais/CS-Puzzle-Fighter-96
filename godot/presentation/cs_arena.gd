@@ -189,6 +189,12 @@ var active_halo: Array[bool] = [false, false]
 var union_view: Array = [[], []]
 var union_age: Array[int] = [10, 10]
 var contour_textures: Dictionary = {}
+# V10.3.4 — animação interna das Power Gems por célula (A -> B -> C -> D -> C -> B -> A).
+const POWER_FACET_SEQUENCE := ["a", "b", "c", "d", "c", "b", "a"]
+const POWER_FACET_TICKS := 8
+var power_facet_age: Array = [PackedInt32Array(), PackedInt32Array()]
+var prev_power_facet_cells: Array = [PackedInt32Array(), PackedInt32Array()]
+var prev_power_facet_regions: Array = [{}, {}]
 
 func _init() -> void:
 	init_cell_arrays()
@@ -210,6 +216,12 @@ func init_cell_arrays() -> void:
 		ages.resize(84)
 		ages.fill(-1)
 		connection_age[i] = ages
+		var fa := PackedInt32Array()
+		fa.resize(84)
+		fa.fill(-1)
+		power_facet_age[i] = fa
+		prev_power_facet_cells[i] = PackedInt32Array()
+		prev_power_facet_regions[i] = {}
 
 func load_tex(file_name: String) -> Texture2D:
 	if textures.has(file_name):
@@ -353,6 +365,41 @@ func get_visual_powers(player: int, fallback: Array) -> Array:
 		return union_view[player]
 	var arr: PackedInt32Array = visual_cells_override[player]
 	return visual_powers_override[player] if arr.size() == 84 else fallback
+
+# V10.3.4 — fase de facetas internas de uma célula de Power Gem.
+# age<0 -> fase 0 (a, arte base); 0..7->a, 8..15->b, 16..23->c, 24..31->d,
+# 32..39->c, 40..47->b, 48+->a (assentado). Blocos de 8 quadros, 7 fases.
+func power_facet_phase(player: int, idx: int) -> int:
+	if power_facet_age[player].size() != 84:
+		return 0
+	var age: int = power_facet_age[player][idx]
+	if age < 0:
+		return 0
+	return mini(floori(float(age) / float(POWER_FACET_TICKS)), POWER_FACET_SEQUENCE.size() - 1)
+
+# O descritor MAME reinicia células cuja região muda, inclusive células antigas.
+# O estágio 3x2 da união e o estágio final 5x2 têm identidades distintas.
+func update_power_facets_for(model: RefCounted, player: int) -> void:
+	var rects: Array = get_visual_powers(player, model.boards[player].power_gems)
+	var cur: PackedInt32Array = PackedInt32Array()
+	var regions: Dictionary = {}
+	for rect in rects:
+		for idx in model.boards[player].indices(rect):
+			cur.append(idx)
+			regions[idx] = [rect, model.boards[player].cells[idx] & 7]
+	cur.sort()
+	var prev: PackedInt32Array = prev_power_facet_cells[player]
+	var ages: PackedInt32Array = power_facet_age[player]
+	for idx in range(84):
+		if cur.has(idx):
+			if prev.has(idx) and prev_power_facet_regions[player].get(idx) == regions[idx]:
+				ages[idx] = mini(ages[idx] + 1, POWER_FACET_TICKS * 6)
+			else:
+				ages[idx] = 0
+		else:
+			ages[idx] = -1
+	prev_power_facet_cells[player] = cur
+	prev_power_facet_regions[player] = regions
 
 func is_cell_hidden_by_flash(player: int, idx: int) -> bool:
 	var cx := idx % 6
@@ -1136,6 +1183,7 @@ func step_from_model(model, board_origins: Array[Vector2] = [Vector2(64, 108), V
 						power_flash_ticks[i] = 14
 						break
 		prev_powers[i] = model.boards[i].power_gems.duplicate()
+		update_power_facets_for(model, i)
 		# Micro-reação tática ao assentar uma peça mesmo sem combo
 		if prev_pair_idx[i] != -1 and prev_pair_idx[i] != int(model.pair_index[i]) and fighter_state[i] in ["idle", "danger"]:
 			fighter_scale_mod[i] = Vector2(1.04, 0.96)
@@ -1553,6 +1601,26 @@ func draw_power_gem_crystal(canvas: CanvasItem, rect: Rect2i, origin: Vector2, c
 				var dst := Rect2(Vector2(xs[rx], ys[ry]), Vector2(xs[rx + 1] - xs[rx], ys[ry + 1] - ys[ry]))
 				var src := Rect2(Vector2(uvs_x[rx], uvs_y[ry]), Vector2(uvs_x[rx + 1] - uvs_x[rx], uvs_y[ry + 1] - uvs_y[ry]))
 				canvas.draw_texture_rect_region(tex, dst, src)
+	# V10.3.4 — facetas por célula; preserva o perímetro da arte base.
+	# A arte base (fase "a") preserva a identidade; b/c/d são overlays translúcidos.
+	if power_facet_age[player].size() == 84:
+		var color_tex := clampi(color_idx, 1, 4)
+		for cy in range(rect.size.y):
+			for cx in range(rect.size.x):
+				var gx: int = rect.position.x + cx
+				var gy: int = rect.position.y + cy
+				if gy < 2 or gx < 0 or gx >= 6:
+					continue
+				var phase: int = power_facet_phase(player, gy * 6 + gx)
+				if phase <= 0 or phase >= POWER_FACET_SEQUENCE.size() - 1:
+					continue
+				var overlay := load_tex("power_facet_%d_%s.png" % [color_tex, POWER_FACET_SEQUENCE[phase]])
+				if overlay == null:
+					continue
+				var cell_rect := Rect2(origin + Vector2(gx * 32.0, (gy - 2) * 32.0), Vector2(32.0, 32.0))
+				var interior: Rect2 = cell_rect.intersection(area_rect.grow(-4.0))
+				if interior.has_area():
+					canvas.draw_texture_rect_region(overlay, interior, Rect2(interior.position - cell_rect.position, interior.size))
 	if temporal_players[player]: return
 	# Varredura de reflexo especular interno na Power Gem
 	var sweep_t := fposmod(float(anim_tick) * 0.025 + float(rect.position.x) * 0.17, 1.4)

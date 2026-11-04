@@ -91,3 +91,20 @@
 /scripts/preparar_fixtures_rotacao_v10_3_3.py -text
 /scripts/reproduzir_ghost_v10_3_1.gd -text
 /scripts/validar_capturas_rotacao_v10_3_3.gd -text
+
+# Preserve bytes of the reviewed V10.3.4 sources and derived validation evidence
+/godot/data/power_facet_v10_3_4.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/godot/tests/render_power_facet_v10_3_4.gd -text
+/godot/tests/test_match_flow_visual_v10_3_4.gd -text
+/godot/tests/test_power_facet_capture_v10_3_4.gd -text
+/godot/tests/test_power_facet_v10_3_4.gd -text
+/godot/tools/build_power_facets.gd -text
+/scripts/comparar_facetas_v10_3_4.py -text
+/relatorios/v10_3_4/RELATORIO_V10_3_4.md -text
+/relatorios/v10_3_4/summary.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/relatorios/v10_3_4/revalidacao_codex/capture_structure.json -text
+/relatorios/v10_3_4/revalidacao_codex/comparacao_facetas_celulas.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/relatorios/v10_3_4/revalidacao_codex/comparacao_facetas_temporal.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/relatorios/v10_3_4/revalidacao_codex/comparacao_rotacao_summary.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+/relatorios/v10_3_4/revalidacao_codex/power_facet_v10_3_4.json -text
+/relatorios/v10_3_4/revalidacao_codex/preservation_final.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
