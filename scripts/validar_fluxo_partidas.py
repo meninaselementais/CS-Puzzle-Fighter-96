@@ -39,7 +39,8 @@ def main():
         if args.movie:
             args.movie.parent.mkdir(parents=True, exist_ok=True)
             command += ['--write-movie', str(args.movie.resolve()), '--fixed-fps', '30']
-        command += ['--script','res://tests/test_match_flow.gd','--', '--visual' if visual else f'--matches={count}']
+        script = 'test_match_flow_visual_v10_3_4.gd' if visual else 'test_match_flow.gd'
+        command += ['--script', f'res://tests/{script}', '--', '--visual' if visual else f'--matches={count}']
         log = folder/'console.log'
         process = subprocess.Popen(command, cwd=project, env=environment, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, encoding='utf-8', errors='replace')
         with log.open('w',encoding='utf-8') as stream:

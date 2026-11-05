@@ -1,3 +1,47 @@
+# Continuidade — correções finais V10 concluídas, 04/11/2026
+
+**Pendências de qualidade fechadas; V10 recomendada para publicação de v0.10.0 no escopo funcional auditado, aguardando autorização para checkpoint/publicação.**
+
+- Branch `feature/v10-gem-physics`, HEAD `4575f17a706d91df3ff009fb8b4d96d0cba06699`, sem alteração. Índice vazio; sem commit, push, tag, merge/rebase ou V11.
+- Corrigidos os validadores físico e estrutural: conjuntos vazios/incompletos, cenários duplicados/desconhecidos, arquivos e metadados inválidos agora falham explicitamente. Fixtures originais intactas.
+- Executor `validar_fluxo_partidas.py` usa o adaptador já validado em `--visual` e `--movie`; headless mantém teste histórico. Coin Flip, física, RNG, controles e `main.gd` intactos.
+- Python 28/28 (17 anteriores + 11 novos métodos), 17/17 baterias existentes, física 112/14.072, combos 22/5.066/54; controles 33/33 e 866 amostras; fidelidade 247/247, naturais 119/119, regras 34. V10.3.2/3/4: 123.863/119.052/394 checks, zero falhas.
+- Power: 181 pares novos/1.407 checks; 1.192/1.192 amostras de células contra traços MAME preservados. Lote: 1.000 séries/2.500 rounds/51.000 checks. Janela pelo executor corrigido: 4 séries/10 rounds/276 checks/30 PNGs.
+- Teste gráfico histórico intacto voltou a falhar na seleção, como esperado; a versão com adaptador passou. Falhas intermediárias da preparação dos testes novos foram corrigidas e registradas no complemento; suíte final aprovada.
+- Validação nativa: zero erros e 73 avisos herdados. Lint: zero erros/11 avisos. Smoke: quatro cenas aprovadas; 102 avisos acumulados e informação de mudança de cena no Coin Flip durante fuzz.
+- README, arquitetura e relatórios locais recebidos preservados; continuidade anterior mantida abaixo. Relatórios históricos com destino fixo restaurados byte a byte. Sem mudança de fixtures para forçar aprovação.
+- Ler `relatorios/v10_final/RELATORIO_CORRECOES_FINAIS_V10.md`. Evidências desta sessão em `C:\Users\MauTrIX\Documents\Codex\2026-11-04\continuar-counter-strike-puzzle-fighter-96\outputs\v10_correcoes_finais`.
+- Limites anteriores de fidelidade, RNG, plataformas e exportação continuam; não foram refeitas as 80 comparações gráficas de rotação nem uma coleta MAME nova. As séries integradas têm desfechos controlados, não são mil partidas naturais sincronizadas.
+
+**Próxima ação:** aguardar autorização explícita do usuário para registrar checkpoint ou publicar v0.10.0. Esta conclusão não autoriza commit/push/tag automaticamente.
+
+---
+
+## Histórico anterior às correções finais — preservado
+
+# Continuidade — V10 auditada; encerramento documental preparado, 03/11/2026
+
+**Auditoria final da V10 aprovada no escopo funcional medido, com ressalvas, no checkpoint publicado `4575f17a706d91df3ff009fb8b4d96d0cba06699`, branch `feature/v10-gem-physics`, sincronizada com origin.** A abreviação recebida `4575f1a` não existe; o hash confirmado acima é o checkpoint efetivo. As declarações de checkpoint pendente nos textos abaixo são históricas.
+
+## Resultado atual
+
+- Recomendada a liberação de v0.10.0 como versão funcional do duelo local no escopo medido, com ressalvas; nenhuma tag foi criada. Não certificar equivalência integral de MAME/RNG/RAM/pixels.
+- Executados nesta auditoria: 112 cenários/14.072 amostras físicas; 22 cenários/5.066 amostras/54 checks de cadeias; fidelidade 247/247; controles 33/33 e 866 amostras RNG; naturais 119/119; regras 34; Python 17; 17 baterias existentes aprovadas.
+- V10.3.2: 123.863 checks; V10.3.3: 119.052; V10.3.4: 394. Power: 181 pares/1.407 checks e 1.192 amostras de células MAME. Rotação atual: 340 registros válidos e 80 pares MAME sem diferença de máscara.
+- 1.000/1.000 séries integradas, 2.500 rounds/51.000 checks; desfechos induzidos por fixtures, não mil partidas naturais sincronizadas ao MAME. Janela: 4/4 séries/dez rounds/276 checks com adaptador; o teste histórico sem adaptador falhou novamente.
+- Achados da auditoria: verificadores físico e estrutural aceitam entradas vazias; executor gráfico padrão ainda usa espera insuficiente. Essas duas pendências continuam abertas. As descrições antigas de README/arquitetura foram atualizadas nesta preparação exclusivamente documental; os conjuntos reais auditados estavam completos e aprovados.
+- Recursos: zero erros, mesmos 73 avisos herdados; quatro cenas no smoke aprovadas. Arte, RNG de peças e explosões mantêm os limites documentados.
+- Núcleo, RNG, controles, código, testes e fixtures permanecem intactos. Os dois arquivos não rastreados V10.3.4 foram preservados byte a byte. O usuário autorizou preparar somente documentos/relatórios no índice; não autorizou commit, push, merge/rebase ou tag nesta etapa.
+- Relatório: `relatorios/v10_final/RELATORIO_AUDITORIA_V10.md`. Coleção completa: `C:\Users\MauTrIX\Documents\Codex\2026-11-03\continuar-counter-strike-puzzle-fighter-96\outputs\v10_final`.
+
+**Estado atual:** auditoria aprovada com ressalvas, encerramento documental preparado e aguardando registro autorizado; publicação de `v0.10.0` pendente. Ler `relatorios/v10_final/ENCERRAMENTO_DOCUMENTAL_V10.md`. Os resultados são da auditoria anterior; nenhuma bateria foi reexecutada na preparação documental.
+
+**Próxima ação:** aguardar autorização para registrar o encerramento documental. Não fazer commit/push, merge/rebase, criar tag, corrigir testes/código ou iniciar V11 automaticamente.
+
+---
+
+## Histórico anterior à auditoria final — preservado
+
 # Continuidade — V10.3.4 auditada em 03/11/2026
 
 **V10.3.4 concluída no escopo temporal/estrutural documentado; checkpoint aguarda autorização.** Esta atualização substitui o estado corrente dos textos históricos abaixo. A retomada da V10.3.4 foi expressamente autorizada pelo usuário nesta sessão.
