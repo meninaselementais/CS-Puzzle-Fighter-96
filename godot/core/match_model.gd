@@ -27,6 +27,9 @@ var locked_residual: Array[int] = [-1, -1]
 var character_ids: Array[int] = [2, 3]
 var global_seed: int = 0x5785
 var winner: int = -2
+var last_sent_attack: Array[int] = [0,0]
+var sent_event_id: Array[int] = [0,0]
+var sent_turn: Array[int] = [-1,-1]
 var first_attack: bool = false
 var accelerated: Array[bool] = [false, false]
 # PadrÃƒÆ’Ã‚Âµes medidos de Ryu (colunas) e Ken (linhas), nesta revisÃƒÆ’Ã‚Â£o do arcade.
@@ -52,6 +55,9 @@ func restart() -> void:
 	locked_residual = [-1, -1]
 	global_seed = 0x5785
 	winner = -2
+	last_sent_attack = [0,0]
+	sent_event_id = [0,0]
+	sent_turn = [-1,-1]
 	first_attack = false
 	accelerated = [false, false]
 	spawn(0)
@@ -130,6 +136,7 @@ func resolve_turn(player: int) -> void:
 	accelerated[player] = false
 	var outgoing := cancel_attack(player, int(result.attack))
 	pending[1 - player] += outgoing
+	record_sent_attack(player,outgoing,true)
 	if pending[player] > 0:
 		var amount: int = pending[player]
 		pending[player] = 0
@@ -198,3 +205,11 @@ func tick() -> void:
 			global_seed = ArcadeRng.advance(global_seed)
 			residual_index[player] = locked_residual[player] if locked_residual[player] >= 0 else (global_seed & 7)
 			motion[player].step(self,player,input_masks[player])
+
+## Read-only HUD telemetry: net total accepted by the opposing queue during the player's current resolution (zero-valued waves keep the total).
+func record_sent_attack(player: int, accepted: int, new_resolution: bool = false) -> void:
+	if new_resolution or sent_turn[player] != turn_number[player]:
+		last_sent_attack[player] = 0
+	sent_turn[player] = turn_number[player]
+	last_sent_attack[player] += accepted
+	sent_event_id[player] += 1

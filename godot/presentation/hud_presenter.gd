@@ -43,7 +43,7 @@ static func snapshot(model: RefCounted, session_active: bool = false) -> Diction
 			"pending_attack": int(model.pending[player]),
 			"pending_display": clampi(int(model.pending[player]), 0, 99),
 			"generated_attack": generated,
-			"sent_attack": unavailable("net_sent_attack_not_exposed"),
+			"sent_attack": available(int(model.last_sent_attack[player])),
 			"combo": combo, "next_pair": next_pair,
 		})
 	var session: Dictionary = unavailable("session_not_bound")

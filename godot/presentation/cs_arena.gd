@@ -187,6 +187,8 @@ var screen_shake_duration: int = 0
 var screen_shake_mag: float = 0.0
 
 var prev_scores: Array[int] = [0, 0]
+var hud_sent_pulse: Array[int] = [0,0]
+var hud_sent_event: Array[int] = [0,0]
 var hud_attack_pulse: Array[int] = [0,0]
 var prev_pending: Array[int] = [0, 0]
 var prev_cells: Array = [PackedInt32Array(), PackedInt32Array()]
@@ -373,6 +375,8 @@ func reset_state() -> void:
 	projectiles.clear()
 	vfx_sprites.clear()
 	prev_scores = [0, 0]
+	hud_sent_pulse = [0,0]
+	hud_sent_event = [0,0]
 	hud_attack_pulse = [0,0]
 	prev_pending = [0, 0]
 	prev_cells = [PackedInt32Array(), PackedInt32Array()]
@@ -1157,6 +1161,10 @@ func step_from_model(model, board_origins: Array[Vector2] = [Vector2(64, 108), V
 		if screen_shake_timer == 0:
 			screen_shake_mag = 0.0
 	for i in range(2):
+		hud_sent_pulse[i] = maxi(0,hud_sent_pulse[i]-1)
+		if model.sent_event_id[i] != hud_sent_event[i]:
+			hud_sent_event[i] = model.sent_event_id[i]
+			hud_sent_pulse[i] = 12
 		hud_attack_pulse[i] = maxi(0,hud_attack_pulse[i]-1)
 		if int(model.pending[i]) != prev_pending[i]: hud_attack_pulse[i] = 12
 		if callout_timer[i] > 0:
@@ -1987,7 +1995,10 @@ func draw_attack_warning_hud(canvas: CanvasItem, font: Font, snapshot: Dictionar
 		var team: Color = Color("48a8ff") if player==0 else Color("ff7848")
 		canvas.draw_rect(panel,Color("101829"))
 		canvas.draw_rect(panel,team,false,1.0)
-		draw_outlined_text(canvas,font,panel.position+Vector2(6,14),"P%d  ENVIADAS  --" % (player+1),12,Color("a7b4c9"))
+		var sent: int = clampi(int(data.sent_attack.value),0,99)
+		var sent_color: Color = ATTACK_COLORS[attack_level(sent)]
+		if hud_sent_pulse[player]>0: sent_color = sent_color.lightened(0.35)
+		draw_outlined_text(canvas,font,panel.position+Vector2(6,14),"P%d  ENVIADAS  %02d" % [player+1,sent],12,sent_color)
 		var size: int = 16 if hud_attack_pulse[player]>6 else 14
 		var amount: int = int(data.pending_display)
 		var level: int = attack_level(int(data.pending_attack))

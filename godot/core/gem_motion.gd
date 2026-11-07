@@ -159,7 +159,9 @@ func resolve_frame(model: RefCounted, player: int) -> void:
 				result["attack"] = int(result.get("attack", 0)) + int(wave.attack)
 				model.last_results[player] = result
 				model.scores[player] += int(wave.score)
+				var queue_before: int = model.pending[1 - player]
 				model.pending[1 - player] = mini(250, model.pending[1 - player] + model.cancel_attack(player, int(wave.attack)))
+				model.record_sent_attack(player,model.pending[1 - player]-queue_before)
 			phase = 3
 			return
 		model.last_results[player] = result
