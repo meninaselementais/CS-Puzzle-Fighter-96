@@ -1,0 +1,86 @@
+{
+  "resolution": [
+    1000,
+    700
+  ],
+  "board_cell": 36,
+  "board_size": [
+    216,
+    432
+  ],
+  "next_size": [
+    48,
+    76
+  ],
+  "next_center_gap": 32,
+  "layouts": {
+    "A": {
+      "board_origins": [
+        [
+          40,
+          112
+        ],
+        [
+          744,
+          112
+        ]
+      ],
+      "next_origins": [
+        [
+          288,
+          105
+        ],
+        [
+          664,
+          105
+        ]
+      ]
+    },
+    "B": {
+      "board_origins": [
+        [
+          40,
+          138
+        ],
+        [
+          744,
+          138
+        ]
+      ],
+      "next_origins": [
+        [
+          294,
+          203
+        ],
+        [
+          658,
+          203
+        ]
+      ]
+    },
+    "C": {
+      "board_origins": [
+        [
+          40,
+          130
+        ],
+        [
+          744,
+          130
+        ]
+      ],
+      "next_origins": [
+        [
+          284,
+          108
+        ],
+        [
+          668,
+          108
+        ]
+      ]
+    }
+  },
+  "synthetic_state_shared": true,
+  "rank_placeholder": true
+}

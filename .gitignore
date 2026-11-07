@@ -28,3 +28,15 @@
 
 # Local Godot userdata and shader caches from validation
 /relatorios/**/userdata/
+
+# V11 checkpoint: reproducible test inputs and verified Windows summaries
+!/relatorios/v11_4/arena_before.gd.txt
+!/relatorios/v11_4_1/cs_arena.gd.v11_4.txt
+!/relatorios/v11_4_1/gem_destruction_vfx.gd.v11_4.txt
+!/relatorios/v11_4/run_validation.py
+!/relatorios/v11_4_1/run_validation.py
+!/relatorios/v11_4_2/run_validation.py
+!/relatorios/v11_4_2/integration_summary.json
+!/relatorios/v11_4_2/bench2_summary.json
+!/relatorios/v11_4_2/focused_summary.json
+!/relatorios/v11_4_2/regression_summary.json

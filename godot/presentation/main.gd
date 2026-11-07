@@ -6,6 +6,7 @@ const Replay = preload("res://adapters/mame_replay.gd")
 const Gem = preload("res://core/gem_rules.gd")
 const Controls = preload("res://core/control_model.gd")
 const Arena = preload("res://presentation/cs_arena.gd")
+const Hud = preload("res://presentation/hud_presenter.gd")
 const PairRotation = preload("res://presentation/pair_rotation_visual.gd")
 var pair_rotation: Array[RefCounted] = [PairRotation.new(),PairRotation.new()]
 const Session = preload("res://core/match_session.gd")
@@ -38,6 +39,9 @@ var latched_masks: Array[int] = [0,0]
 
 func _ready() -> void:
 	texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	# V11.4.2: glass presentation is OFF unless PF_GLASS=1 (quality: PF_GLASS_QUALITY=high|medium|low). Key G toggles it.
+	if OS.get_environment("PF_GLASS") in ["1","true","on"]:
+		arena.set_glass_presentation(true,OS.get_environment("PF_GLASS_QUALITY"))
 	# O Showcase mantém sua referência original SAS/Phoenix, independente da seleção.
 	if get_script().resource_path == "res://presentation/main.gd":
 		if not Selection.apply_to_match(model):
@@ -141,6 +145,11 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		arena.set_stage(2)
 		queue_redraw()
 		return
+	if key == KEY_G:
+		var glass_on: bool = arena.set_glass_presentation(not arena.glass_enabled,OS.get_environment("PF_GLASS_QUALITY"))
+		print("GLASS_PRESENTATION ",glass_on)
+		queue_redraw()
+		return
 	if key == KEY_TAB:
 		replay_mode = not replay_mode
 		if replay_mode:
@@ -185,14 +194,10 @@ func _draw() -> void:
 	position = arena.get_screen_shake_offset()
 	var font := ThemeDB.fallback_font
 	arena.draw_backdrop(self)
-	var next_pairs := [get_next_colors(0), get_next_colors(1)]
-	arena.draw_central_arena_and_hud(self, font, model, next_pairs)
-	# Desenha as gemas dentro das caixas NEXT centrais
-	for i in range(2):
-		var nx := 284.0 if i == 0 else 652.0
-		var ny := 56.0
-		arena.draw_gem_sprite(self, Vector2(nx + 32, ny + 32), int(next_pairs[i][1]), Gem, i * 10 + 1)
-		arena.draw_gem_sprite(self, Vector2(nx + 32, ny + 76), int(next_pairs[i][0]), Gem, i * 10 + 2)
+	# Keep V10 generation order and frequency; the presenter reads the populated cache.
+	var _next_pairs: Array = [get_next_colors(0), get_next_colors(1)]
+	var hud_snapshot: Dictionary = Hud.snapshot(model, session_game and not replay_mode)
+	arena.draw_central_arena_and_hud(self, font, model, hud_snapshot)
 	# Desenha os dois poços de puzzle laterais (P1 e P2)
 	for i in range(2):
 		var origin: Vector2 = BOARD_ORIGINS[i]

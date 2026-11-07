@@ -1,0 +1,579 @@
+{
+  "date": "2026-11-06",
+  "branch": "feature/v11-hud",
+  "base": "1a943a4db4d1dba84a222735187afb6108b4c4c5",
+  "status": "implemented_for_coordinator_review",
+  "runs": [
+    {
+      "name": "hud_next",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_3\\evidence\\hud_next\\godot.log",
+        "--script",
+        "res://tests/test_hud_next.gd"
+      ]
+    },
+    {
+      "name": "hud_presenter",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_3\\evidence\\hud_presenter\\godot.log",
+        "--headless",
+        "--script",
+        "res://tests/test_hud_presenter.gd"
+      ]
+    },
+    {
+      "name": "hud_scene",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_3\\evidence\\hud_scene\\godot.log",
+        "--script",
+        "res://tests/test_hud_presenter_scene.gd"
+      ]
+    },
+    {
+      "name": "test_models",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_3\\evidence\\test_models\\godot.log",
+        "--headless",
+        "--script",
+        "res://tests/test_models.gd"
+      ]
+    },
+    {
+      "name": "test_rules",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_3\\evidence\\test_rules\\godot.log",
+        "--headless",
+        "--script",
+        "res://tests/test_rules.gd"
+      ]
+    },
+    {
+      "name": "test_fidelity",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_3\\evidence\\test_fidelity\\godot.log",
+        "--headless",
+        "--script",
+        "res://tests/test_fidelity.gd"
+      ]
+    },
+    {
+      "name": "test_controls_fidelity",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_3\\evidence\\test_controls_fidelity\\godot.log",
+        "--headless",
+        "--script",
+        "res://tests/test_controls_fidelity.gd"
+      ]
+    },
+    {
+      "name": "test_natural_fidelity",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_3\\evidence\\test_natural_fidelity\\godot.log",
+        "--headless",
+        "--script",
+        "res://tests/test_natural_fidelity.gd"
+      ]
+    },
+    {
+      "name": "test_duel",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_3\\evidence\\test_duel\\godot.log",
+        "--headless",
+        "--script",
+        "res://tests/test_duel.gd"
+      ]
+    },
+    {
+      "name": "test_presentation",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_3\\evidence\\test_presentation\\godot.log",
+        "--headless",
+        "--script",
+        "res://tests/test_presentation.gd"
+      ]
+    },
+    {
+      "name": "test_coin_flip",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_3\\evidence\\test_coin_flip\\godot.log",
+        "--headless",
+        "--script",
+        "res://tests/test_coin_flip.gd"
+      ]
+    },
+    {
+      "name": "test_character_select",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_3\\evidence\\test_character_select\\godot.log",
+        "--headless",
+        "--script",
+        "res://tests/test_character_select.gd"
+      ]
+    },
+    {
+      "name": "test_visual_timeline_v10_3_2",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_3\\evidence\\test_visual_timeline_v10_3_2\\godot.log",
+        "--headless",
+        "--script",
+        "res://tests/test_visual_timeline_v10_3_2.gd"
+      ]
+    },
+    {
+      "name": "test_pair_rotation_visual_v10_3_3",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_3\\evidence\\test_pair_rotation_visual_v10_3_3\\godot.log",
+        "--headless",
+        "--script",
+        "res://tests/test_pair_rotation_visual_v10_3_3.gd"
+      ]
+    },
+    {
+      "name": "test_power_facet_v10_3_4",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_3\\evidence\\test_power_facet_v10_3_4\\godot.log",
+        "--headless",
+        "--script",
+        "res://tests/test_power_facet_v10_3_4.gd"
+      ]
+    },
+    {
+      "name": "test_animation_v8",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_3\\evidence\\test_animation_v8\\godot.log",
+        "--headless",
+        "--script",
+        "res://tests/test_animation_v8.gd"
+      ]
+    },
+    {
+      "name": "test_art_v9",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_3\\evidence\\test_art_v9\\godot.log",
+        "--headless",
+        "--script",
+        "res://tests/test_art_v9.gd"
+      ]
+    },
+    {
+      "name": "physics",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_3\\evidence\\physics\\godot.log",
+        "--headless",
+        "--script",
+        "res://tests/test_gem_timeline.gd",
+        "--",
+        "--fixtures=C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v10_gem_physics\\contact_measurements\\mame_contact_fixtures.json",
+        "--out=C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_3\\evidence\\physics\\timeline.json"
+      ]
+    },
+    {
+      "name": "chains",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_3\\evidence\\chains\\godot.log",
+        "--headless",
+        "--script",
+        "res://tests/test_chain_counter_timeline.gd",
+        "--",
+        "--out=C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_3\\evidence\\chains\\timeline.json"
+      ]
+    },
+    {
+      "name": "showcase_ui",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_3\\evidence\\showcase_ui\\godot.log",
+        "--script",
+        "res://tests/test_showcase_ui.gd"
+      ]
+    },
+    {
+      "name": "character_select_ui",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_3\\evidence\\character_select_ui\\godot.log",
+        "--script",
+        "res://tests/test_character_select_ui.gd"
+      ]
+    },
+    {
+      "name": "match_flow_visual",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_3\\evidence\\match_flow_visual\\godot.log",
+        "--script",
+        "res://tests/test_match_flow_visual_v10_3_4.gd",
+        "--",
+        "--visual"
+      ]
+    },
+    {
+      "name": "lint",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "python",
+        "-B",
+        "C:\\Users\\MauTrIX\\.codex\\skills\\godot\\scripts\\debug\\lint_project.py",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--pretty"
+      ],
+      "counts": {
+        "total": 11,
+        "errors": 0,
+        "warnings": 11,
+        "parse_errors": 0
+      },
+      "ok": true
+    },
+    {
+      "name": "python",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ]
+    },
+    {
+      "name": "native",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "python",
+        "-B",
+        "C:\\Users\\MauTrIX\\.codex\\skills\\godot\\scripts\\debug\\validate_project.py",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--godot-bin",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--pretty"
+      ],
+      "counts": {
+        "total": 72,
+        "errors": 0,
+        "parse_errors": 0,
+        "warnings": 72,
+        "info": 0
+      },
+      "ok": true
+    },
+    {
+      "name": "smoke",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "python",
+        "-B",
+        "C:\\Users\\MauTrIX\\.codex\\skills\\godot\\scripts\\debug\\smoke_scenes.py",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--godot-bin",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--seconds",
+        "2",
+        "--jobs",
+        "4",
+        "--fuzz",
+        "--pretty"
+      ],
+      "counts": {
+        "scenes": 4,
+        "passed": 4,
+        "failed": 0,
+        "errors": 0,
+        "warnings": 98,
+        "findings": 1
+      },
+      "ok": true
+    }
+  ],
+  "next": {
+    "c4": [
+      true,
+      true
+    ],
+    "checks": 1072,
+    "crash": [
+      true,
+      true
+    ],
+    "evidence": [
+      {
+        "canvas_scale": "(1.0, 1.0)",
+        "capture": "next_initial_1000x700",
+        "framebuffer": "(1000, 700)",
+        "window": "(1000, 700)"
+      },
+      {
+        "inside_next_changed_pixels": 21976,
+        "outside_next_changed_pixels": 0
+      },
+      {
+        "lower_code": 3,
+        "player": 0,
+        "spawned_colors": [
+          3,
+          11
+        ],
+        "step": 0,
+        "upper_code": 11
+      },
+      {
+        "lower_code": 3,
+        "player": 1,
+        "spawned_colors": [
+          3,
+          11
+        ],
+        "step": 0,
+        "upper_code": 11
+      },
+      {
+        "lower_code": 3,
+        "player": 0,
+        "spawned_colors": [
+          3,
+          3
+        ],
+        "step": 1,
+        "upper_code": 3
+      },
+      {
+        "canvas_scale": "(1.0, 1.0)",
+        "capture": "next_c4_p1_1000x700",
+        "framebuffer": "(1000, 700)",
+        "window": "(1000, 700)"
+      },
+      {
+        "lower_code": 2,
+        "player": 0,
+        "spawned_colors": [
+          2,
+          5
+        ],
+        "step": 23,
+        "upper_code": 5
+      },
+      {
+        "canvas_scale": "(1.0, 1.0)",
+        "capture": "next_c4_p2_1000x700",
+        "framebuffer": "(1000, 700)",
+        "window": "(1000, 700)"
+      },
+      {
+        "lower_code": 2,
+        "player": 1,
+        "spawned_colors": [
+          2,
+          5
+        ],
+        "step": 46,
+        "upper_code": 5
+      },
+      {
+        "lower_code": 1,
+        "player": 0,
+        "spawned_colors": [
+          1,
+          5
+        ],
+        "step": 48,
+        "upper_code": 5
+      },
+      {
+        "lower_code": 4,
+        "player": 0,
+        "spawned_colors": [
+          4,
+          5
+        ],
+        "step": 73,
+        "upper_code": 5
+      },
+      {
+        "canvas_scale": "(1.0, 1.0)",
+        "capture": "next_1000x700",
+        "framebuffer": "(1000, 700)",
+        "window": "(1000, 700)"
+      },
+      {
+        "canvas_scale": "(1.28, 1.28)",
+        "capture": "next_1280x896",
+        "framebuffer": "(1280, 896)",
+        "window": "(1280, 896)"
+      },
+      {
+        "canvas_scale": "(1.28, 1.28)",
+        "capture": "next_1280x900",
+        "framebuffer": "(1280, 896)",
+        "window": "(1280, 900)"
+      },
+      {
+        "canvas_scale": "(1.285, 1.285714)",
+        "capture": "next_1600x900",
+        "framebuffer": "(1285, 900)",
+        "window": "(1600, 900)"
+      },
+      {
+        "canvas_scale": "(1.0, 1.0)",
+        "capture": "c4_clock_0",
+        "framebuffer": "(1000, 700)",
+        "window": "(1000, 700)"
+      },
+      {
+        "canvas_scale": "(1.0, 1.0)",
+        "capture": "c4_clock_7",
+        "framebuffer": "(1000, 700)",
+        "window": "(1000, 700)"
+      }
+    ],
+    "failures": [],
+    "turns": [
+      90,
+      45
+    ]
+  },
+  "integrity": {
+    "preexisting_files_checked": 472,
+    "changed": [
+      "godot/presentation/cs_arena.gd",
+      "godot/presentation/main.gd"
+    ],
+    "all_other_preexisting_files_preserved": true,
+    "core_unchanged": true
+  }
+}

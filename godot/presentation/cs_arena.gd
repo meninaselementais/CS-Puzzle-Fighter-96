@@ -5,7 +5,16 @@ extends RefCounted
 const Board = preload("res://core/board_model.gd")
 const Rules = preload("res://core/resolution.gd")
 const GemRules = preload("res://core/gem_rules.gd")
+const DestructionVfx = preload("res://presentation/gem_destruction_vfx.gd")
+var destruction: RefCounted = DestructionVfx.new()
+## V11.4.2: glass-shatter presentation for real matches. OFF by default; V11.4 effects stay the fallback.
+var glass_enabled: bool = false
 const SPRITE_DIR := "res://assets/sprites/"
+# V11.3: only NEXT uses the provisional C layout, in the existing 1000x700 canvas.
+const NEXT_ORIGINS: Array[Vector2] = [Vector2(284, 108), Vector2(668, 108)]
+const NEXT_SIZE: Vector2 = Vector2(48, 76)
+const NEXT_SATELLITE_OFFSET: Vector2 = Vector2(24, 22)
+const NEXT_PIVOT_OFFSET: Vector2 = Vector2(24, 54)
 
 const STAGES := [
 	{"id": "dust2", "name": "DE_DUST2 — BOMBSITE A", "tex": "stage_dust2.png", "accent": Color("ff9d3b"), "well_tint": Color(0.07, 0.05, 0.04, 0.78)},
@@ -311,7 +320,25 @@ func cycle_stage(step: int = 1) -> void:
 func set_stage(index: int) -> void:
 	stage_index = clampi(index, 0, STAGES.size() - 1)
 
+## Switches the glass presentation on or off at runtime. Presentation only: never touches the match model.
+## profile: "high" (approved counts), "medium" or "low" (shared quality profiles). Returns the resulting state.
+func set_glass_presentation(enabled: bool, profile: String = "high") -> bool:
+	if enabled:
+		var script: GDScript = load("res://presentation/vfx/glass_shatter.gd") as GDScript
+		if script == null:
+			push_warning("Glass presentation unavailable; keeping the V11.4 effects.")
+			return false
+		var glass: RefCounted = script.new()
+		glass.configure_integrated(profile)
+		destruction.prototype = glass
+	else:
+		if destruction.prototype != null: destruction.prototype.clear()
+		destruction.prototype = null
+	glass_enabled = destruction.prototype != null
+	return glass_enabled
+
 func reset_state() -> void:
+	destruction.clear()
 	fighter_state = ["idle", "idle"]
 	fighter_timer = [0, 0]
 	pending_hit = [0, 0]
@@ -617,7 +644,7 @@ func spawn_board_explosion(board_origin: Vector2, cell_x: int, cell_y: int, colo
 			"max_ttl": max_t,
 			"rotation": ang, "spin": (-0.13 if s_idx % 2 == 0 else 0.17),
 			"base_scale": (0.72 if is_power and large_effect and s_idx<2 else 0.42)+float(mini(chain_num,5))*0.025,
-			"delay": s_idx%3,
+			"delay": s_idx%3 + ((cell_x+cell_y)%3 if chain_num>=3 else 0),
 			"bounds": Rect2(board_origin-Vector2(8,12),Vector2(208,412))
 		})
 
@@ -863,6 +890,7 @@ func detonate_active_wave(player: int) -> void:
 	var w: Dictionary = active_wave[player]
 	if w.is_empty():
 		return
+	destruction.emit_wave(player,w)
 	var chain_num := int(w["chain"])
 	var orig: Vector2 = w["origin"]
 	var is_c4 := bool(w["is_c4"])
@@ -880,7 +908,8 @@ func detonate_active_wave(player: int) -> void:
 					large_effect = not power_impacts.has(rect)
 					power_impacts[rect] = true
 					break
-		spawn_board_explosion(orig, rx, ry, int(rem["color"]), bool(rem["is_power"]), chain_num, is_c4, large_effect)
+		if not destruction.handles(w,Vector2i(rx,ry)):
+			spawn_board_explosion(orig, rx, ry, int(rem["color"]), bool(rem["is_power"]), chain_num, is_c4, large_effect)
 		sum_pos += orig + Vector2(rx * 32 + 16, (ry - 2) * 32 + 16)
 		cnt += 1
 	var popup_pos := (sum_pos / float(cnt)) if cnt > 0 else (orig + Vector2(96, 190))
@@ -1115,11 +1144,12 @@ func sync_temporal_board(model: RefCounted, player: int, origin: Vector2) -> voi
 			var diamond: bool = bool(event.get("diamond",false))
 			for idx in range(12,84):
 				if cells[idx] == 0 or copy.cells[idx] != 0: continue
-				removed.append({"idx":idx,"x":idx%6,"y":idx/6,"code":cells[idx],"color":GemRules.color(cells[idx]),"is_power":GemRules.kind(cells[idx])==GemRules.Kind.POWER,"is_c4":diamond})
+				removed.append({"idx":idx,"x":idx%6,"y":idx/6,"code":cells[idx],"color":5 if GemRules.is_diamond(cells[idx]) else GemRules.color(cells[idx]),"is_power":GemRules.kind(cells[idx])==GemRules.Kind.POWER,"is_c4":diamond})
 			active_wave[player] = {"temporal":true,"phase":"pre","timer":motion.clear_timer,"chain":motion.chain_count+1,"origin":origin,"score":int(event.score),"removed":removed,"is_c4":diamond,"has_power":removed.any(func(r): return r.is_power),"powers_before":board.power_gems.duplicate(),"cells_mid":copy.cells.duplicate(),"powers_mid":copy.power_gems.duplicate()}
 
 func step_from_model(model, board_origins: Array[Vector2] = [Vector2(64, 108), Vector2(744, 108)]) -> void:
 	anim_tick += 1
+	destruction.step()
 	if screen_shake_timer > 0:
 		screen_shake_timer -= 1
 		if screen_shake_timer == 0:
@@ -1257,6 +1287,7 @@ func step_from_model(model, board_origins: Array[Vector2] = [Vector2(64, 108), V
 		prev_pending[i] = model.pending[i]
 		prev_cells[i] = cur_cells.duplicate()
 		advance_fighter_anim(i, model)
+		destruction.observe_pre(i,board_origins[i],active_wave[i])
 	# Atualiza células em fase de flash de combo (quando não gerenciadas por active_wave)
 	var next_flashes: Array[Dictionary] = []
 	for cf in combo_flashes:
@@ -1682,7 +1713,7 @@ func fighter_draw_rect(player: int) -> Rect2:
 		motion = Vector2.ZERO
 	return Rect2(Vector2(anchor_x-boot_x,492.0-floor_y)+motion,size)
 
-func draw_central_arena_and_hud(canvas: CanvasItem, font: Font, model, next_pairs: Array) -> void:
+func draw_central_arena_and_hud(canvas: CanvasItem, font: Font, model, hud_snapshot: Dictionary) -> void:
 	# 1. Placa discreta do cenário no topo central
 	var stage: Dictionary = STAGES[stage_index]
 	draw_outlined_text(canvas, font, Vector2(392, 20), stage["name"] + "  [1/2/3/M]", 13, Color("ffe885"))
@@ -1692,9 +1723,9 @@ func draw_central_arena_and_hud(canvas: CanvasItem, font: Font, model, next_pair
 	if logo_tex != null:
 		canvas.draw_texture_rect(logo_tex, Rect2(382, 24, 236, 178), false)
 	for i in range(2):
-		var nx := 284.0 if i == 0 else 652.0
-		var ny := 56.0
-		var nbox := Rect2(nx, ny, 64, 114)
+		var nx: float = NEXT_ORIGINS[i].x
+		var ny: float = NEXT_ORIGINS[i].y
+		var nbox := Rect2(NEXT_ORIGINS[i], NEXT_SIZE)
 		var team_c := Color("48a8ff") if i == 0 else Color("ff6848")
 		# Moldura chanfrada da caixa NEXT
 		var nshadow := nbox.grow(6)
@@ -1708,8 +1739,12 @@ func draw_central_arena_and_hud(canvas: CanvasItem, font: Font, model, next_pair
 		# Nome do personagem abaixo da caixa NEXT (como "RYU" e "KEN" no CPS-2!)
 		var char_label: String = selected_characters[i].name if not selected_characters.is_empty() else ("SAS" if i == 0 else "PHOENIX")
 		var name_x := nx + 10.0 if i == 0 else nx - 10.0
-		draw_outlined_text(canvas, font, Vector2(name_x, ny + 136), char_label, 12 if char_label.length() > 9 else 18, Color("ffe052"), Color("140c08"), 2)
-		# As duas gemas da próxima dupla serão desenhadas pelo main.gd usando draw_gem_sprite
+		draw_outlined_text(canvas, font, Vector2(name_x, ny + 104), char_label, 12 if char_label.length() > 9 else 18, Color("ffe052"), Color("140c08"), 2)
+		var next_pair: Dictionary = hud_snapshot.players[i].next_pair
+		if next_pair.available:
+			var colors: Dictionary = next_pair.value
+			draw_gem_sprite(canvas, NEXT_ORIGINS[i] + NEXT_SATELLITE_OFFSET, int(colors.satellite), GemRules, i * 10 + 1)
+			draw_gem_sprite(canvas, NEXT_ORIGINS[i] + NEXT_PIVOT_OFFSET, int(colors.pivot), GemRules, i * 10 + 2)
 
 	# 3. Lutadores Chibi na Arena Central — Animação Real Quadro a Quadro com Ancoragem nos Pés
 	var base_anchors_x: Array[float] = [376.0, 624.0]
@@ -1787,6 +1822,7 @@ func draw_central_arena_and_hud(canvas: CanvasItem, font: Font, model, next_pair
 		canvas.draw_texture_rect(vs_tex, Rect2(458, 502, 84, 74), false)
 
 func draw_foreground_vfx(canvas: CanvasItem, font: Font) -> void:
+	destruction.ensure_layers(canvas,temporal_origins)
 	# Cápsulas de latão deflagradas (M4A1-S e AK-47) quicando no chão
 	for sh in shell_casings:
 		var sx := float(sh["x"])
@@ -1861,7 +1897,7 @@ func draw_foreground_vfx(canvas: CanvasItem, font: Font) -> void:
 		var sz := float(sp["size"])
 		var sc_col: Color = sp["color"]
 		var life_ratio := float(ttl_i) / float(maxi(1, int(sp["max_ttl"])))
-		var salpha := clampf(life_ratio * 1.4, 0.0, 1.0)
+		var salpha := clampf(life_ratio * 1.15, 0.0, 0.86)
 		var c_idx := int(sp.get("color_idx", 1))
 		var var_idx := int(sp.get("variant", 0))
 		var shard_tex := load_tex("vfx_shard_%d_%d.png" % [c_idx, var_idx])
@@ -1870,6 +1906,9 @@ func draw_foreground_vfx(canvas: CanvasItem, font: Font) -> void:
 			var s_size := Vector2(shard_tex.get_width(), shard_tex.get_height()) * scale_f
 			canvas.draw_set_transform(Vector2(sx, sy), float(sp.get("rotation", 0.0)))
 			canvas.draw_texture_rect(shard_tex, Rect2(-s_size * 0.5, s_size), false, Color(1, 1, 1, salpha))
+			# A short moving facet highlight keeps the existing translucent glass readable.
+			var glint: float = 0.35 if posmod(ttl_i+var_idx,5)<2 else 0.08
+			canvas.draw_line(Vector2(-s_size.x*0.25,-s_size.y*0.2),Vector2(s_size.x*0.2,0),Color(1,1,1,salpha*glint),1.0)
 			canvas.draw_set_transform(Vector2.ZERO)
 		else:
 			canvas.draw_rect(Rect2(sx - sz * 0.5 - 1.0, sy - sz * 0.5 - 1.0, sz + 2.0, sz + 2.0), Color(0.05, 0.06, 0.1, salpha * 0.85))

@@ -1,0 +1,45 @@
+[
+  {
+    "name": "hud_next",
+    "exit_code": 0,
+    "passed": true,
+    "command": [
+      "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+      "--path",
+      "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+      "--log-file",
+      "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_4_2\\evidence\\hud_next\\godot.log",
+      "--script",
+      "res://tests/test_hud_next.gd"
+    ]
+  },
+  {
+    "name": "hud_presenter",
+    "exit_code": 0,
+    "passed": true,
+    "command": [
+      "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+      "--path",
+      "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+      "--log-file",
+      "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_4_2\\evidence\\hud_presenter\\godot.log",
+      "--headless",
+      "--script",
+      "res://tests/test_hud_presenter.gd"
+    ]
+  },
+  {
+    "name": "hud_scene",
+    "exit_code": 0,
+    "passed": true,
+    "command": [
+      "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+      "--path",
+      "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+      "--log-file",
+      "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_4_2\\evidence\\hud_scene\\godot.log",
+      "--script",
+      "res://tests/test_hud_presenter_scene.gd"
+    ]
+  }
+]

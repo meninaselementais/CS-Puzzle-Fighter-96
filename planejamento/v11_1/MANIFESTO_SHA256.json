@@ -1,0 +1,62 @@
+{
+  "branch": "feature/v11-hud",
+  "base": "1a943a4db4d1dba84a222735187afb6108b4c4c5",
+  "existing_files_preserved": 454,
+  "main_and_tag_preserved": true,
+  "code_tests_unchanged": true,
+  "artifacts": {
+    "A_arcade_fiel.png": {
+      "bytes": 461121,
+      "sha256": "96c2f184a4293c39fa2e9a551ef0b08d0416340ecf2263857a5c53f78f4b0ab2"
+    },
+    "A_arcade_fiel.svg": {
+      "bytes": 2843119,
+      "sha256": "c06de8e2b05fe14335ff7322500d6b811b3c15a98b72ed806b58a1bce4b87e26"
+    },
+    "B_counter_strike.png": {
+      "bytes": 206467,
+      "sha256": "c5e198a0797aac05ba2a71e7bd25432ddc963dd4995318669296f13c56d2eb01"
+    },
+    "B_counter_strike.svg": {
+      "bytes": 2846418,
+      "sha256": "a6dfa8b3099d64709d170a3ca9d595f9a5cadce69146423bc23df7a58364dc15"
+    },
+    "COMPARACAO_E_RECOMENDACAO.md": {
+      "bytes": 15124,
+      "sha256": "36f7f11707069db932dd8ec581b024b3e438775f2a1336aaa58b42b8cef4a8c3"
+    },
+    "comparacao_lado_a_lado.png": {
+      "bytes": 992706,
+      "sha256": "2e5755f90417d13281497af68f550c2cae9f80c07a834561c44672390c67ec5a"
+    },
+    "C_hibrido.png": {
+      "bytes": 374194,
+      "sha256": "0d6c918c776a6eff8b48971a89c61559b730fa43adbd0e5de5ea822eda6c2553"
+    },
+    "C_hibrido.svg": {
+      "bytes": 2843136,
+      "sha256": "eab335d9bced1b770bf569a4dec8db1b794fe3e0e228e3c20c0edc380a7e7b32"
+    },
+    "GALERIA.html": {
+      "bytes": 3834787,
+      "sha256": "ee9629a1d6f6d012f3a96ff7e520c6c86b2199ca8253d062c7e0b5d453d3624a"
+    },
+    "LAYOUTS_PROPOSTOS.json": {
+      "bytes": 1174,
+      "sha256": "494c9b6fce5cfe456cdc14e8a5bb44764c450d825235b589e345dd7ede1be45e"
+    },
+    "referencia_atual/captura.log": {
+      "bytes": 189,
+      "sha256": "f5faabae0f8618520d9b5090abdee0c28c05772d00692d63c6d59f2957fb846f"
+    },
+    "referencia_atual/execucao.json": {
+      "bytes": 407,
+      "sha256": "9d036b823cc4dc583d0d45e1efbe88c37869a4198d5e9bdb2de60df56c1de8e4"
+    },
+    "referencia_atual/prototipo_godot.png": {
+      "bytes": 790574,
+      "sha256": "4e483327c34c0acee1df330c9037d8e2c51654c2ee44654934e67c2d7820ec3a"
+    }
+  },
+  "status": "M CONTINUIDADE_PROJETO.md\n?? planejamento/V11_PLANO_HUD.md\n?? planejamento/v11_1/A_arcade_fiel.png\n?? planejamento/v11_1/A_arcade_fiel.svg\n?? planejamento/v11_1/B_counter_strike.png\n?? planejamento/v11_1/B_counter_strike.svg\n?? planejamento/v11_1/COMPARACAO_E_RECOMENDACAO.md\n?? planejamento/v11_1/C_hibrido.png\n?? planejamento/v11_1/C_hibrido.svg\n?? planejamento/v11_1/GALERIA.html\n?? planejamento/v11_1/LAYOUTS_PROPOSTOS.json\n?? planejamento/v11_1/comparacao_lado_a_lado.png\n?? planejamento/v11_1/referencia_atual/execucao.json\n?? planejamento/v11_1/referencia_atual/prototipo_godot.png\n?? relatorios/v10_3_4/revalidacao_codex/RELATORIO_V10_3_4.md\n?? relatorios/v10_3_4/revalidacao_codex/summary.json"
+}

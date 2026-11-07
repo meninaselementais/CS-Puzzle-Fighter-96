@@ -1,0 +1,1794 @@
+{
+  "version": "V11.4",
+  "date": "2026-11-06",
+  "branch": "feature/v11-hud",
+  "head": "1a943a4db4d1dba84a222735187afb6108b4c4c5",
+  "technical_validation": "passed",
+  "artistic_approval": "pending_user",
+  "closure": "open_until_artistic_approval",
+  "runs": [
+    {
+      "name": "explosions",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_4\\evidence\\explosions\\godot.log",
+        "--script",
+        "res://tests/test_gem_destruction_v11_4.gd"
+      ]
+    },
+    {
+      "name": "hud_next",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_4\\evidence\\hud_next\\godot.log",
+        "--script",
+        "res://tests/test_hud_next.gd"
+      ]
+    },
+    {
+      "name": "hud_presenter",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_4\\evidence\\hud_presenter\\godot.log",
+        "--headless",
+        "--script",
+        "res://tests/test_hud_presenter.gd"
+      ]
+    },
+    {
+      "name": "hud_scene",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_4\\evidence\\hud_scene\\godot.log",
+        "--script",
+        "res://tests/test_hud_presenter_scene.gd"
+      ]
+    },
+    {
+      "name": "test_models",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_4\\evidence\\test_models\\godot.log",
+        "--headless",
+        "--script",
+        "res://tests/test_models.gd"
+      ]
+    },
+    {
+      "name": "test_rules",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_4\\evidence\\test_rules\\godot.log",
+        "--headless",
+        "--script",
+        "res://tests/test_rules.gd"
+      ]
+    },
+    {
+      "name": "test_fidelity",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_4\\evidence\\test_fidelity\\godot.log",
+        "--headless",
+        "--script",
+        "res://tests/test_fidelity.gd"
+      ]
+    },
+    {
+      "name": "test_controls_fidelity",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_4\\evidence\\test_controls_fidelity\\godot.log",
+        "--headless",
+        "--script",
+        "res://tests/test_controls_fidelity.gd"
+      ]
+    },
+    {
+      "name": "test_natural_fidelity",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_4\\evidence\\test_natural_fidelity\\godot.log",
+        "--headless",
+        "--script",
+        "res://tests/test_natural_fidelity.gd"
+      ]
+    },
+    {
+      "name": "test_duel",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_4\\evidence\\test_duel\\godot.log",
+        "--headless",
+        "--script",
+        "res://tests/test_duel.gd"
+      ]
+    },
+    {
+      "name": "test_presentation",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_4\\evidence\\test_presentation\\godot.log",
+        "--headless",
+        "--script",
+        "res://tests/test_presentation.gd"
+      ]
+    },
+    {
+      "name": "test_coin_flip",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_4\\evidence\\test_coin_flip\\godot.log",
+        "--headless",
+        "--script",
+        "res://tests/test_coin_flip.gd"
+      ]
+    },
+    {
+      "name": "test_character_select",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_4\\evidence\\test_character_select\\godot.log",
+        "--headless",
+        "--script",
+        "res://tests/test_character_select.gd"
+      ]
+    },
+    {
+      "name": "test_visual_timeline_v10_3_2",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_4\\evidence\\test_visual_timeline_v10_3_2\\godot.log",
+        "--headless",
+        "--script",
+        "res://tests/test_visual_timeline_v10_3_2.gd"
+      ]
+    },
+    {
+      "name": "test_pair_rotation_visual_v10_3_3",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_4\\evidence\\test_pair_rotation_visual_v10_3_3\\godot.log",
+        "--headless",
+        "--script",
+        "res://tests/test_pair_rotation_visual_v10_3_3.gd"
+      ]
+    },
+    {
+      "name": "test_power_facet_v10_3_4",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_4\\evidence\\test_power_facet_v10_3_4\\godot.log",
+        "--headless",
+        "--script",
+        "res://tests/test_power_facet_v10_3_4.gd"
+      ]
+    },
+    {
+      "name": "test_animation_v8",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_4\\evidence\\test_animation_v8\\godot.log",
+        "--headless",
+        "--script",
+        "res://tests/test_animation_v8.gd"
+      ]
+    },
+    {
+      "name": "test_art_v9",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_4\\evidence\\test_art_v9\\godot.log",
+        "--headless",
+        "--script",
+        "res://tests/test_art_v9.gd"
+      ]
+    },
+    {
+      "name": "physics",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_4\\evidence\\physics\\godot.log",
+        "--headless",
+        "--script",
+        "res://tests/test_gem_timeline.gd",
+        "--",
+        "--fixtures=C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v10_gem_physics\\contact_measurements\\mame_contact_fixtures.json",
+        "--out=C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_4\\evidence\\physics\\timeline.json"
+      ]
+    },
+    {
+      "name": "chains",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_4\\evidence\\chains\\godot.log",
+        "--headless",
+        "--script",
+        "res://tests/test_chain_counter_timeline.gd",
+        "--",
+        "--out=C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_4\\evidence\\chains\\timeline.json"
+      ]
+    },
+    {
+      "name": "showcase_ui",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_4\\evidence\\showcase_ui\\godot.log",
+        "--script",
+        "res://tests/test_showcase_ui.gd"
+      ]
+    },
+    {
+      "name": "character_select_ui",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_4\\evidence\\character_select_ui\\godot.log",
+        "--script",
+        "res://tests/test_character_select_ui.gd"
+      ]
+    },
+    {
+      "name": "match_flow_visual",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--path",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--log-file",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_4\\evidence\\match_flow_visual\\godot.log",
+        "--script",
+        "res://tests/test_match_flow_visual_v10_3_4.gd",
+        "--",
+        "--visual"
+      ]
+    },
+    {
+      "name": "lint",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "python",
+        "-B",
+        "C:\\Users\\MauTrIX\\.codex\\skills\\godot\\scripts\\debug\\lint_project.py",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--pretty"
+      ],
+      "counts": {
+        "total": 11,
+        "errors": 0,
+        "warnings": 11,
+        "parse_errors": 0
+      },
+      "ok": true
+    },
+    {
+      "name": "python",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ]
+    },
+    {
+      "name": "native",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "python",
+        "-B",
+        "C:\\Users\\MauTrIX\\.codex\\skills\\godot\\scripts\\debug\\validate_project.py",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--godot-bin",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--pretty"
+      ],
+      "counts": {
+        "total": 72,
+        "errors": 0,
+        "parse_errors": 0,
+        "warnings": 72,
+        "info": 0
+      },
+      "ok": true
+    },
+    {
+      "name": "smoke",
+      "exit_code": 0,
+      "passed": true,
+      "command": [
+        "python",
+        "-B",
+        "C:\\Users\\MauTrIX\\.codex\\skills\\godot\\scripts\\debug\\smoke_scenes.py",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+        "--godot-bin",
+        "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+        "--seconds",
+        "2",
+        "--jobs",
+        "4",
+        "--fuzz",
+        "--pretty"
+      ],
+      "counts": {
+        "scenes": 4,
+        "passed": 4,
+        "failed": 0,
+        "errors": 0,
+        "warnings": 98,
+        "findings": 1
+      },
+      "ok": true
+    }
+  ],
+  "explosions": {
+    "cases": [
+      {
+        "burst_frames": [
+          66
+        ],
+        "captures": [
+          {
+            "logical_frame": 0,
+            "stage": "00_before",
+            "tick": 0
+          },
+          {
+            "logical_frame": 46,
+            "stage": "01_activation",
+            "tick": 46
+          },
+          {
+            "logical_frame": 66,
+            "stage": "wave_01_flash",
+            "tick": 66
+          },
+          {
+            "logical_frame": 66,
+            "stage": "02_flash",
+            "tick": 66
+          },
+          {
+            "logical_frame": 71,
+            "stage": "03_fragments",
+            "tick": 71
+          },
+          {
+            "logical_frame": 78,
+            "stage": "04_particles",
+            "tick": 78
+          },
+          {
+            "logical_frame": 91,
+            "stage": "05_dissipation",
+            "tick": 91
+          },
+          {
+            "logical_frame": 121,
+            "stage": "06_result",
+            "tick": 121
+          },
+          {
+            "logical_frame": 180,
+            "stage": "07_final",
+            "tick": 180
+          }
+        ],
+        "draw_calls_peak": 495,
+        "id": "color_1",
+        "peak_bursts": 4,
+        "peak_motes": 8,
+        "peak_shards": 16,
+        "render_usec": [
+          6897,
+          4206,
+          4147,
+          4189,
+          4123,
+          4692,
+          4194,
+          4175,
+          4845,
+          5209,
+          4652,
+          5048,
+          4480,
+          4388,
+          4388,
+          4605,
+          4177,
+          4129,
+          4055,
+          4206,
+          4143,
+          4178
+        ],
+        "sequence_frames": 0,
+        "white_fraction": [
+          {
+            "age": 5,
+            "fraction": 0.000271267361111111
+          },
+          {
+            "age": 12,
+            "fraction": 0.000217013888888889
+          },
+          {
+            "age": 25,
+            "fraction": 0.000162760416666667
+          }
+        ]
+      },
+      {
+        "burst_frames": [
+          66
+        ],
+        "captures": [
+          {
+            "logical_frame": 0,
+            "stage": "00_before",
+            "tick": 0
+          },
+          {
+            "logical_frame": 46,
+            "stage": "01_activation",
+            "tick": 46
+          },
+          {
+            "logical_frame": 66,
+            "stage": "wave_01_flash",
+            "tick": 66
+          },
+          {
+            "logical_frame": 66,
+            "stage": "02_flash",
+            "tick": 66
+          },
+          {
+            "logical_frame": 71,
+            "stage": "03_fragments",
+            "tick": 71
+          },
+          {
+            "logical_frame": 78,
+            "stage": "04_particles",
+            "tick": 78
+          },
+          {
+            "logical_frame": 91,
+            "stage": "05_dissipation",
+            "tick": 91
+          },
+          {
+            "logical_frame": 121,
+            "stage": "06_result",
+            "tick": 121
+          },
+          {
+            "logical_frame": 180,
+            "stage": "07_final",
+            "tick": 180
+          }
+        ],
+        "draw_calls_peak": 495,
+        "id": "color_2",
+        "peak_bursts": 4,
+        "peak_motes": 8,
+        "peak_shards": 16,
+        "render_usec": [
+          5657,
+          4244,
+          4140,
+          4136,
+          4143,
+          4690,
+          4127,
+          4182,
+          4866,
+          4958,
+          4629,
+          5113,
+          4587,
+          4430,
+          4124,
+          4433,
+          4168,
+          4113,
+          4024,
+          4158,
+          4182,
+          4127
+        ],
+        "sequence_frames": 0,
+        "white_fraction": [
+          {
+            "age": 5,
+            "fraction": 0.000271267361111111
+          },
+          {
+            "age": 12,
+            "fraction": 0.000217013888888889
+          },
+          {
+            "age": 25,
+            "fraction": 0.000162760416666667
+          }
+        ]
+      },
+      {
+        "burst_frames": [
+          66
+        ],
+        "captures": [
+          {
+            "logical_frame": 0,
+            "stage": "00_before",
+            "tick": 0
+          },
+          {
+            "logical_frame": 46,
+            "stage": "01_activation",
+            "tick": 46
+          },
+          {
+            "logical_frame": 66,
+            "stage": "wave_01_flash",
+            "tick": 66
+          },
+          {
+            "logical_frame": 66,
+            "stage": "02_flash",
+            "tick": 66
+          },
+          {
+            "logical_frame": 71,
+            "stage": "03_fragments",
+            "tick": 71
+          },
+          {
+            "logical_frame": 78,
+            "stage": "04_particles",
+            "tick": 78
+          },
+          {
+            "logical_frame": 91,
+            "stage": "05_dissipation",
+            "tick": 91
+          },
+          {
+            "logical_frame": 121,
+            "stage": "06_result",
+            "tick": 121
+          },
+          {
+            "logical_frame": 180,
+            "stage": "07_final",
+            "tick": 180
+          }
+        ],
+        "draw_calls_peak": 495,
+        "id": "color_3",
+        "peak_bursts": 4,
+        "peak_motes": 8,
+        "peak_shards": 16,
+        "render_usec": [
+          5557,
+          4454,
+          4177,
+          4105,
+          4140,
+          4464,
+          4109,
+          4709,
+          4818,
+          5454,
+          4700,
+          5144,
+          4559,
+          4404,
+          4105,
+          4802,
+          4181,
+          4114,
+          4040,
+          4186,
+          4185,
+          4135
+        ],
+        "sequence_frames": 0,
+        "white_fraction": [
+          {
+            "age": 5,
+            "fraction": 0.000434027777777778
+          },
+          {
+            "age": 12,
+            "fraction": 0.000379774305555556
+          },
+          {
+            "age": 25,
+            "fraction": 0.000325520833333333
+          }
+        ]
+      },
+      {
+        "burst_frames": [
+          66
+        ],
+        "captures": [
+          {
+            "logical_frame": 0,
+            "stage": "00_before",
+            "tick": 0
+          },
+          {
+            "logical_frame": 46,
+            "stage": "01_activation",
+            "tick": 46
+          },
+          {
+            "logical_frame": 66,
+            "stage": "wave_01_flash",
+            "tick": 66
+          },
+          {
+            "logical_frame": 66,
+            "stage": "02_flash",
+            "tick": 66
+          },
+          {
+            "logical_frame": 71,
+            "stage": "03_fragments",
+            "tick": 71
+          },
+          {
+            "logical_frame": 78,
+            "stage": "04_particles",
+            "tick": 78
+          },
+          {
+            "logical_frame": 91,
+            "stage": "05_dissipation",
+            "tick": 91
+          },
+          {
+            "logical_frame": 121,
+            "stage": "06_result",
+            "tick": 121
+          },
+          {
+            "logical_frame": 180,
+            "stage": "07_final",
+            "tick": 180
+          }
+        ],
+        "draw_calls_peak": 495,
+        "id": "color_4",
+        "peak_bursts": 4,
+        "peak_motes": 8,
+        "peak_shards": 16,
+        "render_usec": [
+          5565,
+          4210,
+          4172,
+          4112,
+          4135,
+          4764,
+          4126,
+          4234,
+          5077,
+          5318,
+          4747,
+          4917,
+          4458,
+          4379,
+          4096,
+          4164,
+          4115,
+          4100,
+          4058,
+          4192,
+          4287,
+          4156
+        ],
+        "sequence_frames": 0,
+        "white_fraction": [
+          {
+            "age": 5,
+            "fraction": 0.000759548611111111
+          },
+          {
+            "age": 12,
+            "fraction": 0.000705295138888889
+          },
+          {
+            "age": 25,
+            "fraction": 0.000651041666666667
+          }
+        ]
+      },
+      {
+        "burst_frames": [
+          66
+        ],
+        "captures": [
+          {
+            "logical_frame": 0,
+            "stage": "00_before",
+            "tick": 0
+          },
+          {
+            "logical_frame": 46,
+            "stage": "01_activation",
+            "tick": 46
+          },
+          {
+            "logical_frame": 66,
+            "stage": "wave_01_flash",
+            "tick": 66
+          },
+          {
+            "logical_frame": 66,
+            "stage": "02_flash",
+            "tick": 66
+          },
+          {
+            "logical_frame": 71,
+            "stage": "03_fragments",
+            "tick": 71
+          },
+          {
+            "logical_frame": 78,
+            "stage": "04_particles",
+            "tick": 78
+          },
+          {
+            "logical_frame": 91,
+            "stage": "05_dissipation",
+            "tick": 91
+          },
+          {
+            "logical_frame": 121,
+            "stage": "06_result",
+            "tick": 121
+          },
+          {
+            "logical_frame": 180,
+            "stage": "07_final",
+            "tick": 180
+          }
+        ],
+        "draw_calls_peak": 539,
+        "id": "power_2x2",
+        "peak_bursts": 6,
+        "peak_motes": 18,
+        "peak_shards": 22,
+        "render_usec": [
+          4860,
+          4590,
+          4593,
+          5154,
+          4160,
+          4335,
+          4194,
+          4158,
+          5033,
+          5101,
+          4810,
+          5010,
+          4547,
+          4490,
+          4039,
+          4575,
+          4155,
+          4296,
+          4060,
+          4156,
+          4174,
+          4111
+        ],
+        "sequence_frames": 0,
+        "white_fraction": [
+          {
+            "age": 5,
+            "fraction": 0.00189887152777778
+          },
+          {
+            "age": 12,
+            "fraction": 0.000162760416666667
+          },
+          {
+            "age": 25,
+            "fraction": 0.000162760416666667
+          }
+        ]
+      },
+      {
+        "burst_frames": [
+          72
+        ],
+        "captures": [
+          {
+            "logical_frame": 0,
+            "stage": "00_before",
+            "tick": 0
+          },
+          {
+            "logical_frame": 52,
+            "stage": "01_activation",
+            "tick": 52
+          },
+          {
+            "logical_frame": 72,
+            "stage": "wave_01_flash",
+            "tick": 72
+          },
+          {
+            "logical_frame": 72,
+            "stage": "02_flash",
+            "tick": 72
+          },
+          {
+            "logical_frame": 77,
+            "stage": "03_fragments",
+            "tick": 77
+          },
+          {
+            "logical_frame": 84,
+            "stage": "04_particles",
+            "tick": 84
+          },
+          {
+            "logical_frame": 97,
+            "stage": "05_dissipation",
+            "tick": 97
+          },
+          {
+            "logical_frame": 127,
+            "stage": "06_result",
+            "tick": 127
+          },
+          {
+            "logical_frame": 180,
+            "stage": "07_final",
+            "tick": 180
+          }
+        ],
+        "draw_calls_peak": 574,
+        "id": "power_2x3",
+        "peak_bursts": 8,
+        "peak_motes": 24,
+        "peak_shards": 30,
+        "render_usec": [
+          5277,
+          4736,
+          4638,
+          4607,
+          4137,
+          4221,
+          4655,
+          4160,
+          5854,
+          5217,
+          5413,
+          4820,
+          4657,
+          4530,
+          4532,
+          4956,
+          4389,
+          4172,
+          4214,
+          4129,
+          4299,
+          4277
+        ],
+        "sequence_frames": 0,
+        "white_fraction": [
+          {
+            "age": 5,
+            "fraction": 0.00168185763888889
+          },
+          {
+            "age": 12,
+            "fraction": 0.000379774305555556
+          },
+          {
+            "age": 25,
+            "fraction": 0.000325520833333333
+          }
+        ]
+      },
+      {
+        "burst_frames": [
+          84
+        ],
+        "captures": [
+          {
+            "logical_frame": 0,
+            "stage": "00_before",
+            "tick": 0
+          },
+          {
+            "logical_frame": 64,
+            "stage": "01_activation",
+            "tick": 64
+          },
+          {
+            "logical_frame": 84,
+            "stage": "wave_01_flash",
+            "tick": 84
+          },
+          {
+            "logical_frame": 84,
+            "stage": "02_flash",
+            "tick": 84
+          },
+          {
+            "logical_frame": 89,
+            "stage": "03_fragments",
+            "tick": 89
+          },
+          {
+            "logical_frame": 96,
+            "stage": "04_particles",
+            "tick": 96
+          },
+          {
+            "logical_frame": 109,
+            "stage": "05_dissipation",
+            "tick": 109
+          },
+          {
+            "logical_frame": 139,
+            "stage": "06_result",
+            "tick": 139
+          },
+          {
+            "logical_frame": 180,
+            "stage": "07_final",
+            "tick": 180
+          }
+        ],
+        "draw_calls_peak": 668,
+        "id": "power_5x2",
+        "peak_bursts": 12,
+        "peak_motes": 47,
+        "peak_shards": 46,
+        "render_usec": [
+          4442,
+          4270,
+          4273,
+          4300,
+          4266,
+          4312,
+          4244,
+          4424,
+          4292,
+          4305,
+          5449,
+          5644,
+          4862,
+          4644,
+          4589,
+          4516,
+          4143,
+          4173,
+          4144,
+          4115,
+          4215,
+          4256
+        ],
+        "sequence_frames": 90,
+        "white_fraction": [
+          {
+            "age": 5,
+            "fraction": 0.00141059027777778
+          },
+          {
+            "age": 12,
+            "fraction": 0.000542534722222222
+          },
+          {
+            "age": 25,
+            "fraction": 0.0
+          }
+        ]
+      },
+      {
+        "burst_frames": [
+          54
+        ],
+        "captures": [
+          {
+            "logical_frame": 0,
+            "stage": "00_before",
+            "tick": 0
+          },
+          {
+            "logical_frame": 34,
+            "stage": "01_activation",
+            "tick": 34
+          },
+          {
+            "logical_frame": 54,
+            "stage": "wave_01_flash",
+            "tick": 54
+          },
+          {
+            "logical_frame": 54,
+            "stage": "02_flash",
+            "tick": 54
+          },
+          {
+            "logical_frame": 59,
+            "stage": "03_fragments",
+            "tick": 59
+          },
+          {
+            "logical_frame": 66,
+            "stage": "04_particles",
+            "tick": 66
+          },
+          {
+            "logical_frame": 79,
+            "stage": "05_dissipation",
+            "tick": 79
+          },
+          {
+            "logical_frame": 109,
+            "stage": "06_result",
+            "tick": 109
+          },
+          {
+            "logical_frame": 180,
+            "stage": "07_final",
+            "tick": 180
+          }
+        ],
+        "draw_calls_peak": 489,
+        "id": "combo_small",
+        "peak_bursts": 2,
+        "peak_motes": 4,
+        "peak_shards": 8,
+        "render_usec": [
+          6472,
+          4329,
+          4216,
+          4188,
+          4422,
+          4208,
+          5636,
+          4997,
+          5502,
+          5060,
+          4608,
+          4479,
+          4393,
+          4854,
+          4167,
+          4150,
+          4180,
+          4094,
+          4193,
+          4253,
+          4159,
+          4230
+        ],
+        "sequence_frames": 0,
+        "white_fraction": [
+          {
+            "age": 5,
+            "fraction": 0.00108506944444444
+          },
+          {
+            "age": 12,
+            "fraction": 0.00103081597222222
+          },
+          {
+            "age": 25,
+            "fraction": 0.00103081597222222
+          }
+        ]
+      },
+      {
+        "burst_frames": [
+          54,
+          121,
+          191
+        ],
+        "captures": [
+          {
+            "logical_frame": 0,
+            "stage": "00_before",
+            "tick": 0
+          },
+          {
+            "logical_frame": 34,
+            "stage": "01_activation",
+            "tick": 34
+          },
+          {
+            "logical_frame": 54,
+            "stage": "wave_01_flash",
+            "tick": 54
+          },
+          {
+            "logical_frame": 54,
+            "stage": "02_flash",
+            "tick": 54
+          },
+          {
+            "logical_frame": 59,
+            "stage": "03_fragments",
+            "tick": 59
+          },
+          {
+            "logical_frame": 66,
+            "stage": "04_particles",
+            "tick": 66
+          },
+          {
+            "logical_frame": 79,
+            "stage": "05_dissipation",
+            "tick": 79
+          },
+          {
+            "logical_frame": 109,
+            "stage": "06_result",
+            "tick": 109
+          },
+          {
+            "logical_frame": 121,
+            "stage": "wave_02_flash",
+            "tick": 121
+          },
+          {
+            "logical_frame": 191,
+            "stage": "wave_03_flash",
+            "tick": 191
+          },
+          {
+            "logical_frame": 359,
+            "stage": "07_final",
+            "tick": 359
+          }
+        ],
+        "draw_calls_peak": 573,
+        "id": "combo_medium",
+        "peak_bursts": 4,
+        "peak_motes": 12,
+        "peak_shards": 24,
+        "render_usec": [
+          6398,
+          4388,
+          4386,
+          4266,
+          5275,
+          4482,
+          5635,
+          4997,
+          5565,
+          5330,
+          4979,
+          4847,
+          4776,
+          5070,
+          4899,
+          6010,
+          5493,
+          5303,
+          5487,
+          5062,
+          4751,
+          4387,
+          4342,
+          6163,
+          5682,
+          5354,
+          5212,
+          5044,
+          4870,
+          4551,
+          4135,
+          4051,
+          4099,
+          4095,
+          4073,
+          4255,
+          4208,
+          4142,
+          4209,
+          4429,
+          4182,
+          4211,
+          4206,
+          4175
+        ],
+        "sequence_frames": 0,
+        "white_fraction": [
+          {
+            "age": 5,
+            "fraction": 0.00113932291666667
+          },
+          {
+            "age": 12,
+            "fraction": 0.00108506944444444
+          },
+          {
+            "age": 25,
+            "fraction": 0.001953125
+          }
+        ]
+      },
+      {
+        "burst_frames": [
+          54,
+          121,
+          191,
+          250,
+          322
+        ],
+        "captures": [
+          {
+            "logical_frame": 0,
+            "stage": "00_before",
+            "tick": 0
+          },
+          {
+            "logical_frame": 34,
+            "stage": "01_activation",
+            "tick": 34
+          },
+          {
+            "logical_frame": 54,
+            "stage": "wave_01_flash",
+            "tick": 54
+          },
+          {
+            "logical_frame": 54,
+            "stage": "02_flash",
+            "tick": 54
+          },
+          {
+            "logical_frame": 59,
+            "stage": "03_fragments",
+            "tick": 59
+          },
+          {
+            "logical_frame": 66,
+            "stage": "04_particles",
+            "tick": 66
+          },
+          {
+            "logical_frame": 79,
+            "stage": "05_dissipation",
+            "tick": 79
+          },
+          {
+            "logical_frame": 109,
+            "stage": "06_result",
+            "tick": 109
+          },
+          {
+            "logical_frame": 121,
+            "stage": "wave_02_flash",
+            "tick": 121
+          },
+          {
+            "logical_frame": 191,
+            "stage": "wave_03_flash",
+            "tick": 191
+          },
+          {
+            "logical_frame": 250,
+            "stage": "wave_04_flash",
+            "tick": 250
+          },
+          {
+            "logical_frame": 322,
+            "stage": "wave_05_flash",
+            "tick": 322
+          },
+          {
+            "logical_frame": 359,
+            "stage": "07_final",
+            "tick": 359
+          }
+        ],
+        "draw_calls_peak": 601,
+        "id": "combo_large",
+        "peak_bursts": 4,
+        "peak_motes": 16,
+        "peak_shards": 35,
+        "render_usec": [
+          4685,
+          4669,
+          4504,
+          4580,
+          4588,
+          4652,
+          5501,
+          5150,
+          5136,
+          5168,
+          4979,
+          4898,
+          4994,
+          4597,
+          4727,
+          5486,
+          5473,
+          5379,
+          5692,
+          5287,
+          4942,
+          4582,
+          4550,
+          6029,
+          5776,
+          5647,
+          5346,
+          5375,
+          5277,
+          4866,
+          4465,
+          5553,
+          5378,
+          5393,
+          5319,
+          5213,
+          4903,
+          4428,
+          4286,
+          4648,
+          5614,
+          5465,
+          5267,
+          5104
+        ],
+        "sequence_frames": 179,
+        "white_fraction": [
+          {
+            "age": 5,
+            "fraction": 0.00179036458333333
+          },
+          {
+            "age": 12,
+            "fraction": 0.00157335069444444
+          },
+          {
+            "age": 25,
+            "fraction": 0.00206163194444444
+          }
+        ]
+      },
+      {
+        "burst_frames": [
+          54
+        ],
+        "captures": [
+          {
+            "logical_frame": 0,
+            "stage": "00_before",
+            "tick": 0
+          },
+          {
+            "logical_frame": 34,
+            "stage": "01_activation",
+            "tick": 34
+          },
+          {
+            "logical_frame": 54,
+            "stage": "wave_01_flash",
+            "tick": 54
+          },
+          {
+            "logical_frame": 54,
+            "stage": "02_flash",
+            "tick": 54
+          },
+          {
+            "logical_frame": 59,
+            "stage": "03_fragments",
+            "tick": 59
+          },
+          {
+            "logical_frame": 66,
+            "stage": "04_particles",
+            "tick": 66
+          },
+          {
+            "logical_frame": 79,
+            "stage": "05_dissipation",
+            "tick": 79
+          },
+          {
+            "logical_frame": 109,
+            "stage": "06_result",
+            "tick": 109
+          },
+          {
+            "logical_frame": 180,
+            "stage": "07_final",
+            "tick": 180
+          }
+        ],
+        "draw_calls_peak": 712,
+        "id": "c4",
+        "peak_bursts": 10,
+        "peak_motes": 48,
+        "peak_shards": 45,
+        "render_usec": [
+          4603,
+          4646,
+          4680,
+          4457,
+          4516,
+          4737,
+          6443,
+          6060,
+          5610,
+          5436,
+          5251,
+          5301,
+          4822,
+          4373,
+          5158,
+          4371,
+          4545,
+          4383,
+          4461,
+          4524,
+          4643,
+          4473
+        ],
+        "sequence_frames": 90,
+        "white_fraction": [
+          {
+            "age": 5,
+            "fraction": 0.00222439236111111
+          },
+          {
+            "age": 12,
+            "fraction": 0.00108506944444444
+          },
+          {
+            "age": 25,
+            "fraction": 0.000922309027777778
+          }
+        ]
+      },
+      {
+        "burst_frames": [
+          84
+        ],
+        "captures": [
+          {
+            "logical_frame": 0,
+            "stage": "00_before",
+            "tick": 0
+          },
+          {
+            "logical_frame": 64,
+            "stage": "01_activation",
+            "tick": 64
+          },
+          {
+            "logical_frame": 84,
+            "stage": "wave_01_flash",
+            "tick": 84
+          },
+          {
+            "logical_frame": 84,
+            "stage": "02_flash",
+            "tick": 84
+          },
+          {
+            "logical_frame": 89,
+            "stage": "03_fragments",
+            "tick": 89
+          },
+          {
+            "logical_frame": 96,
+            "stage": "04_particles",
+            "tick": 96
+          },
+          {
+            "logical_frame": 109,
+            "stage": "05_dissipation",
+            "tick": 109
+          },
+          {
+            "logical_frame": 139,
+            "stage": "06_result",
+            "tick": 139
+          },
+          {
+            "logical_frame": 180,
+            "stage": "07_final",
+            "tick": 180
+          }
+        ],
+        "draw_calls_peak": 897,
+        "id": "simultaneous",
+        "peak_bursts": 24,
+        "peak_motes": 94,
+        "peak_shards": 92,
+        "render_usec": [
+          4837,
+          4892,
+          4858,
+          4843,
+          4470,
+          4455,
+          4476,
+          5589,
+          4490,
+          4491,
+          7560,
+          7492,
+          5630,
+          5372,
+          5012,
+          4752,
+          4014,
+          4838,
+          4029,
+          4071,
+          4024,
+          4216
+        ],
+        "sequence_frames": 0,
+        "white_fraction": [
+          {
+            "age": 5,
+            "fraction": 0.00141059027777778
+          },
+          {
+            "age": 12,
+            "fraction": 0.000542534722222222
+          },
+          {
+            "age": 25,
+            "fraction": 0.0
+          }
+        ]
+      },
+      {
+        "burst_frames": [
+          132
+        ],
+        "captures": [
+          {
+            "logical_frame": 0,
+            "stage": "00_before",
+            "tick": 0
+          },
+          {
+            "logical_frame": 112,
+            "stage": "01_activation",
+            "tick": 112
+          },
+          {
+            "logical_frame": 132,
+            "stage": "wave_01_flash",
+            "tick": 132
+          },
+          {
+            "logical_frame": 132,
+            "stage": "02_flash",
+            "tick": 132
+          },
+          {
+            "logical_frame": 137,
+            "stage": "03_fragments",
+            "tick": 137
+          },
+          {
+            "logical_frame": 144,
+            "stage": "04_particles",
+            "tick": 144
+          },
+          {
+            "logical_frame": 157,
+            "stage": "05_dissipation",
+            "tick": 157
+          },
+          {
+            "logical_frame": 180,
+            "stage": "07_final",
+            "tick": 180
+          }
+        ],
+        "draw_calls_peak": 2437,
+        "id": "stress_simultaneous",
+        "peak_bursts": 122,
+        "peak_motes": 320,
+        "peak_shards": 484,
+        "render_usec": [
+          6139,
+          6453,
+          6491,
+          6317,
+          5780,
+          5710,
+          5797,
+          5523,
+          5538,
+          5652,
+          5513,
+          5683,
+          5574,
+          6268,
+          5919,
+          5420,
+          14312,
+          12552,
+          7309,
+          5702,
+          5181,
+          4709
+        ],
+        "sequence_frames": 0,
+        "white_fraction": [
+          {
+            "age": 5,
+            "fraction": 0.00341796875
+          },
+          {
+            "age": 12,
+            "fraction": 0.00141059027777778
+          },
+          {
+            "age": 25,
+            "fraction": 0.0
+          }
+        ]
+      }
+    ],
+    "checks": 14018,
+    "failures": [],
+    "performance_note": "CPU presentation update; render timings include synchronization and reference viewport, not a standalone GPU benchmark",
+    "update_before_usec": {
+      "max": 2928,
+      "median": 56,
+      "p95": 115
+    },
+    "update_usec": {
+      "max": 2983,
+      "median": 66,
+      "p95": 134
+    }
+  },
+  "integrity": {
+    "preexisting_files_checked": 860,
+    "changed_preexisting_files": [
+      "godot/presentation/cs_arena.gd"
+    ],
+    "all_other_inventoried_files_preserved": true,
+    "core_preserved": true,
+    "hud_presenter_preserved": true,
+    "main_preserved": true,
+    "next_constants_and_draw_method_preserved": true,
+    "v11_3_evidence_preserved": true
+  },
+  "resume_note": "The final run started before the credit interruption completed at 03:19:50 and saved 14018 passed checks after the equal P1/P2 budget change. This resumed session read those artifacts instead of repeating passed suites."
+}

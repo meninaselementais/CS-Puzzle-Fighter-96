@@ -1,3 +1,26 @@
+# V11.2 — camada de leitura do HUD: encerramento documental, 05/11/2026
+
+**Implementação concluída pelo Codex; inspeção e documentação feitas pelo Claude; validação final confirmada por execuções manuais do usuário no Windows; aguardando autorização para o checkpoint.** Branch `feature/v11-hud`, base `v0.10.0` (`1a943a4db4d1dba84a222735187afb6108b4c4c5`), sem commit novo, sem tag, sem push, merge ou rebase.
+
+- Arquivos novos da V11.2 (não rastreados): `godot/presentation/hud_presenter.gd`, `godot/tests/test_hud_presenter.gd`, `godot/tests/test_hud_presenter_scene.gd`. O presenter ainda não está ligado a `main.gd`; sem mudança visual.
+- **Executado pelo Codex** (logs em `Documents\Codex\2026-11-04\continuar-counter-strike-puzzle-fighter-96\outputs\v11_2\`): presenter 3.931 checks; cena real 1.013 checks e 1.000 consultas com framebuffer idêntico; regressão 20/20. Contagens iguais à V10: física 112/14.072, cadeias 22/5.066/54, controles 33/866, naturais 119, regras 34, V10.3.2 123.863, V10.3.3 119.052, Power 394, Python 28, partidas em janela 4/10/276; lint 11 avisos, validação 73, smoke 102.
+- **Verificado pelo Claude apenas de forma estática** (leitura de código, logs, datas de arquivo e `.git`): presenter somente leitura, sem RNG, sem geração de peças, P1/P2 independentes, campos sem fonte indisponíveis, ataque bruto separado do enviado. **O Claude não executou testes nem `git status`.**
+- Riscos: `warning_for` duplica a regra de `is_board_in_danger` (há teste de paridade); `generated_attack` é bruto e sem escopo de resolução; a comparação de NEXT no teste de cena é circular (conferida à mão contra `main.gd:get_next_colors`); `_draw()` ainda consome RNG ao criar o NEXT (dívida anterior).
+- Falha registrada: a primeira rodada focada reprovou por erro de tipo no próprio teste (corrigido no teste; nenhuma regra mudou).
+- **Validação final (execuções do usuário, 05/11 02:16–02:30; logs em `C:\Projetos\validacao_v11_2\`, lidos pelo Claude):** `test_hud_presenter` 3.931 checks, 7 suítes, 0 falhas; `test_hud_presenter_scene` 1.013 checks, 1.000 consultas, `pixel_identical: true` (pelo `hud_scene.json`; o log de console dessa execução não contém a linha de resultado); `test_animation_v8` 145 checks; `test_art_v9` 102 checks; `test_showcase_ui` OK; `test_character_select_ui` OK com 12 capturas. 6/6 aprovados, sem erros nem avisos nos logs, sem diferença em relação à V10. Git: branch `feature/v11-hud`, HEAD `1a943a4`, índice vazio, só `CONTINUIDADE_PROJETO.md` modificado; `main` em `1a943a4`; ref da tag `v0.10.0` intocada (commit apontado pela tag não resolvido nesta sessão). Não rastreados: 3 arquivos da V11.2, `relatorios/v11_2/`, `planejamento/` e `relatorios/v10_3_4/revalidacao_codex/`. Sem pendência técnica para o checkpoint; falta apenas a autorização e a escolha dos caminhos a incluir.
+- **Pendências futuras:** V11.3 (ligar presenter exige autorização para `main.gd`; validação de NEXT não circular); V11.4 (fonte única ou paridade obrigatória para o perigo; contador 00..99); V11.5 (bloqueada: ataque aceito após cancelamento e teto não é exposto pelo núcleo; exige autorização específica).
+- Relatório: `relatorios/v11_2/RELATORIO_V11_2.md`.
+
+**Próxima ação:** aguardar autorização explícita do usuário para o checkpoint. Não iniciar V11.3, não fazer commit/push/tag/merge por inferência.
+
+---
+
+# V11.0 — planejamento do HUD iniciado, 05/11/2026
+
+Planejamento da V11 iniciado sobre a V10 estável publicada: tag `v0.10.0`, commit `1a943a4db4d1dba84a222735187afb6108b4c4c5`. Plano em `planejamento/V11_PLANO_HUD.md`. Somente diagnóstico e proposta de etapas; nenhuma funcionalidade implementada. Aguardar autorização para V11.1 (referências e mockups isolados). Branch sugerida `feature/v11-hud`, ainda não criada. Sem alterações no código/testes, staging, commit, push, merge ou tags. Os registros anteriores permanecem históricos.
+
+---
+
 # Continuidade — correções finais V10 concluídas, 04/11/2026
 
 **Pendências de qualidade fechadas; V10 recomendada para publicação de v0.10.0 no escopo funcional auditado, aguardando autorização para checkpoint/publicação.**
