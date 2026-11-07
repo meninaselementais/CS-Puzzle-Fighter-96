@@ -5,6 +5,7 @@ extends RefCounted
 const Board = preload("res://core/board_model.gd")
 const Rules = preload("res://core/resolution.gd")
 const GemRules = preload("res://core/gem_rules.gd")
+const Hud = preload("res://presentation/hud_presenter.gd")
 const DestructionVfx = preload("res://presentation/gem_destruction_vfx.gd")
 var destruction: RefCounted = DestructionVfx.new()
 ## V11.4.2: glass-shatter presentation for real matches. OFF by default; V11.4 effects stay the fallback.
@@ -186,6 +187,7 @@ var screen_shake_duration: int = 0
 var screen_shake_mag: float = 0.0
 
 var prev_scores: Array[int] = [0, 0]
+var hud_attack_pulse: Array[int] = [0,0]
 var prev_pending: Array[int] = [0, 0]
 var prev_cells: Array = [PackedInt32Array(), PackedInt32Array()]
 var wins: Array[int] = [0, 0]
@@ -371,6 +373,7 @@ func reset_state() -> void:
 	projectiles.clear()
 	vfx_sprites.clear()
 	prev_scores = [0, 0]
+	hud_attack_pulse = [0,0]
 	prev_pending = [0, 0]
 	prev_cells = [PackedInt32Array(), PackedInt32Array()]
 	last_winner_recorded = -2
@@ -914,6 +917,9 @@ func detonate_active_wave(player: int) -> void:
 		cnt += 1
 	var popup_pos := (sum_pos / float(cnt)) if cnt > 0 else (orig + Vector2(96, 190))
 	trigger_wave_presentation(player, chain_num, int(w["score"]), has_power, is_c4, orig, popup_pos, bool(w.get("prepared",false)))
+	if w.has("produced_attack"):
+		if chain_banners[player].is_empty(): set_chain_banner(player,orig,chain_num,is_c4)
+		chain_banners[player]["produced_attack"] = int(w.produced_attack)
 	clear_wave_flashes(player)
 	visual_cells_override[player] = w.cells_mid
 	visual_powers_override[player] = w.powers_mid
@@ -983,13 +989,7 @@ func trigger_demo_combo(board_origins: Array[Vector2]) -> void:
 	power_flash_ticks[0] = 10
 
 func is_board_in_danger(model, player: int) -> bool:
-	if int(model.pending[player]) >= 6:
-		return true
-	var cells: PackedInt32Array = model.boards[player].cells
-	for idx in range(12, 36):
-		if cells[idx] != 0:
-			return true
-	return false
+	return Hud.warning_for(model,player)
 
 func advance_fighter_anim(player: int, model) -> void:
 	fighter_recoil[player] *= 0.55
@@ -1126,7 +1126,9 @@ func sync_temporal_board(model: RefCounted, player: int, origin: Vector2) -> voi
 		var current: Dictionary = active_wave[player]
 		if motion.chain_count >= int(current.chain):
 			var actual: Array = motion.result.get("waves", [])
-			if not actual.is_empty(): current.score = int(actual[-1].score)
+			if not actual.is_empty():
+				current.score = int(actual[-1].score)
+				current["produced_attack"] = int(actual[-1].attack)
 			detonate_active_wave(player)
 			active_wave[player] = {}
 			visual_cells_override[player] = PackedInt32Array()
@@ -1155,6 +1157,8 @@ func step_from_model(model, board_origins: Array[Vector2] = [Vector2(64, 108), V
 		if screen_shake_timer == 0:
 			screen_shake_mag = 0.0
 	for i in range(2):
+		hud_attack_pulse[i] = maxi(0,hud_attack_pulse[i]-1)
+		if int(model.pending[i]) != prev_pending[i]: hud_attack_pulse[i] = 12
 		if callout_timer[i] > 0:
 			callout_timer[i] -= 1
 		if power_flash_ticks[i] > 0:
@@ -1433,19 +1437,12 @@ func draw_board_well_frame(canvas: CanvasItem, font: Font, player: int, origin: 
 		for x in range(6):
 			var cell_r := Rect2(origin + Vector2(x * 32, y * 32), Vector2(32, 32))
 			canvas.draw_rect(cell_r, Color(0.75, 0.85, 1.0, 0.07), false, 1.0)
-	# Barra superior chanfrada com abertura na coluna 3 (x = 3) igual ao Super Puzzle Fighter II Turbo!
-	var left_bar := Rect2(origin.x - 4, origin.y - 26, 3 * 32 + 4, 22)
-	var right_bar := Rect2(origin.x + 4 * 32, origin.y - 26, 2 * 32 + 4, 22)
-	for bar in [left_bar, right_bar]:
-		canvas.draw_rect(bar, Color("2b231d"))
-		canvas.draw_rect(bar.grow(-2), Color("524134"))
-		canvas.draw_rect(bar, Color("e8edf7"), false, 2.0)
 	# Marcador luminoso de entrada na coluna 3 (spawn)
 	var notch_center := origin + Vector2(3 * 32 + 16, 16)
 	canvas.draw_line(notch_center - Vector2(9, 9), notch_center + Vector2(9, 9), Color(1.0, 0.32, 0.36, 0.72), 2.5)
 	canvas.draw_line(notch_center - Vector2(9, -9), notch_center + Vector2(9, -9), Color(1.0, 0.32, 0.36, 0.72), 2.5)
 	# Indicadores de Counter Gems pendentes usando os próprios sprites das gemas no topo!
-	draw_warning_gems(canvas, font, origin, pending_amount)
+	# V11.5: pending amount is rendered once in the Presenter-backed attack panel.
 
 func draw_warning_gems(canvas: CanvasItem, font: Font, origin: Vector2, pending_amount: int) -> void:
 	if pending_amount <= 0:
@@ -1951,6 +1948,9 @@ func draw_foreground_vfx(canvas: CanvasItem, font: Font) -> void:
 			draw_outlined_text(canvas, font, Vector2(bx + 3, by + 3), txt, f_sz, out_col, out_col, 4)
 			draw_outlined_text(canvas, font, Vector2(bx, by + 1), txt, f_sz, bot_col, out_col, 3)
 			draw_outlined_text(canvas, font, Vector2(bx, by - 1), txt, f_sz, top_col, out_col, 2)
+			if cb.has("produced_attack"):
+				var detail: String = "P%d  +%d PEDRAS PRODUZIDAS" % [i+1,int(cb.produced_attack)]
+				draw_outlined_text(canvas,font,Vector2(b_orig.x+2,by+18),detail,11,Color(1,0.9,0.65,alpha_b),out_col,2)
 
 	# Callouts de Combo / Ataque Especial em tipografia 3D CPS-2 (sem caixas opacas sobre o cenário!)
 	for i in range(2):
@@ -1967,3 +1967,33 @@ func draw_foreground_vfx(canvas: CanvasItem, font: Font) -> void:
 				var sub_size := 13
 				while sub_size > 9 and font.get_string_size(callout_sub[i],HORIZONTAL_ALIGNMENT_LEFT,-1,sub_size).x > 198.0: sub_size -= 1
 				draw_outlined_text(canvas, font, Vector2(bx + 2, by + 18), callout_sub[i], sub_size, Color.WHITE, Color("080c16"), 2)
+
+## V11.5: no historical sent/received totals are fabricated from raw attack.
+const ATTACK_LABELS = ["", "CAUTION", "WARNING", "DANGER"]
+const ATTACK_COLORS = [Color("87e4ff"), Color("ffe45c"), Color("ff993f"), Color("ff5151")]
+const ATTACK_PERIODS = [1, 48, 32, 20]
+
+static func attack_level(pending: int) -> int:
+	if pending >= 31: return 3
+	if pending >= 11: return 2
+	if pending >= 1: return 1
+	return 0
+
+func draw_attack_warning_hud(canvas: CanvasItem, font: Font, snapshot: Dictionary) -> void:
+	for player in range(2):
+		var data: Dictionary = snapshot.players[player]
+		var origin: Vector2 = temporal_origins[player]
+		var panel: Rect2 = Rect2(origin+Vector2(-4,-82),Vector2(200,46))
+		var team: Color = Color("48a8ff") if player==0 else Color("ff7848")
+		canvas.draw_rect(panel,Color("101829"))
+		canvas.draw_rect(panel,team,false,1.0)
+		draw_outlined_text(canvas,font,panel.position+Vector2(6,14),"P%d  ENVIADAS  --" % (player+1),12,Color("a7b4c9"))
+		var size: int = 16 if hud_attack_pulse[player]>6 else 14
+		var amount: int = int(data.pending_display)
+		var level: int = attack_level(int(data.pending_attack))
+		var tint: Color = ATTACK_COLORS[level]
+		draw_outlined_text(canvas,font,panel.position+Vector2(6,35),"A RECEBER  %02d" % amount,size,tint)
+		if level > 0:
+			var phase: float = TAU * float(anim_tick % ATTACK_PERIODS[level]) / float(ATTACK_PERIODS[level])
+			var pulse: Color = tint.lightened(0.16 * (1.0 + cos(phase)))
+			draw_outlined_text(canvas,font,panel.position+Vector2(111,35),ATTACK_LABELS[level],16,pulse)

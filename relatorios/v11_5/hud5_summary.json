@@ -1,0 +1,16 @@
+[
+  {
+    "name": "hud5",
+    "exit_code": 0,
+    "passed": true,
+    "command": [
+      "C:\\Projetos\\CS-Puzzle-Fighter-96\\ferramentas\\godot_4.7.2\\Godot_v4.7.2-stable_win64_console.exe",
+      "--path",
+      "C:\\Projetos\\CS-Puzzle-Fighter-96\\godot",
+      "--log-file",
+      "C:\\Projetos\\CS-Puzzle-Fighter-96\\relatorios\\v11_5\\evidence\\hud5\\godot.log",
+      "--script",
+      "res://tests/test_hud_v11_5.gd"
+    ]
+  }
+]

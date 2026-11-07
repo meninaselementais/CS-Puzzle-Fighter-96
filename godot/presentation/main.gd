@@ -247,6 +247,9 @@ func _draw() -> void:
 	Arena.draw_outlined_text(self, font, Vector2(36, 658), mode + "   |   P1: Setas, Z/X   |   P2: A/D/S, Q/E   |   1/2/3/M: Cenário   |   R: Reiniciar", 14, Color("ffe868"))
 	Arena.draw_outlined_text(self, font, Vector2(36, 682), "ESC: Menu   |   F4: Animation Showcase   |   TAB: Replay MAME   |   " + status, 13, Color("9cc8ff"))
 
+	# Historical presentation fixtures intentionally have no V11.5 renderer.
+	if arena.has_method("draw_attack_warning_hud"): arena.draw_attack_warning_hud(self,font,hud_snapshot)
+
 func create_pause_menu() -> void:
 	pause_menu = CanvasLayer.new()
 	pause_menu.layer = 10

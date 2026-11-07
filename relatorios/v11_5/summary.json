@@ -1,0 +1,12 @@
+{
+  "protected_files_unchanged": 20,
+  "next_renderer_unchanged": true,
+  "base": "753722c",
+  "artistic_approval": "pending_user",
+  "sent_counter": "unavailable_until_future_core_event_authorized_by_user",
+  "phases": {
+    "hud5": 1,
+    "focused": 3,
+    "regression": 19
+  }
+}

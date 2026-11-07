@@ -40,3 +40,9 @@
 !/relatorios/v11_4_2/bench2_summary.json
 !/relatorios/v11_4_2/focused_summary.json
 !/relatorios/v11_4_2/regression_summary.json
+
+# V11.5 validation
+!/relatorios/v11_5/hud5_summary.json
+!/relatorios/v11_5/focused_summary.json
+!/relatorios/v11_5/regression_summary.json
+!/relatorios/v11_5/run_validation.py

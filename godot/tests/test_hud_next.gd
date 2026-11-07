@@ -171,10 +171,12 @@ func run() -> void:
 				for x in range(1000):
 					var pixel: int = (y*1000+x)*4
 					if current[pixel] != old_pixels[pixel] or current[pixel+1] != old_pixels[pixel+1] or current[pixel+2] != old_pixels[pixel+2]:
+						# V11.5 changes only these two top-of-well HUD rectangles.
+						if Rect2i(58,24,204,82).has_point(Vector2i(x,y)) or Rect2i(738,24,204,82).has_point(Vector2i(x,y)): continue
 						if Rect2i(274,24,116,198).has_point(Vector2i(x,y)) or Rect2i(630,24,114,198).has_point(Vector2i(x,y)):
 							inside_changes += 1
 						else: outside_changes += 1
-			expect(outside_changes == 0,"V10 pixels unchanged outside NEXT boxes and attached labels")
+			expect(outside_changes == 0,"V10 pixels unchanged outside NEXT and documented V11.5 HUD rectangles")
 			expect(inside_changes > 0,"compact NEXT visibly differs from V10")
 			evidence.append({"outside_next_changed_pixels":outside_changes,"inside_next_changed_pixels":inside_changes})
 		if step == 23: capture("next_c4_p1_1000x700")
