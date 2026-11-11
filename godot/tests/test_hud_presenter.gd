@@ -47,7 +47,7 @@ func test_missing_data() -> void:
 		expect(p.slot == player and p.slot_label == "P%d" % (player + 1), "actual local slot")
 		for key in ["nickname", "rank", "player_id"]: assert_unknown(p[key], "player_profile_not_available", key)
 		assert_unknown(p.session_victories, "session_history_not_available", "round wins are not session victories")
-		assert_unknown(p.sent_attack, "net_sent_attack_not_exposed", "sent attack unknown, never fabricated zero")
+		expect(p.sent_attack.available and int(p.sent_attack.value)==int(model.last_sent_attack[0]),"sent telemetry matches model")
 		assert_unknown(p.generated_attack, "no_observed_resolution", "no invented generated attack")
 		assert_unknown(p.combo, "no_observed_resolution", "no invented combo")
 		assert_unknown(p.next_pair, "next_pair_not_generated", "missing NEXT does not spawn")
@@ -114,7 +114,7 @@ func test_combo_and_attack_meaning() -> void:
 	var view: Dictionary = Hud.snapshot(model)
 	expect(view.players[0].generated_attack.value == 20, "raw attack accurately labelled")
 	expect(view.players[0].combo.value.scope == "last_observed_resolution", "combo is last result, not new event")
-	assert_unknown(view.players[0].sent_attack, "net_sent_attack_not_exposed", "saturation does not justify guessing net sent")
+	expect(view.players[0].sent_attack.available and int(view.players[0].sent_attack.value)==int(model.last_sent_attack[0]),"sent telemetry matches model")
 	assert_unknown(view.players[1].generated_attack, "no_observed_resolution", "opponent pending is not own generated attack")
 	view.players[0].combo.value.result.waves[0].groups[0].count = 999
 	expect(JSON.stringify(state(model)) == before, "nested combo groups deeply copied")
@@ -167,7 +167,7 @@ func test_trajectory_and_real_resolution() -> void:
 		if view.players[0].combo.available:
 			saw_wave = true
 			expect(view.players[0].generated_attack.value == int(observed.last_results[0].attack), "real temporal raw attack")
-			assert_unknown(view.players[0].sent_attack, "net_sent_attack_not_exposed", "real net remains unavailable")
+			expect(view.players[0].sent_attack.available and int(view.players[0].sent_attack.value)==int(observed.last_sent_attack[0]),"sent telemetry matches model")
 		expect(JSON.stringify(state(observed)) == before, "frame %d read pure" % frame)
 		observed.tick()
 		control.tick()

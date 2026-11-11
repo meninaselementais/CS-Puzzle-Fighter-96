@@ -245,7 +245,7 @@ func run() -> void:
 			var before: String = fingerprint(probe)
 			var snap: Dictionary = Hud.snapshot(probe)
 			expect(snap.players[player].pending_display==mini(value,99),"display clamp only")
-			expect(not snap.players[player].sent_attack.available,"sent never fabricated")
+			expect(snap.players[player].sent_attack.value==probe.last_sent_attack[player],"sent telemetry")
 			expect(Arena.ATTACK_LABELS[Arena.attack_level(snap.players[player].pending_attack)]==expected[value],"real queue severity")
 			expect(Arena.attack_level(snap.players[1-player].pending_attack)==0,"opponent independent")
 			expect(before==fingerprint(probe),"HUD projection preserves all simulation properties")
