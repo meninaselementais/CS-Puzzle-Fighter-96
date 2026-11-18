@@ -10,6 +10,10 @@ const DestructionVfx = preload("res://presentation/gem_destruction_vfx.gd")
 var destruction: RefCounted = DestructionVfx.new()
 ## V11.4.2: glass-shatter presentation for real matches. OFF by default; V11.4 effects stay the fallback.
 var glass_enabled: bool = false
+## V11.6: attack volleys + combo tags in real matches. OFF by default; lazy-loaded, presentation only.
+var attack_vfx: RefCounted = null
+var attack_vfx_enabled: bool = false
+const ATTACK_HIT_TICKS := [18, 22, 26, 32, 38]
 const SPRITE_DIR := "res://assets/sprites/"
 # V11.3: only NEXT uses the provisional C layout, in the existing 1000x700 canvas.
 const NEXT_ORIGINS: Array[Vector2] = [Vector2(284, 108), Vector2(668, 108)]
@@ -341,7 +345,33 @@ func set_glass_presentation(enabled: bool, profile: String = "high") -> bool:
 	glass_enabled = destruction.prototype != null
 	return glass_enabled
 
+## Switches the V11.6 attack presentation on or off at runtime. Presentation only: never touches the match model.
+func set_attack_presentation(enabled: bool) -> bool:
+	if enabled:
+		if attack_vfx == null:
+			var script: GDScript = load("res://presentation/vfx/attack_vfx.gd") as GDScript
+			if script == null:
+				push_warning("Attack presentation unavailable; keeping the V11.5.1 visuals.")
+				return false
+			attack_vfx = script.new()
+		attack_vfx.clear()
+	else:
+		if attack_vfx != null: attack_vfx.clear()
+		attack_vfx = null
+	attack_vfx_enabled = attack_vfx != null
+	return attack_vfx_enabled
+
+## Rival reaction at wave time. With V11.6 on in a real match the reaction waits for the accepted stones to arrive.
+func rival_hit(player: int, duration: int) -> void:
+	if attack_vfx_enabled and temporal_players[player]: return
+	trigger_action(1 - player, "hit", duration)
+
+func attack_arrival_hit(model, receiver: int, tier: int) -> void:
+	if model.winner != -2 or model.lost[receiver]: return
+	trigger_action(receiver, "hit", ATTACK_HIT_TICKS[clampi(tier, 1, 5) - 1])
+
 func reset_state() -> void:
+	if attack_vfx != null: attack_vfx.clear()
 	destruction.clear()
 	fighter_state = ["idle", "idle"]
 	fighter_timer = [0, 0]
@@ -661,41 +691,49 @@ func trigger_wave_presentation(player: int, chain_num: int, wave_score: int, has
 	if is_c4:
 		set_chain_banner(player, board_origin, chain_num, true)
 		trigger_action(player, "grenade", 38, "C4 DETONATED!", "+%d PTS" % wave_score, prepared)
-		trigger_action(1 - player, "hit", 30)
+		rival_hit(player, 30)
 		trigger_screen_shake(12, 3.0)
 		spawn_board_popup(popup_pos, "C4 CLEAR!", "+%d" % wave_score, Color("ff6852"))
 	elif chain_num <= 1:
 		var title := "POWER GEM BLAST!" if has_power else ("M4A1-S BURST!" if player == 0 else "AK-47 BARRAGE!")
 		trigger_action(player, "shoot", 24, title, "+%d PTS" % wave_score, prepared)
-		trigger_action(1 - player, "hit", 18)
+		rival_hit(player, 18)
 		if has_power:
 			trigger_screen_shake(5, 1.0)
 		spawn_board_popup(popup_pos, "+%d" % wave_score, "POWER!" if has_power else "", Color("68ff9c"))
 	elif chain_num == 2:
 		set_chain_banner(player, board_origin, 2, false)
 		trigger_action(player, "shoot", 28, "2X CHAIN COMBO!", "+%d PTS" % wave_score, prepared)
-		trigger_action(1 - player, "hit", 22)
+		rival_hit(player, 22)
 		trigger_screen_shake(4, 0.8)
 		spawn_board_popup(popup_pos, "2 CHAIN!", "+%d" % wave_score, Color("ffe852"))
 	elif chain_num == 3:
 		set_chain_banner(player, board_origin, 3, false)
 		var sub := "SUPPRESSED BARRAGE" if player == 0 else "KALASHNIKOV STORM"
 		trigger_action(player, "shoot", 32, "3X CHAIN COMBO!", sub + " +%d" % wave_score, prepared)
-		trigger_action(1 - player, "hit", 26)
+		rival_hit(player, 26)
 		trigger_screen_shake(6, 1.3)
 		spawn_board_popup(popup_pos, "3 CHAIN!", "+%d" % wave_score, Color("ffc838"))
 	elif chain_num == 4:
 		set_chain_banner(player, board_origin, 4, false)
 		trigger_action(player, "grenade", 36, "4X CHAIN COMBO!", "HE GRENADE STRIKE +%d" % wave_score, prepared)
-		trigger_action(1 - player, "hit", 32)
+		rival_hit(player, 32)
 		trigger_screen_shake(8, 1.8)
 		spawn_board_popup(popup_pos, "4 CHAIN!", "+%d" % wave_score, Color("ff9838"))
 	else:
 		set_chain_banner(player, board_origin, chain_num, false)
 		trigger_action(player, "grenade", 42, "%dX CHAIN FINALE!" % chain_num, "MAXIMUM DAMAGE +%d" % wave_score, prepared)
-		trigger_action(1 - player, "hit", 38)
+		rival_hit(player, 38)
 		trigger_screen_shake(10, 2.5)
 		spawn_board_popup(popup_pos, "%d CHAIN!!" % chain_num, "+%d" % wave_score, Color("ff5268"))
+
+	if attack_vfx_enabled and temporal_players[player] and chain_num >= 2 and not is_c4:
+		# The HUD keeps the chain count; the VFX tag shows the accepted stones.
+		# This wave just appended its score popup, so drop the repeated chain text.
+		callout_timer[player] = 0
+		var popup: Dictionary = board_popups.back()
+		popup["text"] = "+%d" % wave_score
+		popup["sub"] = ""
 
 func enqueue_visual_waves(player: int, pre_resolve_cells: PackedInt32Array, board_origin: Vector2, decrement_counters: bool = true) -> int:
 	# shortcut: reconstrução visual em cópia; a cronologia completa da CPS-2 continua fora desta camada.
@@ -1156,6 +1194,9 @@ func sync_temporal_board(model: RefCounted, player: int, origin: Vector2) -> voi
 func step_from_model(model, board_origins: Array[Vector2] = [Vector2(64, 108), Vector2(744, 108)]) -> void:
 	anim_tick += 1
 	destruction.step()
+	if attack_vfx_enabled and attack_vfx != null:
+		for arrival in attack_vfx.step(model, board_origins):
+			attack_arrival_hit(model, int(arrival.receiver), int(arrival.tier))
 	if screen_shake_timer > 0:
 		screen_shake_timer -= 1
 		if screen_shake_timer == 0:
@@ -1975,6 +2016,10 @@ func draw_foreground_vfx(canvas: CanvasItem, font: Font) -> void:
 				var sub_size := 13
 				while sub_size > 9 and font.get_string_size(callout_sub[i],HORIZONTAL_ALIGNMENT_LEFT,-1,sub_size).x > 198.0: sub_size -= 1
 				draw_outlined_text(canvas, font, Vector2(bx + 2, by + 18), callout_sub[i], sub_size, Color.WHITE, Color("080c16"), 2)
+
+	# V11.6: attack volleys and combo tags (drawn under the HUD panels).
+	if attack_vfx_enabled and attack_vfx != null:
+		attack_vfx.draw(canvas, font, load_tex("gem_crash_4.png"), load_tex("gem_normal_2.png"))
 
 ## V11.5: no historical sent/received totals are fabricated from raw attack.
 const ATTACK_LABELS = ["", "CAUTION", "WARNING", "DANGER"]

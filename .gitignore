@@ -46,3 +46,7 @@
 !/relatorios/v11_5/focused_summary.json
 !/relatorios/v11_5/regression_summary.json
 !/relatorios/v11_5/run_validation.py
+
+.ai/
+relatorios/**/capturas/
+relatorios/fidelidade_v6/frames/

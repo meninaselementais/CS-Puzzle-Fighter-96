@@ -42,6 +42,9 @@ func _ready() -> void:
 	# V11.4.2: glass presentation is OFF unless PF_GLASS=1 (quality: PF_GLASS_QUALITY=high|medium|low). Key G toggles it.
 	if OS.get_environment("PF_GLASS") in ["1","true","on"]:
 		arena.set_glass_presentation(true,OS.get_environment("PF_GLASS_QUALITY"))
+	# V11.6: attack/combo presentation is OFF unless PF_ATTACK_VFX=1. Key H toggles it.
+	if OS.get_environment("PF_ATTACK_VFX") in ["1","true","on"]:
+		arena.set_attack_presentation(true)
 	# O Showcase mantém sua referência original SAS/Phoenix, independente da seleção.
 	if get_script().resource_path == "res://presentation/main.gd":
 		if not Selection.apply_to_match(model):
@@ -148,6 +151,11 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	if key == KEY_G:
 		var glass_on: bool = arena.set_glass_presentation(not arena.glass_enabled,OS.get_environment("PF_GLASS_QUALITY"))
 		print("GLASS_PRESENTATION ",glass_on)
+		queue_redraw()
+		return
+	if key == KEY_H:
+		var attack_on: bool = arena.set_attack_presentation(not arena.attack_vfx_enabled)
+		print("ATTACK_PRESENTATION ",attack_on)
 		queue_redraw()
 		return
 	if key == KEY_TAB:
